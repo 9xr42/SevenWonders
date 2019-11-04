@@ -1,16 +1,16 @@
+import com.intellij.ui.JBColor;
+import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import javax.imageio.ImageIO;
-import javax.swing.*;
 
 public class GUI extends JFrame implements MouseListener
 {
+
     public static void main(String[] args) throws IOException {
         GUI x = new GUI();
     }
@@ -23,12 +23,12 @@ public class GUI extends JFrame implements MouseListener
         JFrame start = new JFrame("Seven Wonders: Welcome");
         Dimension startSize = start.getMaximumSize();
         start.setSize(startSize);
-        start.getContentPane().setBackground(Color.BLACK);
+        start.getContentPane().setBackground(JBColor.BLACK);
         start.setDefaultCloseOperation(EXIT_ON_CLOSE);
         start.setVisible(true);
 
         JPanel s2 = new JPanel();
-        s2.setBackground(Color.WHITE);
+        s2.setBackground(JBColor.WHITE);
         start.add(s2);
         s2.setVisible(true);
 
@@ -49,7 +49,7 @@ public class GUI extends JFrame implements MouseListener
         JLabel tx2 = new JLabel("CLICK PLAY BUTTON TO BEGIN");
         bimg.add(tx2);
         tx2.setFont(new Font("Serif", Font.BOLD, 24));
-        tx2.setForeground(Color.WHITE);
+        tx2.setForeground(JBColor.WHITE);
         Dimension size3 = tx2.getMaximumSize();
         tx2.setBounds(730, 700, size3.width, size3.height);
         tx2.setVisible(true);
@@ -64,25 +64,31 @@ public class GUI extends JFrame implements MouseListener
         bimg.add(button);
         button.setVisible(true);
 
-        button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                setGameFrame();
-            }
-        });
-
-
-
+        button.addActionListener(actionEvent -> setGameFrame());
     }
 
     public void setGameFrame()
     {
         JFrame f = new JFrame("Seven Wonders: The Game");
-        Dimension startSize = f.getMaximumSize();
-        f.setSize(startSize);
-        f.getContentPane().setBackground(Color.GRAY);
+        //Dimension startSize = f.getMaximumSize();
+        f.setSize(3840, 2000);
+        f.getContentPane().setBackground(JBColor.GRAY);
         f.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        f.addMouseListener(this);
         f.setVisible(true);
+
+        JPanel s2 = new JPanel();
+        s2.setBackground(JBColor.WHITE);
+        f.add(s2);
+        s2.setVisible(true);
+
+        JLabel bimg = new JLabel(new ImageIcon("C:\\Users\\aggar\\IdeaProjects\\SevenWondersMyVersion\\src\\wood.jpg"));
+        Dimension b = bimg.getPreferredSize();
+        bimg.setSize(b);
+        s2.add(bimg);
+        bimg.setVisible(true);
+
+
 
 
 
@@ -90,26 +96,33 @@ public class GUI extends JFrame implements MouseListener
 
 
     @Override
-    public void mouseClicked(MouseEvent mouseEvent)
+    public void mouseClicked(MouseEvent e)
     {
+        System.out.println(e.getX() + " " + e.getY());
+    }
 
+    public int getX(MouseEvent e)
+    {
+        return e.getX();
+    }
+
+    public int getY(MouseEvent e)
+    {
+        return e.getY();
     }
 
     @Override
     public void mousePressed(MouseEvent mouseEvent) {
 
     }
-
     @Override
     public void mouseReleased(MouseEvent mouseEvent) {
 
     }
-
     @Override
     public void mouseEntered(MouseEvent mouseEvent) {
 
     }
-
     @Override
     public void mouseExited(MouseEvent mouseEvent) {
 
