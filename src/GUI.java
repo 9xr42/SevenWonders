@@ -76,17 +76,19 @@ public class GUI extends JFrame implements MouseListener
         f.setDefaultCloseOperation(EXIT_ON_CLOSE);
         f.addMouseListener(this);
         f.setVisible(true);
-
-        JPanel s2 = new JPanel();
-        s2.setBackground(JBColor.WHITE);
-        f.add(s2);
-        s2.setVisible(true);
-
+        
         JLabel bimg = new JLabel(new ImageIcon("C:\\Users\\aggar\\IdeaProjects\\SevenWondersMyVersion\\src\\wood.jpg"));
         Dimension b = bimg.getPreferredSize();
         bimg.setSize(b);
-        s2.add(bimg);
+        f.add(bimg);
         bimg.setVisible(true);
+
+        JPanel s2 = new JPanel();
+        s2.setBackground(JBColor.WHITE);
+        bimg.add(s2);
+        s2.setVisible(true);
+
+
 
 
 
