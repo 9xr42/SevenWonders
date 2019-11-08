@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 
-public class BlueCard extends Card
-{
+public class BlueCard extends Card{
     private ArrayList<String> cost;
     private ArrayList<String> chains;
     private int victoryPoints;
@@ -19,7 +18,7 @@ public class BlueCard extends Card
     public ArrayList<String> getChains() {
         return chains;
     }
-    public int getVictoryPoints() {
+    public int getVictorPoints() {
         return victoryPoints;
     }
 }
