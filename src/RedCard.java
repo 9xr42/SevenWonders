@@ -8,7 +8,6 @@ public class RedCard extends Card {
     public RedCard(String name, String color, ArrayList<String> cost, ArrayList<String> chains, int military) {
         super(name, color);
         this.cost = cost;
-        this.prerequisite = prerequisite;
         this.chains = chains;
         this.military = military;
     }

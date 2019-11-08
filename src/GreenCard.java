@@ -8,7 +8,6 @@ public class GreenCard extends Card {
     public GreenCard(String name, String color, ArrayList<String> cost, ArrayList<String> chains, String scinece) {
         super(name, color);
         this.cost = cost;
-        this.prerequisite = prerequisite;
         this.chains = chains;
         this.scinece = scinece;
     }
