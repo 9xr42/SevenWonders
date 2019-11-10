@@ -65,6 +65,7 @@ public class GUI extends JFrame implements MouseListener
 
         button.addActionListener(actionEvent -> {
             try {
+                start.dispose();
                 setGameFrame();
             } catch (IOException e) {
                 e.printStackTrace();
