@@ -1,28 +1,27 @@
-1|Brown|lumberyard.png|Wood|NA|NA|NA|NA
-1|Brown|lumberyard.png|Wood|NA|NA|NA|NA
-1|Brown|orevein.png|Ore|NA|NA|NA|NA
-1|Brown|orevein.png|Ore|NA|NA|NA|NA
-1|Brown|claypool.png|Clay|NA|NA|NA|NA
-1|Brown|claypool.png|Clay|NA|NA|NA|NA
-1|Brown|stonepit.png|Stone|NA|NA|NA|NA
-1|Brown|stonepit.png|Stone|NA|NA|NA|NA
-1|Brown|timberyard.png|Stone or Wood|1|NA|NA|NA
-1|Brown|lumberyard.png|Wood|NA|NA|NA|NA
-1|Brown|claypit.png|Clay or Ore|1|NA|NA|NA
-1|Gray|loom.png|Loom|NA|NA|NA|NA
-1|Gray|glassworks.png|Glass|NA|NA|NA|NA
-1|Gray|press.png|Papyrus|NA|NA|NA|NA
-1|Green|scriptorium.png|Tablet|Papyrus|NA|Courthouse|Library
-1|Green|workshop.png|Gear|Glass|NA|Laboratory|Archery Range
-1|Red|guardtower.png|1|Clay|NA|NA|NA
-1|Red|stockade.png|1|Wood|NA|NA|NA
-1|Yellow|easttradingpost.png|NA|NA|Forum|NA
-//i'll do the rest tom
-
-1|westtradingpost|yellow|...|forum||
-1|barracks|red|...||
-1|claypool|brown|...||
-1|timberyard|brown...||
+Age|Color|Name|Effect|Cost|Free|Chain|Chain
+1|Brown|Lumber Yard|Wood|NA|NA|NA|NA
+1|Brown|Lumber Yard|Wood|NA|NA|NA|NA
+1|Brown|Ore Vein|Ore|NA|NA|NA|NA
+1|Brown|Ore Vein|Ore|NA|NA|NA|NA
+1|Brown|Clay Pool|Clay|NA|NA|NA|NA
+1|Brown|Clay Pool|Clay|NA|NA|NA|NA
+1|Brown|Stone Pit|Stone|NA|NA|NA|NA
+1|Brown|Stone Pit|Stone|NA|NA|NA|NA
+1|Brown|Timber Yard|Stone or Wood|1|NA|NA|NA
+1|Brown|Lumber Yard|Wood|NA|NA|NA|NA
+1|Brown|Clay Pit|Clay or Ore|1|NA|NA|NA
+1|Gray|Loom|Loom|NA|NA|NA|NA
+1|Gray|Glassworks|Glass|NA|NA|NA|NA
+1|Gray|Press|Papyrus|NA|NA|NA|NA
+1|Green|Scriptorium|Tablet|Papyrus|NA|Courthouse|Library
+1|Green|Workshop|Gear|Glass|NA|Laboratory|Archery Range
+1|Red|Guard Tower|1|Clay|NA|NA|NA
+1|Red|Stockade|1|Wood|NA|NA|NA
+1|Yellow|East Trading Post|NA|NA|Forum|NA
+1|Yellow|westtradingpost.png|discount Clay Stone Wood Ore|NA|Forum|NA
+1|Red|barracks.png|1|Ore|NA|NA
+1|Brown|claypool.png|Clay|NA|NA|NA
+1|Brown|timberyard.pngbrown...||
 1|baths|blue|...|aqueduct|
 1|marketplace|yellow|...|caravansery||
 1|theater|blue|...|statue|
