@@ -1,0 +1,72 @@
+import java.util.Arrays;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Stack;
+
+public class PostFix 
+{
+	private Stack<Double>stack;
+	
+	public PostFix(String[]in)
+	{
+		stack=new Stack<Double>();
+		List<String>temp=Arrays.asList(in);
+		ArrayList<String>list=new ArrayList<String>(temp);
+		while(!(list.size()==0))
+		{
+			if(list.get(0).equals("+"))
+			{
+				double i=stack.pop();
+				double j=stack.pop();
+				stack.push(i+j);
+			}
+			else if(list.get(0).equals("-"))
+			{
+				double i=stack.pop();
+				double j=stack.pop();
+				stack.push(j-i);
+			}
+			else if(list.get(0).equals("*"))
+			{
+				double i=stack.pop();
+				double j=stack.pop();
+				stack.push(i*j);
+			}
+			else if(list.get(0).equals("/"))
+			{
+				double i=stack.pop();
+				double j=stack.pop();
+				stack.push(j/i);
+			}
+			else
+				stack.push(Double.parseDouble(list.get(0)));
+			list.remove(0);
+		}
+		print(in,stack.peek());
+	}
+	
+	public void print(String[]in,double num)
+	{
+		for(int i=0;i<in.length;i++)
+			System.out.print(in[i]+" ");
+		System.out.print("= "+num);
+		System.out.println();
+	}
+}
+
+
+import java.io.*;
+import java.util.Scanner;
+
+public class PostFixRunner
+{
+    public static void main(String[]args)throws IOException
+    {
+        Scanner scan=new Scanner(new File("PostFix.txt"));
+        while(scan.hasNextLine())
+        {
+            String[]arr=scan.nextLine().split(" ");
+            PostFix postfix=new PostFix(arr);
+        }
+    }
+}
