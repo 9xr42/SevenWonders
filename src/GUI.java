@@ -96,14 +96,14 @@ public class GUI extends JFrame implements MouseListener
 
         JLabel bim = new JLabel(new ImageIcon("C:\\Users\\aggar\\IdeaProjects\\SevenWondersMyVersion\\images\\mainlogo.png"));
         Dimension bi = bim.getMinimumSize();
-        bim.setBounds(650, 0, (int) bi.getWidth(), (int) bi.getHeight());
+        bim.setBounds(600, 0, (int) bi.getWidth(), (int) bi.getHeight());
         bimg.add(bim);
         bim.setVisible(true);
 
         BufferedImage show = ImageIO.read(new File("C:\\Users\\aggar\\IdeaProjects\\SevenWondersMyVersion\\images\\show.png"));
         JButton right = new JButton(new ImageIcon(show));
         Dimension x = right.getPreferredSize();
-        right.setBounds(200, 400, (int) x.getWidth(), (int) x.getHeight());
+        right.setBounds(1300, 40, (int) x.getWidth(), (int) x.getHeight());
         right.setBorderPainted(false);
         right.setFocusPainted(false);
         right.setContentAreaFilled(false);
@@ -111,17 +111,36 @@ public class GUI extends JFrame implements MouseListener
         right.setVisible(true);
         right.addActionListener(actionEvent -> {
             try {
-                player1();
+                playerR();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         });
+
+        JButton left = new JButton(new ImageIcon(show));
+        Dimension y = left.getPreferredSize();
+        left.setBounds(200, 40, (int) y.getWidth(), (int) y.getHeight());
+        left.setBorderPainted(false);
+        left.setFocusPainted(false);
+        left.setContentAreaFilled(false);
+        bimg.add(left);
+        left.setVisible(true);
+        left.addActionListener(actionEvent -> {
+            try {
+                PlayerL();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
     }
 
 
-    public void player1() throws IOException
+
+
+    public void playerR() throws IOException
     {
-        JFrame p1 = new JFrame("Player 1 Cards");
+        JFrame p1 = new JFrame("Right Player Cards");
         p1.setSize(3840, 2160);
         p1.getContentPane().setBackground(Color.GRAY);
         p1.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -145,6 +164,35 @@ public class GUI extends JFrame implements MouseListener
         back.addActionListener(actionEvent -> p1.dispose()
         );
     }
+
+    public void PlayerL() throws IOException
+    {
+        JFrame p1 = new JFrame("Left Player Cards");
+        p1.setSize(3840, 2160);
+        p1.getContentPane().setBackground(Color.GRAY);
+        p1.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        p1.setVisible(true);
+
+        JPanel pan1 = new JPanel();
+        pan1.setBackground(Color.WHITE);
+        p1.add(pan1);
+        pan1.setLayout(null);
+        pan1.setVisible(true);
+
+        BufferedImage pre = ImageIO.read(new File("C:\\Users\\aggar\\IdeaProjects\\SevenWondersMyVersion\\images\\goback.png"));
+        JButton back = new JButton(new ImageIcon(pre));
+        Dimension x = back.getPreferredSize();
+        back.setBounds(700, 670, (int) x.getWidth(), (int) x.getHeight());
+        back.setBorderPainted(false);
+        back.setFocusPainted(false);
+        back.setContentAreaFilled(false);
+        pan1.add(back);
+        back.setVisible(true);
+        back.addActionListener(actionEvent -> p1.dispose()
+        );
+    }
+
+
 
 
 
