@@ -1,0 +1,16 @@
+Age|Color|Name|Effect|Cost|Free|Chain|Chain
+1|Brown|Lumber Yard|Wood|NA|NA|NA|NA
+1|Brown|Lumber Yard|Wood|NA|NA|NA|NA
+1|Brown|Ore Vein|Ore|NA|NA|NA|NA
+1|Brown|Ore Vein|Ore|NA|NA|NA|NA
+1|Brown|Clay Pool|Clay|NA|NA|NA|NA
+1|Brown|Clay Pool|Clay|NA|NA|NA|NA
+1|Brown|Stone Pit|Stone|NA|NA|NA|NA
+1|Brown|Stone Pit|Stone|NA|NA|NA|NA
+1|Brown|Timber Yard|Stone or Wood|1|NA|NA|NA
+1|Brown|Clay Pit|Clay or Ore|1|NA|NA|NA
+1|Gray|Loom|Loom|NA|NA|NA|NA
+1|Gray|Glassworks|Glass|NA|NA|NA|NA
+1|Gray|Press|Papyrus|NA|NA|NA|NA
+1|Yellow
+
