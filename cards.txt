@@ -18,7 +18,7 @@ Age|Color|Name|Effect|Cost|Free|Chain|Chain
 1|Red|Guard Tower|1|Clay|NA|NA|NA
 1|Red|Stockade|1|Wood|NA|NA|NA
 1|Yellow|East Trading Post|NA|NA|Forum|NA
-
+//i'll do the rest tom
 
 1|westtradingpost|yellow|...|forum||
 1|barracks|red|...||
