@@ -8,9 +8,74 @@ Age|Color|Name|Effect|Cost|Free|Chain|Chain
 1|Brown|Stone Pit|Stone|NA|NA|NA|NA
 1|Brown|Stone Pit|Stone|NA|NA|NA|NA
 1|Brown|Timber Yard|Stone or Wood|1|NA|NA|NA
+1|Brown|Lumber Yard|Wood|NA|NA|NA|NA
 1|Brown|Clay Pit|Clay or Ore|1|NA|NA|NA
 1|Gray|Loom|Loom|NA|NA|NA|NA
 1|Gray|Glassworks|Glass|NA|NA|NA|NA
 1|Gray|Press|Papyrus|NA|NA|NA|NA
-1|Yellow
+1|Green|Scriptorium|Tablet|Papyrus|NA|Courthouse|Library
+1|Green|Workshop|Gear|Glass|NA|Laboratory|Archery Range
+1|Red|Guard Tower|1|Clay|NA|NA|NA
+1|Red|Stockade|1|Wood|NA|NA|NA
+1|Yellow|East Trading Post|NA|NA|Forum|NA
 
+
+1|westtradingpost|yellow|...|forum||
+1|barracks|red|...||
+1|claypool|brown|...||
+1|timberyard|brown...||
+1|baths|blue|...|aqueduct|
+1|marketplace|yellow|...|caravansery||
+1|theater|blue|...|statue|
+1|stonepit|brown|...||
+1|apothecary|green|...|stables|dispensary
+1|loom|grey|...||
+1|orevein|brown|...||
+1|altar|blue|...|temple|
+2|school|green|...|academy|study
+2|library|green|...|senate|university
+2|laboratory|green|...|observatory|siegeworkshop
+2|dispensary|green|...|lodge|arena
+2|press|grey|...||
+2|loom|grey|...||
+2|glassworks|grey|...||
+2|stables|red|...||
+2|walls|red|...|fortifications|
+2|archeryrange|red|...||
+2|forum|yellow|...|haven|
+2|vineyard|yellow|...||
+2|caravansery|yellow|...|lighthouse|
+2|statue|blue|...|gardens|
+2|temple|blue|...|pantheon|
+2|courthouse|blue|...||
+2|aqueduct|blue|...||
+2|foundry|brown|...||
+2|sawmill|brown|...||
+2|brickyard|brown|...||
+2|quarry|brown|...||
+3|scientistsguild|purple|...||
+3|tradersguild|purple|...||
+3|spiesguild|purple|...||
+3|workersguild|purple|...||
+3|strategistsguild|purple|...||
+3|craftsmensguild|...||
+3|philosophersguild|purple|...||
+3|shipownersguild|purple|...||
+3|buildersguild|purple|...||
+3|magistratesguild|purple|...||
+3|study|green|...||
+3|academy|green|...||
+3|siegeworkshop|red|...||
+3|senate|blue|...||
+3|arsenal|red|...||
+3|arena|yellow|...||
+3|fortifications|red|...||
+3|haven|yellow|...||
+3|lighthouse|yellow|...||
+3|pantheon|blue|...||
+3|gardens|blue|...||
+3|townhall|blue|...||
+3|palace|blue|...||
+3|observatory|green|...||
+3|lodge|green|...||
+3|university|green|...||
