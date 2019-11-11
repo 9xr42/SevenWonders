@@ -1,14 +1,9 @@
 Age|Color|Name|Effect|Cost|Free|Chain|Chain
 1|Brown|lumberyard.png|Wood|NA|NA|NA|NA
-1|Brown|lumberyard.png|Wood|NA|NA|NA|NA
-1|Brown|orevein.png|Ore|NA|NA|NA|NA
 1|Brown|orevein.png|Ore|NA|NA|NA|NA
 1|Brown|claypool.png|Clay|NA|NA|NA|NA
-1|Brown|claypool.png|Clay|NA|NA|NA|NA
-1|Brown|stonepit.png|Stone|NA|NA|NA|NA
 1|Brown|stonepit.png|Stone|NA|NA|NA|NA
 1|Brown|timberyard.png|Stone or Wood|1|NA|NA|NA
-1|Brown|lumberyard.png|Wood|NA|NA|NA|NA
 1|Brown|claypit.png|Clay or Ore|1|NA|NA|NA
 1|Gray|loom.png|Loom|NA|NA|NA|NA
 1|Gray|glassworks.png|Glass|NA|NA|NA|NA
@@ -17,63 +12,60 @@ Age|Color|Name|Effect|Cost|Free|Chain|Chain
 1|Green|workshop.png|Gear|Glass|NA|Laboratory|Archery Range
 1|Red|guardtower.png|1|Clay|NA|NA|NA
 1|Red|stockade.png|1|Wood|NA|NA|NA
-1|Yellow|easttradingpost.png|NA|NA|Forum|NA
-1|Yellow|westtradingpost.png|discount Clay Stone Wood Ore|NA|Forum|NA
-1|Red|barracks.png|1|Ore|NA|NA
-1|Brown|claypool.png|Clay|NA|NA|NA
-1|Brown|timberyard.pngbrown...||
-1|baths|blue|...|aqueduct|
-1|marketplace|yellow|...|caravansery||
-1|theater|blue|...|statue|
-1|stonepit|brown|...||
-1|apothecary|green|...|stables|dispensary
-1|loom|grey|...||
-1|orevein|brown|...||
-1|altar|blue|...|temple|
-2|school|green|...|academy|study
-2|library|green|...|senate|university
-2|laboratory|green|...|observatory|siegeworkshop
-2|dispensary|green|...|lodge|arena
-2|press|grey|...||
-2|loom|grey|...||
-2|glassworks|grey|...||
-2|stables|red|...||
-2|walls|red|...|fortifications|
-2|archeryrange|red|...||
-2|forum|yellow|...|haven|
-2|vineyard|yellow|...||
-2|caravansery|yellow|...|lighthouse|
-2|statue|blue|...|gardens|
-2|temple|blue|...|pantheon|
-2|courthouse|blue|...||
-2|aqueduct|blue|...||
-2|foundry|brown|...||
-2|sawmill|brown|...||
-2|brickyard|brown|...||
-2|quarry|brown|...||
-3|scientistsguild|purple|...||
-3|tradersguild|purple|...||
-3|spiesguild|purple|...||
-3|workersguild|purple|...||
-3|strategistsguild|purple|...||
-3|craftsmensguild|...||
-3|philosophersguild|purple|...||
-3|shipownersguild|purple|...||
-3|buildersguild|purple|...||
-3|magistratesguild|purple|...||
-3|study|green|...||
-3|academy|green|...||
-3|siegeworkshop|red|...||
-3|senate|blue|...||
-3|arsenal|red|...||
-3|arena|yellow|...||
-3|fortifications|red|...||
-3|haven|yellow|...||
-3|lighthouse|yellow|...||
-3|pantheon|blue|...||
-3|gardens|blue|...||
-3|townhall|blue|...||
-3|palace|blue|...||
-3|observatory|green|...||
-3|lodge|green|...||
-3|university|green|...||
+1|Yellow|easttradingpost.png|discount right Clay Stone Wood Ore|NA|Forum|NA
+1|Yellow|westtradingpost.png|discount left Clay Stone Wood Ore|NA|Forum|NA
+1|Red|barracks.png|1|Ore|NA|NA|NA
+1|Blue|baths.png|3|Stone|NA|Aqueduct|NA
+1|Yellow|marketplace.png|discount both Glass Papyrus Loom|NA|NA|Caravansery|NA
+1|Blue|theater.png|2|NA|NA|Statue|NA
+1|Green|apothecary.png|Compass|Loom|NA|stables|dispensary
+1|Blue|altar.png|2|NA|NA|temple|NA
+
+2|Green|school.png|Tablet|Wood Papyrus|NA|academy|study
+2|Green|library.png|Tablet|Stone Stone Loom|Scriptorium|Senate|University
+2|Green|laboratory.png|Gear|Clay Clay Papyrus|Workshop|Observatory|Siege Workshop
+2|Green|dispensary.png|Compass|Ore Ore Glass|Apothecary|Lodge|Arena
+2|Grey|press.png|Papyrus|NA|NA|NA|NA
+2|Grey|loom.png|Cloth|NA|NA|NA|NA
+2|Grey|glassworks.png|Glass|NA|NA|NA|NA
+2|Red|stables.png|2|Clay Wood Ore|Apothecary|NA|NA
+2|Red|walls.png|2|Stone Stone Stone|fortifications|
+2|Red|archeryrange.png|...||
+2|Yellow|forum.png|...|haven|
+2|Yellow|vineyard.png|...||
+2|Yellow|caravansery.png|...|lighthouse|
+2|Blue|statue.png|...|gardens|
+2|Blue|temple.png|...|pantheon|
+2|Blue|courthouse.png|...||
+2|Blue|aqueduct.png|...||
+2|Brown|foundry.png|...||
+2|Brown|sawmill.png|...||
+2|Brown|brickyard.png|...||
+2|Brown|quarry.png|...||
+
+3|Purple|scientistsguild.png|...||
+3|Purple|tradersguild.png|...||
+3|Purple|spiesguild.png|...||
+3|Purple|workersguild.png|...||
+3|Purple|strategistsguild.png|...||
+3|Purple|craftsmensguild.png|...||
+3|Purple|philosophersguild.png|...||
+3|Purple|shipownersguild.png|...||
+3|Purple|buildersguild.png|...||
+3|Purple|magistratesguild.png|...||
+3|Green|study.png|...||
+3|Green|academy.png|...||
+3|Red|siegeworkshop.png|...||
+3|Blue|senate.png|...||
+3|Red|arsenal.png|...||
+3|Yellow|arena.png|...||
+3|Red|fortifications.png|...||
+3|Yellow|haven.png|...||
+3|Yellow|lighthouse.png|...||
+3|Blue|pantheon.png|...||
+3|Blue|gardens.png|...||
+3|Blue|townhall.png|...||
+3|Blue|palace.png|...||
+3|Green|observatory.png|...||
+3|Green|lodge.png|...||
+3|Green|university.png|...||
