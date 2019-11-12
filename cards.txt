@@ -30,42 +30,42 @@ Age|Color|Name|Effect|Cost|Free|Chain|Chain
 2|Grey|glassworks.png|Glass|NA|NA|NA|NA
 2|Red|stables.png|2|Clay Wood Ore|Apothecary|NA|NA
 2|Red|walls.png|2|Stone Stone Stone|fortifications|
-2|Red|archeryrange.png|...||
-2|Yellow|forum.png|...|haven|
-2|Yellow|vineyard.png|...||
-2|Yellow|caravansery.png|...|lighthouse|
-2|Blue|statue.png|...|gardens|
-2|Blue|temple.png|...|pantheon|
-2|Blue|courthouse.png|...||
-2|Blue|aqueduct.png|...||
-2|Brown|foundry.png|...||
-2|Brown|sawmill.png|...||
-2|Brown|brickyard.png|...||
-2|Brown|quarry.png|...||
+2|Red|archeryrange.png|2|Wood Wood Ore|Workshop|NA|NA
+2|Yellow|forum.png|give Glass or Loom or Papyrus|Clay Clay|Trading Post|Haven|NA
+2|Yellow|vineyard.png|coin all brown|NA|NA|NA|NA
+2|Yellow|caravansery.png|Wood or Stone or Ore or Clay|Wood Wood|Marketplace|Lighthouse|NA
+2|Blue|statue.png|4|Ore Ore Wood|Theater|Gardens|NA
+2|Blue|temple.png|3|Glass Clay Wood|Altar|Pantheon|NA
+2|Blue|courthouse.png|4|Clay Clay Loom|Scriptorium|NA|NA
+2|Blue|aqueduct.png|5|Stone Stone Stone|Baths|NA|NA
+2|Brown|foundry.png|Ore Ore|1|NA|NA|NA
+2|Brown|sawmill.png|Wood Wood|1|NA|NA|NA
+2|Brown|brickyard.png|Clay Clay|1|NA|NA|NA
+2|Brown|quarry.png|Stone Stone|1|NA|NA|NA
 
-3|Purple|scientistsguild.png|...||
-3|Purple|tradersguild.png|...||
-3|Purple|spiesguild.png|...||
-3|Purple|workersguild.png|...||
-3|Purple|strategistsguild.png|...||
-3|Purple|craftsmensguild.png|...||
-3|Purple|philosophersguild.png|...||
-3|Purple|shipownersguild.png|...||
-3|Purple|buildersguild.png|...||
-3|Purple|magistratesguild.png|...||
-3|Green|study.png|...||
-3|Green|academy.png|...||
-3|Red|siegeworkshop.png|...||
-3|Blue|senate.png|...||
-3|Red|arsenal.png|...||
-3|Yellow|arena.png|...||
-3|Red|fortifications.png|...||
-3|Yellow|haven.png|...||
-3|Yellow|lighthouse.png|...||
-3|Blue|pantheon.png|...||
-3|Blue|gardens.png|...||
-3|Blue|townhall.png|...||
-3|Blue|palace.png|...||
-3|Green|observatory.png|...||
-3|Green|lodge.png|...||
-3|Green|university.png|...||
+3|Purple|scientistsguild.png|Compass or Tablet or Gear|Wood Wood Ore Ore Papyrus|NA|NA|NA
+3|Purple|tradersguild.png|1pt Yellow neighbors|Glass Cloth Papyrus|NA|NA|NA
+3|Purple|spiesguild.png|1pt Red neighbors|Clay Clay Clay Glass|NA|NA|NA
+3|Purple|workersguild.png|1pt Brown neighbors|Ore Ore Clay Stone Wood|NA|NA|NA
+3|Purple|strategistsguild.png|1pt loss neighbors|Ore Ore Stone Cloth|NA|NA|NA
+3|Purple|craftsmensguild.png|2pt Grey neighbors|Ore Ore Stone Stone|NA|NA|NA
+3|Purple|philosophersguild.png|1pt Green neighbors|Clay Clay Clay Papyrus Cloth|NA|NA|NA
+3|Purple|shipownersguild.png||1pt Brown/Grey/Purple you|Wood Wood Wood Glass Papyrus|NA|NA|NA
+3|Purple|buildersguild.png|1pt Wonder all|Stone Stone Clay Clay Glass|NA|NA|NA
+3|Purple|magistratesguild.png|1pt Blue neighbors|Wood Wood Wood Stone Cloth|NA|NA|NA
+3|Green|study.png|Gear|Wood Papyrus Cloth|School|NA|NA
+3|Green|academy.png|Compass|Stone Stone Stone Glass|School|NA|NA
+3|Red|siegeworkshop.png|3|Clay Clay Clay Wood|Laboratory|NA|NA
+3|Blue|senate.png|6|Wood Wood Stone Ore|Library|NA|NA
+3|Red|arsenal.png|3|Wood Wood Ore Cloth|NA|NA|NA
+3|Yellow|arena.png|3coin 1pt Wonder you|Stone Stone Ore|Dispensary|NA|NA
+3|Red|fortifications.png|3|Ore Ore Ore Stone|Walls|NA|NA
+3|Yellow|haven.png|1coin 1pt Brown you|Wood Ore Cloth|Forum|NA|NA
+3|Yellow|lighthouse.png|1coin 1pt Yellow you|Stone Glass|Caravansery|NA|NA
+3|Blue|pantheon.png|7|Clay Clay Ore Glass Papyrus Cloth|Temple|NA|NA
+3|Blue|gardens.png|5|Clay Clay Wood|Statue|NA|NA
+3|Blue|townhall.png|6|Stone Stone Ore Glass|NA|NA|NA
+3|Blue|palace.png|8|Stone Ore Wood Clay Glass Papyrus Cloth|NA|NA|NA
+3|Green|observatory.png|Gear|Ore Ore Glass Cloth|Laboratory|NA|NA
+3|Green|lodge.png|Compass|Clay Clay Papyrus Cloth|Dispensary|NA|NA
+3|Green|university.png|Tablet|Wood Wood Papyrus Glass|Library|NA|NA
