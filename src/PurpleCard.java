@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class PurpleCard {
+public class PurpleCard extends Card{
     private ArrayList<String> cost;
     private boolean isScience;
     private boolean leftAndRight;
@@ -8,7 +8,8 @@ public class PurpleCard {
     private ArrayList<String> sciences;
     private int victoryPoints;
 
-    public PurpleCard(ArrayList<String> cost, boolean isScience, boolean leftAndRight, boolean incluesSelf, ArrayList<String> sciences, int victoryPoints) {
+    public PurpleCard(String color, String name, ArrayList<String> cost, boolean isScience, boolean leftAndRight, boolean incluesSelf, ArrayList<String> sciences, int victoryPoints) {
+        super(color, name);
         this.cost = cost;
         this.isScience = isScience;
         this.leftAndRight = leftAndRight;

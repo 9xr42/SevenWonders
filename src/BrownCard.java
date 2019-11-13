@@ -4,8 +4,8 @@ public class BrownCard extends Card {
     private ArrayList<String> resources;
     private int cost;
 
-    public BrownCard(String name, String color, ArrayList<String> resources, int cost) {
-        super(name, color);
+    public BrownCard(String color, String name, ArrayList<String> resources, int cost) {
+        super(color, name);
         this.resources = resources;
         this.cost = cost;
     }

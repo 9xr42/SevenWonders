@@ -1,8 +1,8 @@
 public class GrayCard extends Card {
     private String resource;
 
-    public GrayCard(String name, String color, String resource) {
-        super(name, color);
+    public GrayCard(String color, String name, String resource) {
+        super(color, name);
         this.resource = resource;
     }
 

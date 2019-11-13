@@ -2,7 +2,6 @@ import java.util.ArrayList;
 
 public class YellowCard extends Card {
     private ArrayList<String> cost;
-    private ArrayList<String> chains;
     private String action;
     private String cardColor;
     private int coins;
@@ -10,6 +9,8 @@ public class YellowCard extends Card {
     private ArrayList<String> resources;
     private boolean left;
     private boolean right;
+    String chain1 = "";
+    String chain2 = "";
 
     public YellowCard(String name, String color, ArrayList<String> cost, ArrayList<String> chains, String action, String cardColor, int coins, int victoryPoints, ArrayList<String> resources, boolean left, boolean right) {
         super(name, color);
