@@ -34,7 +34,7 @@ public class PQTester {
 
 import java.util.Scanner;
 import java.io.*;
-public class PQTesterRunner 
+public class PQTestRunner 
 {
 	public static void main(String[] args) throws IOException
 	{
