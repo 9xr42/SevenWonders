@@ -1,0 +1,53 @@
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Stack;
+
+public class PalinList {
+	private Stack<String> stack;
+	private Queue<String> queue;
+	
+	public PalinList(String[] str)
+	{
+		stack = new Stack<String>();
+		queue = new LinkedList<String>();
+		
+		for(String i: str)
+		{
+			stack.push(i);
+			queue.add(i);
+		}
+	}
+	
+	public void isPalindrome()
+	{
+		System.out.print(stack + " ");
+		boolean palindrome = true;
+		for(int i = 0; i<stack.size(); i++)
+		{
+			if(!stack.pop().equals(queue.remove()))
+				palindrome = false;
+		}
+		if(palindrome == true)
+			System.out.println("is a palinlist.\n");
+		else
+			System.out.println("is not a palinlist.\n");
+	}
+}
+
+import java.util.Scanner;
+import java.io.*;
+
+public class PalinListRunner {
+	public static void main(String[] args) throws IOException
+	{
+		Scanner sc = new Scanner(new File("PalinList.txt"));
+		
+		while(sc.hasNextLine())
+		{
+			PalinList list = new PalinList(sc.nextLine().split(" "));
+			list.isPalindrome();
+		}
+	}
+
+}
+
