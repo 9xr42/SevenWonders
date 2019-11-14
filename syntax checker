@@ -1,0 +1,58 @@
+import java.util.Stack;
+
+public class SyntaxChecker {
+	private Stack<String> stack;
+	
+	public SyntaxChecker(String str)
+	{
+		String[] temp = str.split("");
+		stack = new Stack<String>();
+		
+		boolean works = true;
+		
+		for(String i: temp)
+		{
+			if(i.equals("{")||i.equals("[")||i.equals("(")||i.equals("<"))
+				stack.push(i);
+			else if((i.equals("}")||i.equals("]")||i.equals(">")||i.equals(")"))&&stack.size()==0)
+				works = false;
+			else if(i.equals("}")&&works==true)
+				works = stack.pop().equals("{");
+			else if(i.equals("]")&&works==true)
+				works = stack.pop().equals("[");
+			else if(i.equals(">")&&works==true)
+				works = stack.pop().equals("<");
+			else if(i.equals(")")&&works==true)
+				works = stack.pop().equals("(");
+		}
+		
+		if(!stack.isEmpty())
+			works = false;
+		
+		print(str, works);
+	}
+	
+	public void print(String str, boolean works)
+	{
+		if(works)
+			System.out.println(str + " is correct.\n");
+		else
+			System.out.println(str + " is incorrect.\n");
+	}
+}
+
+import java.util.Scanner;
+import java.io.*;
+
+public class SyntaxCheckRunner {
+	public static void main(String[] args) throws IOException
+	{
+		Scanner sc = new Scanner(new File("SyntaxChecker.txt"));
+		
+		while(sc.hasNextLine())
+		{
+			SyntaxChecker check = new SyntaxChecker(sc.nextLine());
+			
+		}
+	}
+}
