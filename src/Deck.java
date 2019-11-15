@@ -17,33 +17,29 @@ public class Deck {
 
         while(textFileScan.hasNextLine()) {
             tempArray = textFileScan.nextLine().split("|");
-            if(tempArray[0].equals("Brown")) {
+            if(tempArray[0].equals("gray")) {
+                tempArrayList.add(new GrayCard(tempArray[0], tempArray[1], tempArray[2]));
+            }
+            else if(tempArray[0].equals("brown")) {
                 String color = tempArray[0];
                 String name = tempArray[1];
                 int cost = Integer.parseInt(tempArray[3]);
                 ArrayList<String> resources = new ArrayList<String>();
-                tempArray = tempArray[2].split("&");
-                for(int i = 0; i < tempArray.length; i++)
-                    resources.add(tempArray[i]);
-                tempArrayList.add(new BrownCard(color, name, resources, cost));
+                resources.add(tempArray[2]);
+                tempArrayList.add(new BrownCard(color, name, cost, resources));
             }
-            else if(tempArray[0].equals("Gray")) {
-                tempArrayList.add(new GrayCard(tempArray[0], tempArray[1], tempArray[2]));
-            }
-            else if(tempArray[0].equals("Green")) {
+            else if(tempArray[0].equals("green")) {
                 String color = tempArray[0];
                 String name = tempArray[1];
                 String science = tempArray[2];
-                String chain1 = tempArray[5];
-                String chain2 = tempArray[6];
-
                 ArrayList<String> cost = new ArrayList<String>();
-                tempArray = tempArray[3].split("&");
-                for(int i = 0; i < tempArray.length; i++)
-                    cost.add(tempArray[i]);
+                cost.add(tempArray[3]);
+                String chain1 = tempArray[4];
+                String chain2 = tempArray[5];
+
                 tempArrayList.add(new GreenCard(color, name, cost, science, chain1, chain2));
             }
-            else if(tempArray[0].equals("Red")) {
+            else if(tempArray[0].equals("red")) {
                 String color = tempArray[0];
                 String name = tempArray[1];
                 int military = Integer.parseInt(tempArray[3]);
@@ -57,10 +53,10 @@ public class Deck {
 
                 tempArrayList.add(new RedCard(color, name, cost, military, chain1, chain2));
             }
-            else if(tempArray[0].equals("Yellow")) {
+            else if(tempArray[0].equals("yellow")) {
 
             }
-            else if(tempArray[0].equals("Blue")) {
+            else if(tempArray[0].equals("blue")) {
                 String color = tempArray[0];
                 String name = tempArray[1];
                 int victoryPoints = Integer.parseInt(tempArray[3]);
@@ -72,7 +68,7 @@ public class Deck {
                 for(int i = 0; i < tempArray.length; i++)
                     cost.add(tempArray[i]);
 
-                tempArrayList.add(new BlueCard(color, name, cost, victoryPoints, chain1, chain2))
+                tempArrayList.add(new BlueCard(color, name, cost, victoryPoints, chain1, chain2));
             }
         }
     }

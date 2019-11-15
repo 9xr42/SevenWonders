@@ -12,10 +12,9 @@ public class YellowCard extends Card {
     String chain1 = "";
     String chain2 = "";
 
-    public YellowCard(String name, String color, ArrayList<String> cost, ArrayList<String> chains, String action, String cardColor, int coins, int victoryPoints, ArrayList<String> resources, boolean left, boolean right) {
-        super(name, color);
+    public YellowCard(String color, String name, ArrayList<String> cost, String action, String cardColor, int coins, int victoryPoints, ArrayList<String> resources, boolean left, boolean right, String chain1, String chain2) {
+        super(color, name);
         this.cost = cost;
-        this.chains = chains;
         this.action = action;
         this.cardColor = cardColor;
         this.coins = coins;
@@ -23,13 +22,12 @@ public class YellowCard extends Card {
         this.resources = resources;
         this.left = left;
         this.right = right;
+        this.chain1 = chain1;
+        this.chain2 = chain2;
     }
 
     public ArrayList<String> getCost() {
         return cost;
-    }
-    public ArrayList<String> getChains() {
-        return chains;
     }
     public String getAction() {
         return action;
@@ -51,5 +49,11 @@ public class YellowCard extends Card {
     }
     public boolean isRight() {
         return right;
+    }
+    public String getChain1() {
+        return chain1;
+    }
+    public String getChain2() {
+        return chain2;
     }
 }
