@@ -11,8 +11,8 @@ public class Deck {
 
     public Deck() throws IOException {
         ArrayList<Card> tempArrayList = new ArrayList<Card>();
+        String[] tempArray;
         Scanner textFileScan = new Scanner(new File("age1Cards.txt"));
-        String[] tempArray = new String[7];
 
         while(textFileScan.hasNextLine()) {
             tempArray = textFileScan.nextLine().split("|");
@@ -101,11 +101,11 @@ public class Deck {
         tempHand = new ArrayList<Card>();
         for(int i = 7; i < 14; i++)
             tempHand.add(tempArrayList.get(i));
-        cards.put(1, tempHand);
+        cards.put(2, tempHand);
         tempHand = new ArrayList<Card>();
         for(int i = 14; i < 20; i++)
             tempHand.add(tempArrayList.get(i));
-        cards.put(1, tempHand);
+        cards.put(3, tempHand);
 
         discard = new ArrayList<Card>();
     }
