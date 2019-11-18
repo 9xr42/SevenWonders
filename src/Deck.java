@@ -15,7 +15,7 @@ public class Deck {
         Scanner textFileScan = new Scanner(new File("age1Cards.txt"));
 
         while(textFileScan.hasNextLine()) {
-            tempArray = textFileScan.nextLine().split("|");
+            tempArray = textFileScan.nextLine().split("-");
             if(tempArray[0].equals("gray")) {
                 tempArrayList.add(new GrayCard(tempArray[0], tempArray[1], tempArray[2]));
             }
