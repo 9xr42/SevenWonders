@@ -31,7 +31,7 @@ public class GUI extends JFrame implements MouseListener
         start.add(s2);
         s2.setVisible(true);
 
-        JLabel bimg = new JLabel(new ImageIcon("C:\\Users\\aggar\\IdeaProjects\\SevenWondersMyVersion\\images\\startBack.png"));
+        JLabel bimg = new JLabel(new ImageIcon("H:\\SevenWonders\\images\\back.png"));
         Dimension b = bimg.getPreferredSize();
         bimg.setSize(b);
         s2.add(bimg);
@@ -50,13 +50,13 @@ public class GUI extends JFrame implements MouseListener
         tx2.setFont(new Font("Serif", Font.BOLD, 24));
         tx2.setForeground(Color.WHITE);
         Dimension size3 = tx2.getMaximumSize();
-        tx2.setBounds(730, 700, size3.width, size3.height);
+        tx2.setBounds(740, 800, size3.width, size3.height);
         tx2.setVisible(true);
 
 
-        BufferedImage buttonIcon = ImageIO.read(new File("C:\\Users\\aggar\\IdeaProjects\\SevenWondersMyVersion\\images\\play.png"));
+        BufferedImage buttonIcon = ImageIO.read(new File("H:\\SevenWonders\\images\\start.png"));
         JButton button = new JButton(new ImageIcon(buttonIcon));
-        button.setBounds(830, 750, 200, 100);
+        button.setBounds(840, 850, 200, 100);
         button.setBorderPainted(false);
         button.setFocusPainted(false);
         button.setContentAreaFilled(false);
@@ -83,9 +83,9 @@ public class GUI extends JFrame implements MouseListener
         f.addMouseListener(this);
         f.setVisible(true);
 
-        JLabel bimg = new JLabel(new ImageIcon("C:\\Users\\aggar\\IdeaProjects\\SevenWondersMyVersion\\images\\woodBack.jpg"));
+        JLabel bimg = new JLabel(new ImageIcon("H:\\SevenWonders\\images\\wood.jpg"));
         //Dimension b = bimg.getPreferredSize();
-        bimg.setSize(3840, 2000);
+        bimg.setSize(1920, 1080);
         f.add(bimg);
         bimg.setVisible(true);
 
@@ -94,16 +94,16 @@ public class GUI extends JFrame implements MouseListener
         bimg.add(s2);
         s2.setVisible(true);
 
-        JLabel bim = new JLabel(new ImageIcon("C:\\Users\\aggar\\IdeaProjects\\SevenWondersMyVersion\\images\\mainlogo.png"));
+        JLabel bim = new JLabel(new ImageIcon("H:\\SevenWonders\\images\\mainlogo.png"));
         Dimension bi = bim.getMinimumSize();
-        bim.setBounds(600, 0, (int) bi.getWidth(), (int) bi.getHeight());
+        bim.setBounds(700, 0, (int) bi.getWidth(), (int) bi.getHeight());
         bimg.add(bim);
         bim.setVisible(true);
 
-        BufferedImage show = ImageIO.read(new File("C:\\Users\\aggar\\IdeaProjects\\SevenWondersMyVersion\\images\\show.png"));
+        BufferedImage show = ImageIO.read(new File("H:\\SevenWonders\\images\\show.png"));
         JButton right = new JButton(new ImageIcon(show));
         Dimension x = right.getPreferredSize();
-        right.setBounds(1300, 40, (int) x.getWidth(), (int) x.getHeight());
+        right.setBounds(1350, 40, (int) x.getWidth(), (int) x.getHeight());
         right.setBorderPainted(false);
         right.setFocusPainted(false);
         right.setContentAreaFilled(false);
@@ -133,15 +133,22 @@ public class GUI extends JFrame implements MouseListener
             }
         });
 
+        //BufferedImage btest = ImageIO.read(new File("H:\\SevenWonders\\images\\babylon.png"));
+        JLabel testb = new JLabel(new ImageIcon("H:\\SevenWonders\\images\\babylon.png"));
+        Dimension q = testb.getMaximumSize();
+        testb.setBounds(700, 700, (int) q.getWidth(), (int) q.getHeight());
+        bimg.add(testb);
+        testb.setVisible(true);
+
+
+
+
     }
-
-
-
 
     public void playerR() throws IOException
     {
         JFrame p1 = new JFrame("Right Player Cards");
-        p1.setSize(3840, 2160);
+        p1.setSize(1920, 1080);
         p1.getContentPane().setBackground(Color.GRAY);
         p1.setDefaultCloseOperation(EXIT_ON_CLOSE);
         p1.setVisible(true);
@@ -152,10 +159,12 @@ public class GUI extends JFrame implements MouseListener
         pan1.setLayout(null);
         pan1.setVisible(true);
 
-        BufferedImage pre = ImageIO.read(new File("C:\\Users\\aggar\\IdeaProjects\\SevenWondersMyVersion\\images\\goback.png"));
+        BufferedImage pre = ImageIO.read(new File("H:\\SevenWonders\\images\\goback.png"));
         JButton back = new JButton(new ImageIcon(pre));
+        back.setLayout(null
+        );
         Dimension x = back.getPreferredSize();
-        back.setBounds(700, 670, (int) x.getWidth(), (int) x.getHeight());
+        back.setBounds(800, 750, (int) x.getWidth(), (int) x.getHeight());
         back.setBorderPainted(false);
         back.setFocusPainted(false);
         back.setContentAreaFilled(false);
@@ -168,7 +177,7 @@ public class GUI extends JFrame implements MouseListener
     public void PlayerL() throws IOException
     {
         JFrame p1 = new JFrame("Left Player Cards");
-        p1.setSize(3840, 2160);
+        p1.setSize(1920, 1080);
         p1.getContentPane().setBackground(Color.GRAY);
         p1.setDefaultCloseOperation(EXIT_ON_CLOSE);
         p1.setVisible(true);
@@ -179,10 +188,11 @@ public class GUI extends JFrame implements MouseListener
         pan1.setLayout(null);
         pan1.setVisible(true);
 
-        BufferedImage pre = ImageIO.read(new File("C:\\Users\\aggar\\IdeaProjects\\SevenWondersMyVersion\\images\\goback.png"));
+        BufferedImage pre = ImageIO.read(new File("H:\\SevenWonders\\images\\goback.png"));
         JButton back = new JButton(new ImageIcon(pre));
         Dimension x = back.getPreferredSize();
-        back.setBounds(700, 670, (int) x.getWidth(), (int) x.getHeight());
+        back.setLayout(null);
+        back.setBounds(800, 740, (int) x.getWidth(), (int) x.getHeight());
         back.setBorderPainted(false);
         back.setFocusPainted(false);
         back.setContentAreaFilled(false);
