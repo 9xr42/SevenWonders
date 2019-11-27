@@ -32,6 +32,12 @@ public class Player {
         return positiveWarPoints;
     }
 
+    public int getNegativeWarPoints()
+    {
+        return negativeWarPoints;
+    }
+
+
     public void addCard(Card card) {
         hand.add(card);
     }
@@ -45,7 +51,50 @@ public class Player {
         negativeWarPoints += amount;
     }
 
+
+
     public int getScore() {
-        return -1;
+        int score = 0;
+        score += getPositiveWarPoints();
+        score-= getNegativeWarPoints();
+        score += money/3;
+        score += getPlayerBoard().getPoints();
+        ArrayList<BlueCard> blue = new ArrayList<BlueCard>();
+        ArrayList<GreenCard> green = new ArrayList<GreenCard>();
+        ArrayList<YellowCard> yellow = new ArrayList<YellowCard>();
+        ArrayList<PurpleCard> purple = new ArrayList<PurpleCard>();
+        for(Card card: hand)
+        {
+            if(card.getColor().equals("blue"))
+                blue.add((BlueCard)card);
+            else if(card.getColor().equals("green"))
+                green.add((GreenCard)card);
+            else if(card.getColor().equals("yellow"))
+                yellow.add((YellowCard)card);
+            else if(card.getColor().equals("purple"))
+                purple.add((PurpleCard)card);
+        }
+
+        for(BlueCard card: blue)
+            score += card.getVictoryPoints();
+        for(GreenCard card: green)
+        {
+            int gear = 0;
+            int compass = 0;
+            int tablet = 0;
+            if(card.getScience().equals("gear"))
+                gear++;
+            else if(card.getScience().equals("compass"))
+                compass ++;
+            else
+                tablet++;
+            score += gear*gear + compass*compass + tablet*tablet;
+        }
+        for(YellowCard card: yellow)
+            score += card.getVictoryPoints();
+        for(PurpleCard card: purple)
+            score += card.getVictoryPoints();
+
+        return score;
     }
 }
