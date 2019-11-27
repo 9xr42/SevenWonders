@@ -23,4 +23,18 @@ public class PlayerBoard {
     public Wonder getWonder3() {
         return wonder3;
     }
+
+    public int getPoints()
+    {
+        int points = 0;
+        if(wonder1.isHasBeenBuilt())
+            points += wonder1.getPoints();
+        if(wonder2.isHasBeenBuilt())
+            points += wonder2.getPoints();
+       if(wonder3.isHasBeenBuilt())
+           points +=wonder3.getPoints();
+       return points;
+
+    }
+
 }
