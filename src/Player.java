@@ -8,12 +8,13 @@ public class Player {
     private int positiveWarPoints;
     private int negativeWarPoints;
 
-    public Player(PlayerBoard playerBoard, ArrayList<Card> hand, int money, int playerNumber, int positiveWarPoints) {
+    public Player(PlayerBoard playerBoard, ArrayList<Card> hand, int money, int playerNumber) {
         this.playerBoard = playerBoard;
         this.hand = hand;
         this.money = money;
         this.playerNumber = playerNumber;
-        this.positiveWarPoints = positiveWarPoints;
+        positiveWarPoints = 0;
+        negativeWarPoints = 0;
     }
 
     public PlayerBoard getPlayerBoard() {
@@ -51,13 +52,17 @@ public class Player {
         negativeWarPoints += amount;
     }
 
+    public void playCard(int card)
+    {
+
+    }
 
 
     public int getScore() {
         int score = 0;
         score += getPositiveWarPoints();
         score-= getNegativeWarPoints();
-        score += money/3;
+        score += getMoney()/3;
         score += getPlayerBoard().getPoints();
         ArrayList<BlueCard> blue = new ArrayList<BlueCard>();
         ArrayList<GreenCard> green = new ArrayList<GreenCard>();
