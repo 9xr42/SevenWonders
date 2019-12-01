@@ -5,8 +5,8 @@ brown-lumberyard.png-wood-0
 brown-orevein.png-ore-0
 brown-claypool.png-clay-0
 brown-stonepit.png-stone-0
-brown-timberyard.png-stone,Wood-1
-brown-claypit.png-clay,ore-1
+brown-timberyard.png-stone/wood-1
+brown-claypit.png-clay/ore-1
 green-scriptorium.png-tablet-papyrus-courthouse.png-library.png
 green-workshop.png-gear-glass-laboratory.png-archeryrange.png
 green-apothecary.png-compass-loom-stables.png-dispensary.png
