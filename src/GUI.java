@@ -15,7 +15,90 @@ public class GUI extends JFrame implements MouseListener
     }
 
     public GUI() throws IOException {
-        setStart();
+        super("Seven Wonders: Welcome");
+        board = new Board();
+        images = new BufferedImage[9][12];
+        images[0][0] = ImageIO.read(new File("Alexandria.png"));
+        images[1][0] = ImageIO.read(new File("onecoin.png"));
+        images[1][1] = ImageIO.read(new File("fivecoin.png"));
+        images[1][2] = ImageIO.read(new File("military1.png"));
+        images[1][3] = ImageIO.read(new File("military3.png"));
+        images[1][4] = ImageIO.read(new File("military5.png"));
+        images[1][5] = ImageIO.read(new File("militaryloss.png"));
+
+        ArrayList<Card> cards = new ArrayList<Card>();
+        ArrayList<BlueCard> blue = new ArrayList<BlueCard>();
+        ArrayList<BrownCard> brown = new ArrayList<BrownCard>();
+        ArrayList<GreenCard> green = new ArrayList<GreenCard>();
+        ArrayList<GrayCard> gray = new ArrayList<GrayCard>();
+        ArrayList<RedCard> red = new ArrayList<RedCard>();
+        ArrayList<PurpleCard> purple = new ArrayList<PurpleCard>();
+        ArrayList<YellowCard> yellow = new ArrayList<YellowCard>();
+
+        for(int i=0; i<3; i++)
+        {
+            cards = board.getAgeDeck(i);
+            for(Card card: cards)
+            {
+                if(card.getColor().equals("blue"))
+                    blue.add((BlueCard)card);
+                else if(card.getColor().equals("brown"))
+                    brown.add((BrownCard)card);
+                else if(card.getColor().equals("green"))
+                    green.add((GreenCard)card);
+                else if(card.getColor().equals("gray"))
+                    gray.add((GrayCard)card);
+                else if(card.getColor().equals("red"))
+                    red.add((RedCard)card);
+                else if(card.getColor().equals("purple"))
+                    purple.add((PurpleCard)card);
+                else
+                    yellow.add((YellowCard)card);
+            }
+            for(int x = 0; x<blue.size(); x++)
+                images[2][x] = ImageIO.read(new File(blue.get(x).getName()+".png"));
+            for(int x = 0; x<brown.size(); x++)
+                images[3][x] = ImageIO.read(new File(brown.get(x).getName()+".png"));
+            for(int x = 0; x<green.size(); x++)
+                images[4][x] = ImageIO.read(new File(green.get(x).getName()+".png"));
+            for(int x = 0; x<gray.size(); x++)
+                images[5][x] = ImageIO.read(new File(gray.get(x).getName()+".png"));
+            for(int x = 0; x<red.size(); x++)
+                images[6][x] = ImageIO.read(new File(red.get(x).getName()+".png"));
+            for(int x = 0; i<purple.size(); i++)
+                images[7][i] = ImageIO.read(new File(purple.get(i).getName()+".png"));
+            for(int x = 0; i<yellow.size(); i++)
+                images[8][i] = ImageIO.read(new File(yellow.get(i).getName()+".png"));
+            blue.clear();
+            brown.clear();
+            green.clear();
+            gray.clear();
+            red.clear();
+            purple.clear();
+            yellow.clear();
+        }
+        //this.setSize(1900, 1080); 
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        panel = new JPanel() {
+
+            public void paintComponent(Graphics g)
+            {
+            	
+            }
+        };
+        //setStart();
+        panel.addMouseListener(this);
+		
+		panel.setPreferredSize(new Dimension(1500, 1000));
+	    panel.setBackground(Color.lightGray);
+		
+		add(panel);
+		setContentPane(panel);
+		pack();
+		
+		setLocationRelativeTo(null);
+	    setVisible(true); 
     }
 
     public void setStart() throws IOException {
