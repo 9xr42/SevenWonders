@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public class GUI extends JFrame implements MouseListener
 {
-
+    private BufferedImage[][] images;
     public static void main(String[] args) throws IOException {
         GUI x = new GUI();
     }
