@@ -1,0 +1,26 @@
+gray-press.png-papyrus
+gray-loom.png-cloth
+gray-glassworks.png-glass
+brown-foundry.png-ore,ore-1
+brown-sawmill.png-wood,wood-1
+brown-brickyard.png-clay,clay-1
+brown-quarry.png-stone,stone-1
+brown-foundry.png-ore,ore-1
+brown-sawmill.png-wood,wood-1
+brown-brickyard.png-clay,clay-1
+brown-quarry.png-stone,stone-1
+green-school.png-tablet-wood,papyrus-academy.png-study.png
+green-library.png-tablet-stone,stone,loom-senate.png-university.png
+green-laboratory.png-gear-clay,clay,papyrus-observatory.png-siegeworkshop.png
+green-dispensary.png-compass-ore,ore,glass-lodge.png-arena.png
+red-stables.png-2-clay,wood,ore-
+red-walls.png-2-stone,stone,stone-fortifications
+red-archeryrange.png-2-wood,wood,ore-
+blue-statue.png-4-ore,ore,wood-gardens.png
+blue-temple.png-3-glass,clay,wood-pantheon.png
+blue-courthouse.png-4-clay,clay,loom-
+blue-aqueduct.png-5-stone,stone,stone-
+
+yellow-forum.png-resource,glass/cloth/papyrus-haven.png
+yellow-vineyard.png-coin all brown|NA|NA|NA|NA
+yellow-caravansery.png-resource,wood/silver/ore/stone-lighthouse.png
