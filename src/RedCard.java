@@ -3,15 +3,13 @@ import java.util.ArrayList;
 public class RedCard extends Card {
     private ArrayList<String> cost;
     private int military;
-    private String chain1;
-    private String chain2;
+    private String chain;
 
-    public RedCard(String color, String name, ArrayList<String> cost, int military, String chain1, String chain2) {
+    public RedCard(String color, String name, ArrayList<String> cost, int military, String chain) {
         super(color, name);
         this.cost = cost;
         this.military = military;
-        this.chain1 = chain1;
-        this.chain2 = chain2;
+        this.chain = chain;
     }
 
     public ArrayList<String> getCost() {
@@ -20,10 +18,7 @@ public class RedCard extends Card {
     public int getMilitary() {
         return military;
     }
-    public String getChain1() {
-        return chain1;
-    }
-    public String getChain2() {
-        return chain2;
+    public String getChain() {
+        return chain;
     }
 }

@@ -17,7 +17,7 @@ public class GreenCard extends Card {
     public ArrayList<String> getCost() {
         return cost;
     }
-    public String getScinece() {
+    public String getScience() {
         return scinece;
     }
     public String getChain1() {

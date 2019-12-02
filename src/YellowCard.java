@@ -9,10 +9,9 @@ public class YellowCard extends Card {
     private boolean right;
     private String awardColor;
     private int victoryPoints;
-    private String chain1;
-    private String chain2;
+    private String chain;
 
-    public YellowCard(String color, String name, ArrayList<String> cost, String action, ArrayList<String> resources, int coins, boolean left, boolean right, String awardColor, int victoryPoints, String chain1, String chain2) {
+    public YellowCard(String color, String name, ArrayList<String> cost, String action, ArrayList<String> resources, int coins, boolean left, boolean right, String awardColor, int victoryPoints, String chain) {
         super(color, name);
         this.cost = cost;
         this.action = action;
@@ -22,23 +21,21 @@ public class YellowCard extends Card {
         this.right = right;
         this.awardColor = awardColor;
         this.victoryPoints = victoryPoints;
-        this.chain1 = chain1;
-        this.chain2 = chain2;
+        this.chain = chain;
     }
 
-    public YellowCard(String color, String name, String action, ArrayList<String> resources, int coins, boolean left, boolean right, String chain1) {
+    public YellowCard(String color, String name, String action, ArrayList<String> resources, int coins, boolean left, boolean right, String chain) {
         super(color, name);
         this.action = action;
         this.resources = resources;
         this.coins = coins;
         this.left = left;
         this.right = right;
-        this.chain1 = chain1;
+        this.chain = chain;
 
         cost = new ArrayList<String>();
         awardColor = "";
         victoryPoints = 0;
-        chain2 = "";
     }
 
     public ArrayList<String> getCost() {
@@ -65,10 +62,7 @@ public class YellowCard extends Card {
     public int getVictoryPoints() {
         return victoryPoints;
     }
-    public String getChain1() {
-        return chain1;
-    }
-    public String getChain2() {
-        return chain2;
+    public String getChain() {
+        return chain;
     }
 }
