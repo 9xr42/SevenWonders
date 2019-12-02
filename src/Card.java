@@ -1,3 +1,4 @@
+
 public abstract class Card {
     private String name;
     private String color;

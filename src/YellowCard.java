@@ -1,41 +1,21 @@
 import java.util.ArrayList;
 
 public class YellowCard extends Card {
-    private ArrayList<String> cost;
-    private String action;
-    private ArrayList<String> resources;
-    private int coins;
-    private boolean left;
-    private boolean right;
-    private String awardColor;
-    private int victoryPoints;
-    private String chain;
+    private ArrayList<String> cost;//
+    private String action;//
+    private ArrayList<String> resources;//
+    private boolean left;//
+    private boolean right;//
+    private String chain; //
 
-    public YellowCard(String color, String name, ArrayList<String> cost, String action, ArrayList<String> resources, int coins, boolean left, boolean right, String awardColor, int victoryPoints, String chain) {
+    public YellowCard(String color, String name, ArrayList<String> cost, String action, ArrayList<String> resources, boolean left, boolean right, String chain) {
         super(color, name);
         this.cost = cost;
         this.action = action;
         this.resources = resources;
-        this.coins = coins;
-        this.left = left;
-        this.right = right;
-        this.awardColor = awardColor;
-        this.victoryPoints = victoryPoints;
-        this.chain = chain;
-    }
-
-    public YellowCard(String color, String name, String action, ArrayList<String> resources, int coins, boolean left, boolean right, String chain) {
-        super(color, name);
-        this.action = action;
-        this.resources = resources;
-        this.coins = coins;
         this.left = left;
         this.right = right;
         this.chain = chain;
-
-        cost = new ArrayList<String>();
-        awardColor = "";
-        victoryPoints = 0;
     }
 
     public ArrayList<String> getCost() {
@@ -47,20 +27,11 @@ public class YellowCard extends Card {
     public ArrayList<String> getResources() {
         return resources;
     }
-    public int getCoins() {
-        return coins;
-    }
     public boolean isLeft() {
         return left;
     }
     public boolean isRight() {
         return right;
-    }
-    public String getAwardColor() {
-        return awardColor;
-    }
-    public int getVictoryPoints() {
-        return victoryPoints;
     }
     public String getChain() {
         return chain;

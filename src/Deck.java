@@ -1,3 +1,4 @@
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -6,7 +7,9 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class Deck {
-    private HashMap<Integer, ArrayList<Card>> cards;
+    private HashMap<Integer, ArrayList<Card>> cards1;
+    private HashMap<Integer, ArrayList<Card>> cards2;
+    private HashMap<Integer, ArrayList<Card>> cards3;
     private ArrayList<Card> discard;
 
     public Deck() throws IOException {
@@ -181,24 +184,32 @@ public class Deck {
                 String name = tempArray[1];
                 String chain = tempArray[3];
 
+                ArrayList<String> cost = new ArrayList<String>();
+
                 tempArray = tempArray[2].split(",");
-
                 String action = tempArray[0];
-                int coins = 1;
 
-                boolean left = false;
-                if(tempArray[2].equals("true"))
-                    left = true;
-                boolean right = false;
-                if(tempArray[3].equals("true"))
-                    right = true;
+                if(action.equals("discount")) {
+                    boolean left = false;
+                    if (tempArray[2].equals("true"))
+                        left = true;
+                    boolean right = false;
+                    if (tempArray[3].equals("true"))
+                        right = true;
 
-                ArrayList<String> resources = new ArrayList<String>();
-                tempArray = tempArray[1].split(".");
-                for(String resouce : tempArray)
-                    resources.add(resouce);
+                    ArrayList<String> resources = new ArrayList<String>();
+                    tempArray = tempArray[1].split(".");
+                    for (String resouce : tempArray)
+                        resources.add(resouce);
 
-                tempArrayList.add(new YellowCard(color, name, action, resources, coins, left, right, chain));
+                    tempArrayList.add(new YellowCard(color, name, cost, action, resources, left, right, chain);
+                }
+                else if(action.equals("resource")) {
+
+                }
+                else if(action.equals("guild")) {
+
+                }
             }
             else if(tempArray[0].equals("blue")) {
                 String color = tempArray[0];
