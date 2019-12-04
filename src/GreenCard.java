@@ -1,16 +1,15 @@
-
 import java.util.ArrayList;
 
 public class GreenCard extends Card {
     private ArrayList<String> cost;
-    private String scinece;
+    private String science;
     private String chain1;
     private String chain2;
 
-    public GreenCard(String color, String name, ArrayList<String> cost, String scinece, String chain1, String chain2) {
+    public GreenCard(String color, String name, ArrayList<String> cost, String science, String chain1, String chain2) {
         super(color, name);
         this.cost = cost;
-        this.scinece = scinece;
+        this.science = science;
         this.chain1 = chain1;
         this.chain2 = chain2;
     }
@@ -19,7 +18,7 @@ public class GreenCard extends Card {
         return cost;
     }
     public String getScience() {
-        return scinece;
+        return science;
     }
     public String getChain1() {
         return chain1;
@@ -28,4 +27,3 @@ public class GreenCard extends Card {
         return chain2;
     }
 }
-//Done
