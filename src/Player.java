@@ -20,6 +20,11 @@ public class Player {
     public PlayerBoard getPlayerBoard() {
         return playerBoard;
     }
+    
+    public String getBoard()
+    {
+    	return playerBoard.getName();
+    }
     public ArrayList<Card> getHand() {
         return hand;
     }
