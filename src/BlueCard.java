@@ -22,3 +22,4 @@ public class BlueCard extends Card{
         return chain;
     }
 }
+//Finished
