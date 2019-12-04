@@ -16,6 +16,6 @@ red-barracks.png-1-ore
 blue-baths.png-3-stone-aqueduct.png
 blue-theater.png-2-statue.png
 blue-altar.png-2-temple.png
-yellow-easttradingpost.png-discount,1,0,clay.stone.wood.silver,false,true-forum.png
-yellow-westtradingpost.png-discount,1,1,clay.stone.wood.silver,true,false-forum.png
-yellow-marketplace.png-discount,1,0,glass.cloth.papyrus,true,true-caravansery.png
+yellow-easttradingpost.png--forum.png-discount,clay/stone/wood/silver,false,true
+yellow-westtradingpost.png--forum.png-discount,clay/stone/wood/silver,true,false
+yellow-marketplace.png--caravansery.pngdiscount,glass/cloth/papyrus,true,true
