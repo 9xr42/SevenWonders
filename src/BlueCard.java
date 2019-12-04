@@ -16,11 +16,10 @@ public class BlueCard extends Card{
         return cost;
     }
     public int getVictoryPoints() {
-        return victoryPoints;  
+        return victoryPoints;
     }
     public String getChain() {
-        return chain; 
+        return chain;
     }
 }
-
-//hi
+//Done

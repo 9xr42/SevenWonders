@@ -10,3 +10,4 @@ public class GrayCard extends Card {
         return resource;
     }
 }
+//Done

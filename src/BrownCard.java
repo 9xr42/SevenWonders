@@ -13,7 +13,9 @@ public class BrownCard extends Card {
     public int getCost() {
         return cost;
     }
+
     public ArrayList<String> getResources() {
         return resources;
     }
 }
+//done
