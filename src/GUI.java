@@ -119,19 +119,23 @@ public class GUI extends JFrame implements MouseListener
 
             public void paintComponent(Graphics g)
             {
+            	//3840 50 75
+            	//[1745, 1795, 1845, 1895, ...]
             	//800 250
             	//180 275
             	g.drawImage(boards.get(board.getPlayerBoard(board.getMainPlayerNum())), 1520, 700, 800, 250, null);
             	//50 50
             	g.drawImage(other.get("onecoin"), 50, 700, 50, 50, null);
-            	g.drawString("", x, y); //number of
+            	g.drawString(""+(board.getPlayer(board.getMainPlayerNum()).getMoney()%3), 110, 720); //number of
             	//58 60
             	g.drawImage(other.get("threecoin"), 50, 760, 58, 60, null);
-            	g.drawString(iterator, x, y); //number of
+            	g.drawString(""+board.getPlayer(board.getMainPlayerNum()).getMoney()/3, 120, 780); //number of
             	g.drawImage(other.get("military1"), 50, 830, 50, 58, null);
             	g.drawImage(other.get("military3"), 110, 830, 50, 58, null);
             	g.drawImage(other.get("military5"), 170, 830, 50, 58, null);
-            	g.drawString(/*player's military points*/, 180, 850);
+            	g.drawString(""+board.getPlayer(board.getMainPlayerNum()).getPositiveWarPoints(), 180, 850);
+            	
+            	for(Card card: board.get)
             	
             	//Player temp = board.getPlayer(board.getMainPlayerNum());
             	
