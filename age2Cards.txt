@@ -20,7 +20,7 @@ blue-statue.png-4-ore,ore,wood-gardens.png
 blue-temple.png-3-glass,clay,wood-pantheon.png
 blue-courthouse.png-4-clay,clay,loom-
 blue-aqueduct.png-5-stone,stone,stone-
+yellow-forum.png-clay,clay-haven.png-resource,glass/cloth/papyrus
+yellow-caravansery.png-wood,wood-lighthouse.png-resource,wood/silver/ore/stone
 
-yellow-forum.png-resource,glass/cloth/papyrus-haven.png
-yellow-vineyard.png-coin all brown|NA|NA|NA|NA
-yellow-caravansery.png-resource,wood/silver/ore/stone-lighthouse.png
+yellow-vineyard.png---guild,true,true,true
