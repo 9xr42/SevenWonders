@@ -55,10 +55,31 @@ public class Board {
         players.get(mainPlayer).addCard(temp);
     }
 
+    public ArrayList<Card> getAgeDeck(int age)
+    {
+        return deck.getAgeDeck(age);
+    }
+    
+    public String getPlayerBoard(int player)
+    {
+    	return players.get(player).getBoard();
+    }
+
     public void incrementAge()
     {
         age++;
         ageDeck = deck.getAgeDeck(age);
         direction = !direction;
     }
+    
+    public int getMainPlayer()
+    {
+    	return mainPlayer;
+    }
+
+    public ArrayList<Card> playerHand(int player)
+    {
+        return deck.getHand(player);
+    }
+
 }
