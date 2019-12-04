@@ -1,15 +1,40 @@
-import javax.imageio.ImageIO;
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.TreeMap;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 public class GUI extends JFrame implements MouseListener
 {
+    private Board board;
+    private JPanel panel;
     private BufferedImage[][] images;
+    private TreeMap<String, BufferedImage> boards;
+    private TreeMap<String, BufferedImage> other;
+    /*
+    boards: 7 wonder boards alpha order
+    other: 1 coin, 5coin, military 1, military 3, military 5, military loss
+    row 1: blue cards, alpha order 12
+    row 2 brown cards, alpha order 10
+    row 3: green cards, alpha order 12
+    row 4: grey cards, alpha order 6
+    row 5: red cards, alpha order 9
+    row 6: purple cards, alpha order 10
+    row 7: yellow cards, alpha order 9
+     */
     public static void main(String[] args) throws IOException {
         GUI x = new GUI();
     }
@@ -17,21 +42,31 @@ public class GUI extends JFrame implements MouseListener
     public GUI() throws IOException {
         super("Seven Wonders: Welcome");
         board = new Board();
-        images = new BufferedImage[9][12];
-        images[0][0] = ImageIO.read(new File("Alexandria.png"));
-        images[1][0] = ImageIO.read(new File("onecoin.png"));
-        images[1][1] = ImageIO.read(new File("fivecoin.png"));
-        images[1][2] = ImageIO.read(new File("military1.png"));
-        images[1][3] = ImageIO.read(new File("military3.png"));
-        images[1][4] = ImageIO.read(new File("military5.png"));
-        images[1][5] = ImageIO.read(new File("militaryloss.png"));
+        images = new BufferedImage[7][12];
+        boards = new TreeMap<String, BufferedImage>();
+        other = new TreeMap<String, BufferedImage>();
+        
+        boards.put("Gizah", ImageIO.read(new File("Gizah.png")));
+        boards.put("Rhodos", ImageIO.read(new File("Rhodos.png")));
+        boards.put("Babylon", ImageIO.read(new File("Babylon.png")));
+        boards.put("Ephesos", ImageIO.read(new File("Ephesos.png")));
+        boards.put("Olympia", ImageIO.read(new File("Olympia.png")));
+        boards.put("Alexandria", ImageIO.read(new File("Alexandria.png")));
+        boards.put("Halikarnassos", ImageIO.read(new File("Halikarnassos.png")));
+        
+        other.put("onecoin", ImageIO.read(new File("onecoin.png")));
+        other.put("threecoin", ImageIO.read(new File("threecoin.png")));
+        other.put("military1", ImageIO.read(new File("military1.png")));
+        other.put("military3", ImageIO.read(new File("military3.png")));
+        other.put("military5", ImageIO.read(new File("military5.png")));
+        other.put("militaryloss", ImageIO.read(new File("militaryloss.png")));
 
         ArrayList<Card> cards = new ArrayList<Card>();
+        ArrayList<RedCard> red = new ArrayList<RedCard>();
         ArrayList<BlueCard> blue = new ArrayList<BlueCard>();
+        ArrayList<GrayCard> gray = new ArrayList<GrayCard>();
         ArrayList<BrownCard> brown = new ArrayList<BrownCard>();
         ArrayList<GreenCard> green = new ArrayList<GreenCard>();
-        ArrayList<GrayCard> gray = new ArrayList<GrayCard>();
-        ArrayList<RedCard> red = new ArrayList<RedCard>();
         ArrayList<PurpleCard> purple = new ArrayList<PurpleCard>();
         ArrayList<YellowCard> yellow = new ArrayList<YellowCard>();
 
@@ -84,6 +119,23 @@ public class GUI extends JFrame implements MouseListener
 
             public void paintComponent(Graphics g)
             {
+            	//800 250
+            	//180 275
+            	g.drawImage(boards.get(board.getPlayerBoard(board.getMainPlayerNum())), 1520, 700, 800, 250, null);
+            	//50 50
+            	g.drawImage(other.get("onecoin"), 50, 700, 50, 50, null);
+            	g.drawString("", x, y); //number of
+            	//58 60
+            	g.drawImage(other.get("threecoin"), 50, 760, 58, 60, null);
+            	g.drawString(iterator, x, y); //number of
+            	g.drawImage(other.get("military1"), 50, 830, 50, 58, null);
+            	g.drawImage(other.get("military3"), 110, 830, 50, 58, null);
+            	g.drawImage(other.get("military5"), 170, 830, 50, 58, null);
+            	g.drawString(/*player's military points*/, 180, 850);
+            	
+            	//Player temp = board.getPlayer(board.getMainPlayerNum());
+            	
+            	
             	
             }
         };
@@ -119,7 +171,6 @@ public class GUI extends JFrame implements MouseListener
         bimg.setSize(b);
         s2.add(bimg);
         bimg.setVisible(true);
-
 
         JLabel tx = new JLabel("TEAM ALICE");
         bimg.add(tx);
