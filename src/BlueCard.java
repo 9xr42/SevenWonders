@@ -19,7 +19,8 @@ public class BlueCard extends Card{
         return victoryPoints;  
     }
     public String getChain() {
-        return chain;
+        return chain; 
     }
 }
-//Finished
+
+//hi
