@@ -72,9 +72,14 @@ public class Board {
         direction = !direction;
     }
     
-    public int getMainPlayer()
+    public int getMainPlayerNum()
     {
     	return mainPlayer;
+    }
+    
+    public Player getPlayer(int num)
+    {
+    	return players.get(num);
     }
 
     public ArrayList<Card> playerHand(int player)
