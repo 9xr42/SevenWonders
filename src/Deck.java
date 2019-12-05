@@ -26,6 +26,9 @@ public class Deck {
 
             while (textFileScan.hasNextLine()) {
                 tempArray = textFileScan.nextLine().split("-");
+                for(int i = 0; i < tempArray.length; i++)
+                    System.out.print(tempArray[i] + " ");
+                System.out.println();
                 String color = tempArray[0];
                 String name = tempArray[1];
 
@@ -74,15 +77,22 @@ public class Deck {
 
                     String[] tempArray2 = tempArray[2].split(",");
                     ArrayList<String> cost = new ArrayList<String>();
-                    for (int i = 0; i < tempArray.length; i++)
+                    for (int i = 0; i < tempArray.length; i++) {
+                        if(tempArray[i].equals("NA"))
+                            break;
                         cost.add(tempArray[i]);
+                    }
 
-                    tempArray = tempArray[2].split(",");
+                    tempArray = tempArray[4].split(",");
+                    for(int i = 0; i < tempArray.length; i++)
+                        System.out.print(tempArray[i] + " ");
+                    System.out.println();
+
                     String action = tempArray[0];
 
                     if (action.equals("discount")) {
                         ArrayList<String> resources = new ArrayList<String>();
-                        tempArray = tempArray[1].split(",");
+                        tempArray2 = tempArray[1].split(",");
                         for (String resource : tempArray)
                             resources.add(resource);
 
@@ -131,8 +141,11 @@ public class Deck {
 
                     ArrayList<String> cost = new ArrayList<String>();
                     tempArray = tempArray[3].split(",");
-                    for (int i = 0; i < tempArray.length; i++)
+                    for (int i = 0; i < tempArray.length; i++) {
+                        if(tempArray[i].equals("NA"))
+                            break;
                         cost.add(tempArray[i]);
+                    }
 
                     tempArrayList.add(new BlueCard(color, name, cost, victoryPoints, chain));
                 }
@@ -153,10 +166,12 @@ public class Deck {
                 for (int i = 0; i < 7; i++)
                     tempHand.add(tempArrayList.get(i));
                 cards1.put(1, tempHand);
+                System.out.println(cards1.get(1));
                 tempHand = new ArrayList<Card>();
                 for (int i = 7; i < 14; i++)
                     tempHand.add(tempArrayList.get(i));
                 cards1.put(2, tempHand);
+                System.out.println(cards1.get(2));
                 tempHand = new ArrayList<Card>();
                 for (int i = 14; i < 20; i++)
                     tempHand.add(tempArrayList.get(i));
@@ -218,8 +233,8 @@ public class Deck {
     public void discard(Card card) {
         discard.add(card);
     }
-    public void incrementAge() {
-        age += 1;
+    public void setAge(int age) {
+        this.age = age;
     }
 
     public String toString() {
