@@ -22,5 +22,4 @@ blue-courthouse.png-4-clay,clay,loom-
 blue-aqueduct.png-5-stone,stone,stone-
 yellow-forum.png-clay,clay-haven.png-resource,glass/cloth/papyrus
 yellow-caravansery.png-wood,wood-lighthouse.png-resource,wood/silver/ore/stone
-
-yellow-vineyard.png---guild,true,true,true
+yellow-vineyard.png---guild,true,true,true,1,0
