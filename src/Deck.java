@@ -10,251 +10,218 @@ public class Deck {
     private HashMap<Integer, ArrayList<Card>> cards2;
     private HashMap<Integer, ArrayList<Card>> cards3;
     private ArrayList<Card> discard;
+    private int age;
 
     public Deck() throws IOException {
-        ArrayList<Card> tempArrayList = new ArrayList<Card>();
         String[] tempArray;
+
         Scanner textFileScan = new Scanner(new File("age1Cards.txt"));
+        for(int x = 0; x < 3; x++) {
+            if(x == 1)
+                textFileScan = new Scanner(new File("age2Cards.txt"));
+            else if(x == 2)
+                textFileScan = new Scanner(new File("age3Cards.txt"));
 
-        while(textFileScan.hasNextLine()) {
-            tempArray = textFileScan.nextLine().split("-");
-            if(tempArray[0].equals("gray")) {
-                tempArrayList.add(new GrayCard(tempArray[0], tempArray[1], tempArray[2]));
-            }
-            //Done
-            else if(tempArray[0].equals("brown")) {
+            ArrayList<Card> tempArrayList = new ArrayList<Card>();
+
+            while (textFileScan.hasNextLine()) {
+                tempArray = textFileScan.nextLine().split("-");
                 String color = tempArray[0];
                 String name = tempArray[1];
-                int cost = Integer.parseInt(tempArray[3]);
 
-                ArrayList<String> resources = new ArrayList<String>();
-                tempArray = tempArray[2].split(",");
-                for(int i = 0 ; i < tempArray.length; i++)
-                    resources.add(tempArray[i]);
-
-                tempArrayList.add(new BrownCard(color, name, cost, resources));
-            }
-            //Done
-            else if(tempArray[0].equals("green")) {
-                String color = tempArray[0];
-                String name = tempArray[1];
-                String science = tempArray[2];
-                String chain1 = tempArray[4];
-                String chain2 = tempArray[5];
-
-                ArrayList<String> cost = new ArrayList<String>();
-                tempArray = tempArray[3].split(",");
-                for(int i = 0 ; i < tempArray.length; i++)
-                    cost.add(tempArray[i]);
-
-                tempArrayList.add(new GreenCard(color, name, cost, science, chain1, chain2));
-            }
-            //Done
-            else if(tempArray[0].equals("red")) {
-                String color = tempArray[0];
-                String name = tempArray[1];
-                int military = Integer.parseInt(tempArray[2]);
-                String chain = tempArray[4];
-
-                ArrayList<String> cost = new ArrayList<String>();
-                tempArray = tempArray[3].split(",");
-                for(int i = 0 ; i < tempArray.length; i++)
-                    cost.add(tempArray[i]);
-
-                tempArrayList.add(new RedCard(color, name, cost, military, chain));
-            }
-            //Done
-            else if(tempArray[0].equals("yellow")) {
-                String color = tempArray[0];
-                String name = tempArray[1];
-                String chain = tempArray[3];
-
-                String[] tempArray2 = tempArray[2].split(",");
-                ArrayList<String> cost = new ArrayList<String>();
-                for(int i = 0 ; i < tempArray.length; i++)
-                    cost.add(tempArray[i]);
-
-                tempArray = tempArray[2].split(",");
-                String action = tempArray[0];
-
-                if(action.equals("discount")) {
-                    ArrayList<String> resources = new ArrayList<String>();
-                    tempArray = tempArray[1].split(",");
-                    for (String resource : tempArray)
-                        resources.add(resource);
-
-                    boolean left = false;
-                    if (tempArray[2].equals("true"))
-                        left = true;
-                    boolean right = false;
-                    if (tempArray[3].equals("true"))
-                        right = true;
-
-                    tempArrayList.add(new YellowCard(color, name, cost, action, resources, left, right, chain));
+                if (color.equals("gray")) {
+                    tempArrayList.add(new GrayCard(tempArray[0], tempArray[1], tempArray[2]));
                 }
                 //Done
-                else if(action.equals("resource")) {
-                    ArrayList<String> resources = new ArrayList<String>();
-                    tempArray = tempArray[1].split(",");
-                    for (String resource : tempArray)
-                        resources.add(resource);
+                else if (color.equals("brown")) {
+                    int cost = Integer.parseInt(tempArray[3]);
 
-                    tempArrayList.add(new YellowCard(color, name, cost, action, resources, chain));
+                    ArrayList<String> resources = new ArrayList<String>();
+                    tempArray = tempArray[2].split(",");
+                    for (int i = 0; i < tempArray.length; i++)
+                        resources.add(tempArray[i]);
+
+                    tempArrayList.add(new BrownCard(color, name, cost, resources));
                 }
                 //Done
-                else if(action.equals("guild")) {
+                else if (color.equals("green")) {
+                    String science = tempArray[2];
+                    String chain1 = tempArray[4];
+                    String chain2 = tempArray[5];
 
+                    ArrayList<String> cost = new ArrayList<String>();
+                    tempArray = tempArray[3].split(",");
+                    for (int i = 0; i < tempArray.length; i++)
+                        cost.add(tempArray[i]);
+
+                    tempArrayList.add(new GreenCard(color, name, cost, science, chain1, chain2));
                 }
+                //Done
+                else if (color.equals("red")) {
+                    int military = Integer.parseInt(tempArray[2]);
+                    String chain = tempArray[4];
+
+                    ArrayList<String> cost = new ArrayList<String>();
+                    tempArray = tempArray[3].split(",");
+                    for (int i = 0; i < tempArray.length; i++)
+                        cost.add(tempArray[i]);
+
+                    tempArrayList.add(new RedCard(color, name, cost, military, chain));
+                }
+                //Done
+                else if (color.equals("yellow")) {
+                    String chain = tempArray[3];
+
+                    String[] tempArray2 = tempArray[2].split(",");
+                    ArrayList<String> cost = new ArrayList<String>();
+                    for (int i = 0; i < tempArray.length; i++)
+                        cost.add(tempArray[i]);
+
+                    tempArray = tempArray[2].split(",");
+                    String action = tempArray[0];
+
+                    if (action.equals("discount")) {
+                        ArrayList<String> resources = new ArrayList<String>();
+                        tempArray = tempArray[1].split(",");
+                        for (String resource : tempArray)
+                            resources.add(resource);
+
+                        boolean left = false;
+                        if (tempArray[2].equals("true"))
+                            left = true;
+                        boolean right = false;
+                        if (tempArray[3].equals("true"))
+                            right = true;
+
+                        tempArrayList.add(new YellowCard(color, name, cost, action, resources, left, right, chain));
+                    }
+                    //Done
+                    else if (action.equals("resource")) {
+                        ArrayList<String> resources = new ArrayList<String>();
+                        tempArray = tempArray[1].split(",");
+                        for (String resource : tempArray)
+                            resources.add(resource);
+
+                        tempArrayList.add(new YellowCard(color, name, cost, action, resources, chain));
+                    }
+                    //Done
+                    else if (action.equals("guild")) {
+                        boolean left = false;
+                        if (tempArray[1].equals("true"))
+                            left = true;
+                        boolean right = false;
+                        if (tempArray[2].equals("true"))
+                            right = true;
+                        boolean self = false;
+                        if (tempArray[3].equals("true"))
+                            self = true;
+
+                        int coins = Integer.parseInt(tempArray[4]);
+                        int victoryPoints = Integer.parseInt(tempArray[5]);
+                        String awardColor = tempArray[6];
+
+                        tempArrayList.add(new YellowCard(color, name, cost, action, left, right, self, coins, victoryPoints, chain, awardColor));
+                    }
+                    //Done
+                }
+                //Done
+                else if (color.equals("blue")) {
+                    int victoryPoints = Integer.parseInt(tempArray[2]);
+                    String chain = tempArray[4];
+
+                    ArrayList<String> cost = new ArrayList<String>();
+                    tempArray = tempArray[3].split(",");
+                    for (int i = 0; i < tempArray.length; i++)
+                        cost.add(tempArray[i]);
+
+                    tempArrayList.add(new BlueCard(color, name, cost, victoryPoints, chain));
+                }
+                //Done
+                else if (color.equals("purple")) {
+                    //Need to do
+                }
+
+
+                // "/" for "or"
+                // "," for "and"
             }
-            else if(tempArray[0].equals("blue")) {
-                String color = tempArray[0];
-                String name = tempArray[1];
-                int victoryPoints = Integer.parseInt(tempArray[2]);
-                String chain = tempArray[4];
+            if(x == 0) {
+                Collections.shuffle(tempArrayList);
 
-                ArrayList<String> cost = new ArrayList<String>();
-                tempArray = tempArray[3].split(",");
-                for(int i = 0; i < tempArray.length; i++)
-                    cost.add(tempArray[i]);
-
-                tempArrayList.add(new BlueCard(color, name, cost, victoryPoints, chain));
+                cards1 = new HashMap<Integer, ArrayList<Card>>();
+                ArrayList<Card> tempHand = new ArrayList<Card>();
+                for (int i = 0; i < 7; i++)
+                    tempHand.add(tempArrayList.get(i));
+                cards1.put(1, tempHand);
+                tempHand = new ArrayList<Card>();
+                for (int i = 7; i < 14; i++)
+                    tempHand.add(tempArrayList.get(i));
+                cards1.put(2, tempHand);
+                tempHand = new ArrayList<Card>();
+                for (int i = 14; i < 20; i++)
+                    tempHand.add(tempArrayList.get(i));
+                cards1.put(3, tempHand);
             }
-            //Done
+            else if(x == 1) {
+                Collections.shuffle(tempArrayList);
 
-            // "/" for "or"
-            // "," for "and"
+                cards2 = new HashMap<Integer, ArrayList<Card>>();
+                ArrayList<Card> tempHand = new ArrayList<Card>();
+                for (int i = 0; i < 7; i++)
+                    tempHand.add(tempArrayList.get(i));
+                cards2.put(1, tempHand);
+                tempHand = new ArrayList<Card>();
+                for (int i = 7; i < 14; i++)
+                    tempHand.add(tempArrayList.get(i));
+                cards2.put(2, tempHand);
+                tempHand = new ArrayList<Card>();
+                for (int i = 14; i < 20; i++)
+                    tempHand.add(tempArrayList.get(i));
+                cards2.put(3, tempHand);
+            }
+            else if(x == 2) {
+                Collections.shuffle(tempArrayList);
+
+                cards3 = new HashMap<Integer, ArrayList<Card>>();
+                ArrayList<Card> tempHand = new ArrayList<Card>();
+                for (int i = 0; i < 7; i++)
+                    tempHand.add(tempArrayList.get(i));
+                cards3.put(1, tempHand);
+                tempHand = new ArrayList<Card>();
+                for (int i = 7; i < 14; i++)
+                    tempHand.add(tempArrayList.get(i));
+                cards3.put(2, tempHand);
+                tempHand = new ArrayList<Card>();
+                for (int i = 14; i < 20; i++)
+                    tempHand.add(tempArrayList.get(i));
+                cards3.put(3, tempHand);
+            }
+
+            discard = new ArrayList<Card>();
         }
-        Collections.shuffle(tempArrayList);
-        cards = new HashMap<Integer, ArrayList<Card>>();
-
-        ArrayList<Card> tempHand = new ArrayList<Card>();
-        for(int i = 0; i < 7; i++)
-            tempHand.add(tempArrayList.get(i));
-        cards.put(1, tempHand);
-        tempHand = new ArrayList<Card>();
-        for(int i = 7; i < 14; i++)
-            tempHand.add(tempArrayList.get(i));
-        cards.put(2, tempHand);
-        tempHand = new ArrayList<Card>();
-        for(int i = 14; i < 20; i++)
-            tempHand.add(tempArrayList.get(i));
-        cards.put(3, tempHand);
-
-        discard = new ArrayList<Card>();
     }
 
     public ArrayList<Card> getHand(int val) {
-        return cards.get(val);
+        if(age == 1)
+            return cards1.get(val);
+        else if(age == 2)
+            return cards2.get(val);
+        return cards3.get(val);
     }
     public ArrayList<Card> getDiscard() {
         return discard;
+    }
+    public int getAge() {
+        return age;
     }
 
     public void discard(Card card) {
         discard.add(card);
     }
-    public void incrementAge(int age) throws IOException {
-        Scanner textFileScan;
-        if(age == 2) {
-            textFileScan = new Scanner(new File("age2Cards.txt"));
-        }
-        else {
-            textFileScan = new Scanner(new File("age3Cards.txt"));
-        }
-
-        ArrayList<Card> tempArrayList = new ArrayList<Card>();
-        String[] tempArray;
-        while(textFileScan.hasNextLine()) {
-            tempArray = textFileScan.nextLine().split("-");
-            if(tempArray[0].equals("gray")) {
-                tempArrayList.add(new GrayCard(tempArray[0], tempArray[1], tempArray[2]));
-            }
-            else if(tempArray[0].equals("brown")) {
-                String color = tempArray[0];
-                String name = tempArray[1];
-                int cost = Integer.parseInt(tempArray[3]);
-
-                ArrayList<String> resources = new ArrayList<String>();
-                tempArray = tempArray[2].split(",");
-                for(String resource : tempArray)
-                    resources.add(resource);
-
-                tempArrayList.add(new BrownCard(color, name, cost, resources));
-            }
-            else if(tempArray[0].equals("green")) {
-                String color = tempArray[0];
-                String name = tempArray[1];
-                String science = tempArray[2];
-                String chain1 = tempArray[4];
-                String chain2 = tempArray[5];
-
-                ArrayList<String> cost = new ArrayList<String>();
-                tempArray = tempArray[3].split(",");
-                for(String resource: tempArray)
-                    cost.add(resource);
-
-                tempArrayList.add(new GreenCard(color, name, cost, science, chain1, chain2));
-            }
-            else if(tempArray[0].equals("red")) {
-                String color = tempArray[0];
-                String name = tempArray[1];
-                int military = Integer.parseInt(tempArray[2]);
-                String chain = tempArray[4];
-
-                ArrayList<String> cost = new ArrayList<String>();
-                tempArray = tempArray[3].split(",");
-                for(String resource : tempArray)
-                    cost.add(resource);
-
-                tempArrayList.add(new RedCard(color, name, cost, military, chain));
-            }
-            else if(tempArray[0].equals("yellow")) {
-                String color = tempArray[0];
-                String name = tempArray[1];
-                String chain = tempArray[3];
-
-                ArrayList<String> cost = new ArrayList<String>();
-
-                tempArray = tempArray[2].split(",");
-                String action = tempArray[0];
-
-                if(action.equals("discount")) {
-                    boolean left = false;
-                    if (tempArray[2].equals("true"))
-                        left = true;
-                    boolean right = false;
-                    if (tempArray[3].equals("true"))
-                        right = true;
-
-                    ArrayList<String> resources = new ArrayList<String>();
-                    tempArray = tempArray[1].split(".");
-                    for (String resouce : tempArray)
-                        resources.add(resouce);
-
-                    tempArrayList.add(new YellowCard(color, name, cost, action, resources, left, right, chain);
-                }
-                else if(action.equals("resource")) {
-
-                }
-                else if(action.equals("guild")) {
-
-                }
-            }
-            else if(tempArray[0].equals("blue")) {
-                String color = tempArray[0];
-                String name = tempArray[1];
-                int victoryPoints = Integer.parseInt(tempArray[2]);
-                String chain = tempArray[4];
-
-                ArrayList<String> cost = new ArrayList<String>();
-                tempArray = tempArray[3].split("&");
-                for(int i = 0; i < tempArray.length; i++)
-                    cost.add(tempArray[i]);
-
-                tempArrayList.add(new BlueCard(color, name, cost, victoryPoints, chain));
-            }
-        }
+    public void incrementAge() {
+        age += 1;
     }
+
     public String toString() {
         String output = "";
         for(int x = 1; x <= 3; x++)
