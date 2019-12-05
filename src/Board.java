@@ -8,8 +8,8 @@ public class Board {
     private ArrayList<Card> ageDeck;
     private ArrayList<Card> discardPile;
     private int age;
-    private ArrayList<Player> players;
-    private int mainPlayer;
+    public ArrayList<Player> players;
+    public int mainPlayer;
     private boolean direction;
 
     public Board() throws IOException {
