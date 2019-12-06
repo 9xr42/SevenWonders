@@ -1,0 +1,372 @@
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.TreeMap;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+public class GUI extends JFrame implements MouseListener
+{
+    Board b;
+    int mp;
+    int lp;
+    int rp;
+    public static void main(String[] args) throws IOException {
+        GUI x = new GUI();
+    }
+
+    public GUI() throws IOException {
+        b = new Board();
+        setStart();
+    }
+
+    public void setStart() throws IOException {
+        JFrame start = new JFrame("Seven Wonders: Welcome");
+        Dimension startSize = start.getMaximumSize();
+        start.setSize(startSize);
+        start.getContentPane().setBackground(Color.BLACK);
+        start.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        start.setVisible(true);
+
+        JPanel s2 = new JPanel();
+        s2.setBackground(Color.WHITE);
+        start.add(s2);
+        s2.setVisible(true);
+
+        JLabel bimg = new JLabel(new ImageIcon("H:\\SevenWonders\\images\\back.png"));
+        Dimension b = bimg.getPreferredSize();
+        bimg.setSize(b);
+        s2.add(bimg);
+        bimg.setVisible(true);
+
+        JLabel tx = new JLabel("TEAM ALICE");
+        bimg.add(tx);
+        tx.setFont(new Font("Serif", Font.BOLD, 24));
+        Dimension size2 = tx.getMaximumSize();
+        tx.setBounds(100, 25, size2.width, size2.height);
+        tx.setVisible(true);
+
+        JLabel tx2 = new JLabel("CLICK PLAY BUTTON TO BEGIN");
+        bimg.add(tx2);
+        tx2.setFont(new Font("Serif", Font.BOLD, 24));
+        tx2.setForeground(Color.WHITE);
+        Dimension size3 = tx2.getMaximumSize();
+        tx2.setBounds(740, 800, size3.width, size3.height);
+        tx2.setVisible(true);
+
+
+        BufferedImage buttonIcon = ImageIO.read(new File("H:\\SevenWonders\\images\\start.png"));
+        JButton button = new JButton(new ImageIcon(buttonIcon));
+        button.setBounds(840, 850, 200, 100);
+        button.setBorderPainted(false);
+        button.setFocusPainted(false);
+        button.setContentAreaFilled(false);
+        bimg.add(button);
+        button.setVisible(true);
+
+        button.addActionListener(actionEvent -> {
+            try {
+                start.dispose();
+                setGameFrame();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
+    public void setPlayerNum()
+    {
+        mp = b.mainPlayer;
+        lp = 0;
+        rp = 0;
+        if(mp == 1)
+        {
+            lp = 2;
+            rp = 3;
+        }
+        else if(mp == 2)
+        {
+            lp = 1;
+            rp = 3;
+        }
+        else if(mp == 3)
+        {
+            lp = 1;
+            rp = 2;
+        }
+    }
+    public void setGameFrame() throws IOException
+    {
+        JFrame f = new JFrame("Seven Wonders: The Game");
+        //Dimension startSize = f.getMaximumSize();
+        f.setSize(3840, 2000);
+        f.getContentPane().setBackground(Color.GRAY);
+        f.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        f.addMouseListener(this);
+        f.setVisible(true);
+
+        JLabel bimg = new JLabel(new ImageIcon("H:\\SevenWonders\\images\\wood.jpg"));
+        bimg.setSize(1920, 1080);
+        f.add(bimg);
+        bimg.setVisible(true);
+
+        JPanel s2 = new JPanel();
+        s2.setBackground(Color.WHITE);
+        bimg.add(s2);
+        s2.setVisible(true);
+
+        JLabel bim = new JLabel(new ImageIcon("H:\\SevenWonders\\images\\mainlogo.png"));
+        Dimension bi = bim.getMinimumSize();
+        bim.setBounds(700, 0, (int) bi.getWidth(), (int) bi.getHeight());
+        bimg.add(bim);
+        bim.setVisible(true);
+
+        BufferedImage show = ImageIO.read(new File("H:\\SevenWonders\\images\\show.png"));
+        JButton right = new JButton(new ImageIcon(show));
+        Dimension x = right.getPreferredSize();
+        right.setBounds(1350, 40, (int) x.getWidth(), (int) x.getHeight());
+        right.setBorderPainted(false);
+        right.setFocusPainted(false);
+        right.setContentAreaFilled(false);
+        bimg.add(right);
+        right.setVisible(true);
+        right.addActionListener(actionEvent -> {
+            try {
+                playerR();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+        JButton left = new JButton(new ImageIcon(show));
+        Dimension y = left.getPreferredSize();
+        left.setBounds(200, 40, (int) y.getWidth(), (int) y.getHeight());
+        left.setBorderPainted(false);
+        left.setFocusPainted(false);
+        left.setContentAreaFilled(false);
+        bimg.add(left);
+        left.setVisible(true);
+        left.addActionListener(actionEvent -> {
+            try {
+                PlayerL();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+        //BufferedImage btest = ImageIO.read(new File("H:\\SevenWonders\\images\\babylon.png"));
+        JLabel testb = new JLabel(new ImageIcon("H:\\SevenWonders\\images\\babylon.png"));
+        Dimension q = testb.getMaximumSize();
+        testb.setBounds(700, 700, (int) q.getWidth(), (int) q.getHeight());
+        bimg.add(testb);
+        testb.setVisible(true);
+    }
+
+    public void playerR() throws IOException
+    {
+        JFrame p1 = new JFrame("Right Player Cards");
+        p1.setSize(1920, 1080);
+        p1.getContentPane().setBackground(Color.GRAY);
+        p1.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        p1.setVisible(true);
+
+        JPanel pan1 = new JPanel();
+        pan1.setBackground(Color.WHITE);
+        p1.add(pan1);
+        pan1.setLayout(null);
+        pan1.setVisible(true);
+
+        JLabel bimg = new JLabel(new ImageIcon("H:\\SevenWonders\\images\\wood.jpg"));
+        bimg.setSize(1920, 1080);
+        p1.add(bimg);
+        bimg.setVisible(true);
+
+        BufferedImage pre = ImageIO.read(new File("H:\\SevenWonders\\images\\goback.png"));
+        JButton back = new JButton(new ImageIcon(pre));
+        back.setLayout(null);
+        Dimension x = back.getPreferredSize();
+        back.setBounds(800, 750, (int) x.getWidth(), (int) x.getHeight());
+        back.setBorderPainted(false);
+        back.setFocusPainted(false);
+        back.setContentAreaFilled(false);
+        bimg.add(back);
+        back.setVisible(true);
+        back.addActionListener(actionEvent -> p1.dispose()
+        );
+
+        String bName = b.players.get(rp).getBoardName();
+        JLabel board = new JLabel(new ImageIcon(boards.get("" + bName + ".png")));
+        Dimension g = board.getPreferredSize();
+        board.setBounds(200, 200, (int) g.getWidth(), (int) g.getHeight());
+        bimg.add(board);
+        board.setVisible(true);
+
+        ArrayList<Card> cards = b.players.get(rp).getHand();
+        for(int a = 0; a < cards.length(); a++)
+        {
+            if(cards.get(a).getColor().equals("brown"))
+            {
+                JButton card = new JButton(new ImageIcon("" + cards.get(a).getName() + ".png"));
+                Dimension c = card.getPreferredSize();
+                card.setBounds(a * 20 + 200, a*20 + 200, c.getWidth(), c.getHeight());
+                card.setBorderPainted(false);
+                card.setFocusPainted(false);
+                card.setContentAreaFilled(false);
+                bimg.add(card);
+                card.setVisible(true);
+                card.addActionListener(actionEvent -> {
+                    try {
+                        zoomCard(cards.get(a).getName());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                });
+            }
+        }
+    }
+
+    public void zoomCard(String name)
+    {
+        JFrame z = new JFrame(name);
+        z.setSize(400, 400);
+        z.getContentPane().setBackground(Color.GRAY);
+        z.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        z.setVisible(true);
+
+        JPanel pan1 = new JPanel();
+        pan1.setBackground(Color.WHITE);
+        p1.add(pan1);
+        pan1.setLayout(null);
+        pan1.setVisible(true);
+
+        JLabel bimg = new JLabel(new ImageIcon("H:\\SevenWonders\\images\\wood.jpg"));
+        bimg.setSize(1920, 1080);
+        p1.add(bimg);
+        bimg.setVisible(true);
+
+        BufferedImage pre = ImageIO.read(new File("H:\\SevenWonders\\images\\goback.png"));
+        JButton back = new JButton(new ImageIcon(pre));
+        Dimension x = back.getPreferredSize();
+        back.setLayout(null);
+        back.setBounds(800, 740, (int) x.getWidth(), (int) x.getHeight());
+        back.setBorderPainted(false);
+        back.setFocusPainted(false);
+        back.setContentAreaFilled(false);
+        bimg.add(back);
+        back.setVisible(true);
+        back.addActionListener(actionEvent -> p1.dispose()
+        );
+
+        JLabel c = new JLabel(new ImageIcon("" + name + ".png"));
+        Dimension f = c.getPreferredSize();
+        c.setBounds(0,0, c.getWidth(), c.getHeight());
+        bimg.add(c);
+        c.setVisible(true);
+    }
+
+
+    public void PlayerL() throws IOException
+    {
+        JFrame p1 = new JFrame("Left Player Cards");
+        p1.setSize(1920, 1080);
+        p1.getContentPane().setBackground(Color.GRAY);
+        p1.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        p1.setVisible(true);
+
+        JPanel pan1 = new JPanel();
+        pan1.setBackground(Color.WHITE);
+        p1.add(pan1);
+        pan1.setLayout(null);
+        pan1.setVisible(true);
+
+        JLabel bimg = new JLabel(new ImageIcon("H:\\SevenWonders\\images\\wood.jpg"));
+        bimg.setSize(1920, 1080);
+        p1.add(bimg);
+        bimg.setVisible(true);
+
+        BufferedImage pre = ImageIO.read(new File("H:\\SevenWonders\\images\\goback.png"));
+        JButton back = new JButton(new ImageIcon(pre));
+        Dimension x = back.getPreferredSize();
+        back.setLayout(null);
+        back.setBounds(800, 740, (int) x.getWidth(), (int) x.getHeight());
+        back.setBorderPainted(false);
+        back.setFocusPainted(false);
+        back.setContentAreaFilled(false);
+        bimg.add(back);
+        back.setVisible(true);
+        back.addActionListener(actionEvent -> p1.dispose()
+        );
+
+        String bName = b.players.get(lp).getBoardName();
+        JLabel board = new JLabel(new ImageIcon(boards.get("" + bName + ".png")));
+        Dimension g = board.getPreferredSize();
+        board.setBounds(200, 200, (int) g.getWidth(), (int) g.getHeight());
+        bimg.add(board);
+        board.setVisible(true);
+
+        ArrayList<Card> cards = b.players.get(rp).getHand();
+        for(int a = 0; a < cards.length(); a++)
+        {
+            if(cards.get(a).getColor().equals("brown"))
+            {
+                JButton card = new JButton(new ImageIcon("" + cards.get(a).getName() + ".png"));
+                Dimension c = card.getPreferredSize();
+                card.setBounds(a * 20 + 200, a*20 + 200, c.getWidth(), c.getHeight());
+                card.setBorderPainted(false);
+                card.setFocusPainted(false);
+                card.setContentAreaFilled(false);
+                bimg.add(card);
+                card.setVisible(true);
+                card.addActionListener(actionEvent -> {
+                    try {
+                        zoomCard(cards.get(a).getName());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                });
+            }
+        }
+
+    }
+
+
+
+
+
+
+
+    @Override
+    public void mouseClicked(MouseEvent e)
+    {
+
+    }
+
+    @Override
+    public void mousePressed(MouseEvent mouseEvent) {
+
+    }
+    @Override
+    public void mouseReleased(MouseEvent mouseEvent) {
+
+    }
+    @Override
+    public void mouseEntered(MouseEvent mouseEvent) {
+
+    }
+    @Override
+    public void mouseExited(MouseEvent mouseEvent) {
+
+    }
+}
