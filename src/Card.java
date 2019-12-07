@@ -10,9 +10,12 @@ public abstract class Card {
     public String getName() {
         return name;
     }
-
     public String getColor() {
         return color;
+    }
+
+    public String toString() {
+        return getColor() + " " + getName();
     }
 }
 //Done

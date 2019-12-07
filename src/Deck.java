@@ -26,9 +26,6 @@ public class Deck {
 
             while (textFileScan.hasNextLine()) {
                 tempArray = textFileScan.nextLine().split("-");
-                for(int i = 0; i < tempArray.length; i++)
-                    System.out.print(tempArray[i] + " ");
-                System.out.println();
                 String color = tempArray[0];
                 String name = tempArray[1];
 
@@ -84,17 +81,11 @@ public class Deck {
                     }
 
                     tempArray = tempArray[4].split(",");
-                    for(int i = 0; i < tempArray.length; i++)
-                        System.out.print(tempArray[i] + " ");
-                    System.out.println();
 
                     String action = tempArray[0];
 
                     if (action.equals("discount")) {
-                        ArrayList<String> resources = new ArrayList<String>();
-                        tempArray2 = tempArray[1].split(",");
-                        for (String resource : tempArray)
-                            resources.add(resource);
+                        String resource = tempArray[1];
 
                         boolean left = false;
                         if (tempArray[2].equals("true"))
@@ -103,18 +94,15 @@ public class Deck {
                         if (tempArray[3].equals("true"))
                             right = true;
 
-                        tempArrayList.add(new YellowCard(color, name, cost, action, resources, left, right, chain));
+                        tempArrayList.add(new YellowCard(color, name, cost, action, resource, left, right, chain));
                     }
                     //Done
                     else if (action.equals("resource")) {
                         ArrayList<String> resources = new ArrayList<String>();
-                        tempArray = tempArray[1].split(",");
-                        for (String resource : tempArray)
-                            resources.add(resource);
+                        String resource = tempArray[1];
 
-                        tempArrayList.add(new YellowCard(color, name, cost, action, resources, chain));
+                        tempArrayList.add(new YellowCard(color, name, cost, action, resource, chain));
                     }
-                    //Done
                     else if (action.equals("guild")) {
                         boolean left = false;
                         if (tempArray[1].equals("true"))
@@ -132,9 +120,7 @@ public class Deck {
 
                         tempArrayList.add(new YellowCard(color, name, cost, action, left, right, self, coins, victoryPoints, chain, awardColor));
                     }
-                    //Done
                 }
-                //Done
                 else if (color.equals("blue")) {
                     int victoryPoints = Integer.parseInt(tempArray[2]);
                     String chain = tempArray[4];
@@ -166,16 +152,22 @@ public class Deck {
                 for (int i = 0; i < 7; i++)
                     tempHand.add(tempArrayList.get(i));
                 cards1.put(1, tempHand);
+
                 System.out.println(cards1.get(1));
+
                 tempHand = new ArrayList<Card>();
                 for (int i = 7; i < 14; i++)
                     tempHand.add(tempArrayList.get(i));
                 cards1.put(2, tempHand);
+
                 System.out.println(cards1.get(2));
+
                 tempHand = new ArrayList<Card>();
                 for (int i = 14; i < 20; i++)
                     tempHand.add(tempArrayList.get(i));
                 cards1.put(3, tempHand);
+
+                System.out.println(cards1.get(3));
             }
             else if(x == 1) {
                 Collections.shuffle(tempArrayList);
@@ -185,14 +177,22 @@ public class Deck {
                 for (int i = 0; i < 7; i++)
                     tempHand.add(tempArrayList.get(i));
                 cards2.put(1, tempHand);
+
+                System.out.println(cards2.get(1));
+
                 tempHand = new ArrayList<Card>();
                 for (int i = 7; i < 14; i++)
                     tempHand.add(tempArrayList.get(i));
                 cards2.put(2, tempHand);
+
+                System.out.println(cards2.get(2));
+
                 tempHand = new ArrayList<Card>();
                 for (int i = 14; i < 20; i++)
                     tempHand.add(tempArrayList.get(i));
                 cards2.put(3, tempHand);
+
+                System.out.println(cards2.get(3));
             }
             else if(x == 2) {
                 Collections.shuffle(tempArrayList);
@@ -202,16 +202,23 @@ public class Deck {
                 for (int i = 0; i < 7; i++)
                     tempHand.add(tempArrayList.get(i));
                 cards3.put(1, tempHand);
+
+                System.out.println(cards3.get(1));
+
                 tempHand = new ArrayList<Card>();
                 for (int i = 7; i < 14; i++)
                     tempHand.add(tempArrayList.get(i));
                 cards3.put(2, tempHand);
+
+                System.out.println(cards3.get(2));
+
                 tempHand = new ArrayList<Card>();
                 for (int i = 14; i < 20; i++)
                     tempHand.add(tempArrayList.get(i));
                 cards3.put(3, tempHand);
-            }
 
+                System.out.println(cards3.get(3));
+            }
             discard = new ArrayList<Card>();
         }
     }

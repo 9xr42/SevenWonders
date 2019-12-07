@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class YellowCard extends Card {
     private ArrayList<String> cost;//Discount, Resource, Guild
     private String action;//Discount, Resource, Guild
-    private ArrayList<String> resources;//Discount, Resource
+    String resource;//Discount, Resource
     private boolean left;//Discount, Resource, Guild
     private boolean right;//Discount, Resource, Guild
     private boolean self; //Resource, Resource, Guild
@@ -12,21 +12,21 @@ public class YellowCard extends Card {
     private String awardColor; //Guild
     private String chain; //Discount, Resource, Guild
 
-    public YellowCard(String color, String name, ArrayList<String> cost, String action, ArrayList<String> resources, boolean left, boolean right, String chain) {
+    public YellowCard(String color, String name, ArrayList<String> cost, String action, String resource, boolean left, boolean right, String chain) {
         super(color, name);
         this.cost = cost;
         this.action = action;
-        this.resources = resources;
+        this.resource = resource;
         this.left = left;
         this.right = right;
         this.chain = chain;
     } //Discount
 
-    public YellowCard(String color, String name, ArrayList<String> cost, String action, ArrayList<String> resources, String chain) {
+    public YellowCard(String color, String name, ArrayList<String> cost, String action, String resource, String chain) {
         super(color, name);
         this.cost = cost;
         this.action = action;
-        this.resources = resources;
+        this.resource = resource;
         this.chain = chain;
     }
     //Resource
@@ -52,8 +52,8 @@ public class YellowCard extends Card {
     public String getAction() {
         return action;
     }
-    public ArrayList<String> getResources() {
-        return resources;
+    public String getResource() {
+        return resource;
     }
     public boolean isLeft() {
         return left;
