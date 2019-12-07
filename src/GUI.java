@@ -553,6 +553,7 @@ public class GUI extends JFrame implements MouseListener
     			{ 
     				if((x-positions[i])<0 && (x-positions[i])>-180)
     					index = i-1;
+				//call method, pass in index
     			}
     			
     		}
