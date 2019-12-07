@@ -26,7 +26,7 @@ public class Deck2 {
 
             ArrayList<Card> arrayList = new ArrayList<Card>();
             while(scan.hasNextLine()) {
-                String[] array = scan.nextLine().split("!");
+                String[] array = scan.nextLine().split("--");
 
                 String color = array[0];
                 String name = array[1];
@@ -149,49 +149,49 @@ public class Deck2 {
             if(i == 1) {
                 ArrayList<Card> tempHand = new ArrayList<Card>();
                 for (int x = 0; x < 7; x++)
-                    tempHand.add(arrayList.get(i));
+                    tempHand.add(arrayList.get(x));
                 cards1.put(1, tempHand);
 
                 tempHand = new ArrayList<Card>();
                 for (int x = 7; x < 14; x++)
-                    tempHand.add(arrayList.get(i));
+                    tempHand.add(arrayList.get(x));
                 cards1.put(2, tempHand);
 
                 tempHand = new ArrayList<Card>();
                 for (int x = 14; x < 21; x++)
-                    tempHand.add(arrayList.get(i));
+                    tempHand.add(arrayList.get(x));
                 cards1.put(3, tempHand);
             }
             else if(i == 2) {
                 ArrayList<Card> tempHand = new ArrayList<Card>();
                 for (int x = 0; x < 7; x++)
-                    tempHand.add(arrayList.get(i));
+                    tempHand.add(arrayList.get(x));
                 cards2.put(1, tempHand);
 
                 tempHand = new ArrayList<Card>();
                 for (int x = 7; x < 14; x++)
-                    tempHand.add(arrayList.get(i));
+                    tempHand.add(arrayList.get(x));
                 cards2.put(2, tempHand);
 
                 tempHand = new ArrayList<Card>();
                 for (int x = 14; x < 21; x++)
-                    tempHand.add(arrayList.get(i));
+                    tempHand.add(arrayList.get(x));
                 cards2.put(3, tempHand);
             }
             else {
                 ArrayList<Card> tempHand = new ArrayList<Card>();
                 for (int x = 0; x < 7; x++)
-                    tempHand.add(arrayList.get(i));
+                    tempHand.add(arrayList.get(x));
                 cards3.put(1, tempHand);
 
                 tempHand = new ArrayList<Card>();
                 for (int x = 7; x < 14; x++)
-                    tempHand.add(arrayList.get(i));
+                    tempHand.add(arrayList.get(x));
                 cards3.put(2, tempHand);
 
                 tempHand = new ArrayList<Card>();
                 for (int x = 14; x < 21; x++)
-                    tempHand.add(arrayList.get(i));
+                    tempHand.add(arrayList.get(x));
                 cards3.put(3, tempHand);
             }
         }
