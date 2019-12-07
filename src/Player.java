@@ -57,12 +57,6 @@ public class Player {
         negativeWarPoints += amount;
     }
 
-    public void playCard(int card)
-    {
-
-    }
-
-
     public int getScore() {
         int score = 0;
         score += getPositiveWarPoints();
