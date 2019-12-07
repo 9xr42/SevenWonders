@@ -21,7 +21,7 @@ public class GUI extends JFrame implements MouseListener
 {
     private Board board;
     private JPanel panel;
-    private BufferedImage[][] images;
+    private TreeMap<String/*color*/, TreeMap<String, BufferedImage>> images;
     private TreeMap<String, BufferedImage> boards;
     private TreeMap<String, BufferedImage> other;
     private int mp;
@@ -45,7 +45,7 @@ public class GUI extends JFrame implements MouseListener
     public GUI() throws IOException {
         super("Seven Wonders: Welcome");
         board = new Board();
-        images = new BufferedImage[7][12];
+        images = new TreeMap<String, TreeMap<String, BufferedImage>>();
         boards = new TreeMap<String, BufferedImage>();
         other = new TreeMap<String, BufferedImage>();
         
@@ -77,6 +77,14 @@ public class GUI extends JFrame implements MouseListener
         ArrayList<GreenCard> green = new ArrayList<GreenCard>();
         ArrayList<PurpleCard> purple = new ArrayList<PurpleCard>();
         ArrayList<YellowCard> yellow = new ArrayList<YellowCard>();
+        
+        images.put("blue", new TreeMap<String, BufferedImage>());
+        images.put("brown", new TreeMap<String, BufferedImage>());
+        images.put("green", new TreeMap<String, BufferedImage>());
+        images.put("gray", new TreeMap<String, BufferedImage>());
+        images.put("red", new TreeMap<String, BufferedImage>());
+        images.put("purple", new TreeMap<String, BufferedImage>());
+        images.put("yellow", new TreeMap<String, BufferedImage>());
 
         for(int i=0; i<3; i++)
         {
@@ -98,20 +106,23 @@ public class GUI extends JFrame implements MouseListener
                 else
                     yellow.add((YellowCard)card);
             }
+            
+            
             for(int x = 0; x<blue.size(); x++)
-                images[2][x] = ImageIO.read(new File(blue.get(x).getName()+".png"));
+                images.get("blue").put(blue.get(x).getName(), ImageIO.read(new File(blue.get(x).getName()+".png")));
             for(int x = 0; x<brown.size(); x++)
-                images[3][x] = ImageIO.read(new File(brown.get(x).getName()+".png"));
+            	images.get("blue").put(blue.get(x).getName(), ImageIO.read(new File(blue.get(x).getName()+".png")));
             for(int x = 0; x<green.size(); x++)
-                images[4][x] = ImageIO.read(new File(green.get(x).getName()+".png"));
+            	images.get("blue").put(blue.get(x).getName(), ImageIO.read(new File(blue.get(x).getName()+".png")));
             for(int x = 0; x<gray.size(); x++)
-                images[5][x] = ImageIO.read(new File(gray.get(x).getName()+".png"));
+            	images.get("blue").put(blue.get(x).getName(), ImageIO.read(new File(blue.get(x).getName()+".png")));
             for(int x = 0; x<red.size(); x++)
-                images[6][x] = ImageIO.read(new File(red.get(x).getName()+".png"));
+            	images.get("blue").put(blue.get(x).getName(), ImageIO.read(new File(blue.get(x).getName()+".png")));
             for(int x = 0; i<purple.size(); i++)
-                images[7][i] = ImageIO.read(new File(purple.get(i).getName()+".png"));
+            	images.get("blue").put(blue.get(x).getName(), ImageIO.read(new File(blue.get(x).getName()+".png")));
             for(int x = 0; i<yellow.size(); i++)
-                images[8][i] = ImageIO.read(new File(yellow.get(i).getName()+".png"));
+            	images.get("blue").put(blue.get(x).getName(), ImageIO.read(new File(blue.get(x).getName()+".png")));
+            
             blue.clear();
             brown.clear();
             green.clear();
@@ -131,7 +142,7 @@ public class GUI extends JFrame implements MouseListener
             	//[1745, 1795, 1845, 1895, ...]
             	//800 250
             	//180 275
-            	g.drawImage(boards.get(board.getPlayerBoard(board.getMainPlayerNum())), 1520, 700, 800, 250, null);
+            	g.drawImage(boards.get(board.getPlayerBoard(board.getMainPlayerNum())), 1520, 1500, 800, 250, null);
             	//50 50
             	g.drawImage(other.get("onecoin"), 50, 700, 50, 50, null);
             	g.drawString(""+(board.getPlayer(board.getMainPlayerNum()).getMoney()%3), 110, 720); //number of
@@ -143,9 +154,12 @@ public class GUI extends JFrame implements MouseListener
             	g.drawImage(other.get("military5"), 170, 830, 50, 58, null);
             	g.drawString(""+board.getPlayer(board.getMainPlayerNum()).getPositiveWarPoints(), 180, 850);
             	
-            	for(Card card: board.players.get(board.mainPlayer).getHand())
+            	int[] positions = positions();
+            	ArrayList<Card> cards = board.getHand(mp);
+            	for(int i=0; i<positions.length-2; i++)
             	{
-            		
+            		Card temp = cards.get(i);
+            		g.drawImage(images.get(temp.getColor()).get(temp.getName()), positions[i], 1000, 180, 275, null);
             	}
             	
             	//Player temp = board.getPlayer(board.getMainPlayerNum());
@@ -166,6 +180,31 @@ public class GUI extends JFrame implements MouseListener
 		
 		setLocationRelativeTo(null);
 	    setVisible(true); 
+    }
+    
+    public int[] positions()
+    {
+    	int length = board.getHand(mp).size();
+    	int[] temp = new int[length+1];
+    	if(length%2==0)
+    	{
+    		int start = 1920-length/2*180;
+    		for(int i=0; i<length+1; i++)
+    		{
+    			temp[i] = start;
+    			start+=180;
+    		}
+    	}
+    	else
+    	{
+    		int start = 1920-90-length/2*180;
+    		for(int i=0; i<length+1; i++)
+    		{
+    			temp[i] = start;
+    			start+=180;
+    		}
+    	}
+    	return temp;
     }
 
     public void setStart() throws IOException {
@@ -337,9 +376,9 @@ public class GUI extends JFrame implements MouseListener
 
         BufferedImage pre = ImageIO.read(new File("H:\\SevenWonders\\images\\goback.png"));
         JButton back = new JButton(new ImageIcon(pre));
-        back.setLayout(null);
         Dimension x = back.getPreferredSize();
-        back.setBounds(800, 750, (int) x.getWidth(), (int) x.getHeight());
+        back.setLayout(null);
+        back.setBounds(800, 740, (int) x.getWidth(), (int) x.getHeight());
         back.setBorderPainted(false);
         back.setFocusPainted(false);
         back.setContentAreaFilled(false);
@@ -369,15 +408,30 @@ public class GUI extends JFrame implements MouseListener
                 bimg.add(card);
                 card.setVisible(true);
                 card.addActionListener(actionEvent -> {
-                    zoomCard(cards.get(a).getName());
+                	zoomCard(cards.get(a).getName());
                 });
             }
         }
     }
+    
+//    public void paintCardType(String color, int a, ArrayList<Card> cards, JLabel bimg)
+//    {
+//    	JButton card = new JButton(new ImageIcon("" + cards.get(a).getName() + ".png"));
+//        Dimension c = card.getPreferredSize();
+//        card.setBounds(a * 20 + 200, a*20 + 200, (int)c.getWidth(), (int)c.getHeight());
+//        card.setBorderPainted(false);
+//        card.setFocusPainted(false);
+//        card.setContentAreaFilled(false);
+//        bimg.add(card);
+//        card.setVisible(true);
+//        card.addActionListener(actionEvent -> {
+//            zoomCard(cards.get(a).getName());
+//        });
+//    }
 
     public void PlayerL() throws IOException
     {
-    	JFrame p1 = new JFrame("Left Player Cards");
+        JFrame p1 = new JFrame("Left Player Cards");
         p1.setSize(1920, 1080);
         p1.getContentPane().setBackground(Color.GRAY);
         p1.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -389,12 +443,12 @@ public class GUI extends JFrame implements MouseListener
         pan1.setLayout(null);
         pan1.setVisible(true);
 
-        JLabel bimg = new JLabel(new ImageIcon(other.get("wood")));
+        JLabel bimg = new JLabel(new ImageIcon("H:\\SevenWonders\\images\\wood.jpg"));
         bimg.setSize(1920, 1080);
         p1.add(bimg);
         bimg.setVisible(true);
 
-        BufferedImage pre = other.get("goback");
+        BufferedImage pre = ImageIO.read(new File("H:\\SevenWonders\\images\\goback.png"));
         JButton back = new JButton(new ImageIcon(pre));
         Dimension x = back.getPreferredSize();
         back.setLayout(null);
@@ -432,6 +486,7 @@ public class GUI extends JFrame implements MouseListener
                 });
             }
         }
+
     }
 
 
@@ -474,12 +529,10 @@ public class GUI extends JFrame implements MouseListener
         c.setVisible(true);
     }
 
-
-
     @Override
     public void mouseClicked(MouseEvent e)
     {
-        System.out.println(e.getX() + " " + e.getY());
+        //System.out.println(e.getX() + " " + e.getY());
     }
 
     @Override
@@ -487,8 +540,23 @@ public class GUI extends JFrame implements MouseListener
 
     }
     @Override
-    public void mouseReleased(MouseEvent mouseEvent) {
-
+    public void mouseReleased(MouseEvent e) {
+    	int[] positions = positions();
+    	int x = e.getX();
+		int y = e.getY();
+    	if(x>=positions[0]&&x<=positions[positions.length-1])
+    	{
+    		if(y>=1000&&y<=1275)
+    		{
+    			int index = 0;
+    			for(int i = 0; i<positions.length; i++)
+    			{ 
+    				if((x-positions[i])<0 && (x-positions[i])>-180)
+    					index = i-1;
+    			}
+    			
+    		}
+    	}
     }
     @Override
     public void mouseEntered(MouseEvent mouseEvent) {
