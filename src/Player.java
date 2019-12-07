@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.TreeMap;
 
 public class Player {
     private PlayerBoard playerBoard;
@@ -21,7 +22,7 @@ public class Player {
         return playerBoard;
     }
     
-    public String getBoard()
+    public String getBoardName()
     {
     	return playerBoard.getName();
     }
@@ -42,7 +43,48 @@ public class Player {
     {
         return negativeWarPoints;
     }
-
+    
+    public ArrayList<Card> getColorCards(String color)
+    {
+    	ArrayList<Card> temp = new ArrayList<Card>();
+    	for(Card card: hand)
+    	{
+    		if(card.getColor().equals(color))
+    			temp.add(card);
+    	}
+    	return temp;	
+    }
+    
+    public TreeMap<String, Integer> getResources()
+    {
+    	TreeMap<String, Integer> resources = new TreeMap<String, Integer>();
+    	ArrayList<String> temp = new ArrayList<String>();
+    	for(Card card: getColorCards("brown"))
+    	{
+    		if(((BrownCard)card).getResources().size()==1)
+    			temp.add(((BrownCard)card).getResources().get(0));
+    		else
+    		{
+    			String str = "";
+    			for(String i: ((BrownCard)card).getResources())
+    				str+=i+ " ";
+    			temp.add(str);
+    		}
+    	}
+    		
+    	for(Card card: getColorCards("gray"))
+    		temp.add(((GrayCard)card).getResource());
+    	temp.add(playerBoard.getResource());
+    	
+    	for(String i: temp)
+    	{
+    		if(resources.get(i)==null)
+    			resources.put(i,1);
+    		else
+    		    resources.put(i, resources.get(i)+1);
+    	}
+    	return resources;
+    }
 
     public void addCard(Card card) {
         hand.add(card);
