@@ -1,14 +1,16 @@
 public class PlayerBoard {
     private String name;
+    private String resource;
     private Wonder wonder1;
     private Wonder wonder2;
     private Wonder wonder3;
 
-    public PlayerBoard(String name, Wonder wonder1, Wonder wonder2, Wonder wonder3) {
+    public PlayerBoard(String name, Wonder wonder1, Wonder wonder2, Wonder wonder3, String resource) {
         this.name = name;
         this.wonder1 = wonder1;
         this.wonder2 = wonder2;
         this.wonder3 = wonder3;
+        this.resource = resource;
     }
 
     public String getName() {
@@ -22,6 +24,11 @@ public class PlayerBoard {
     }
     public Wonder getWonder3() {
         return wonder3;
+    }
+    
+    public String getResource()
+    {
+    	return resource;
     }
 
     public int getPoints()
