@@ -51,7 +51,7 @@ public class Board {
 
     public void playCard(int card)
     {
-        Card temp = players.get(mainPlayer).getHand().get(card); //gets the card in the hand
+        Card temp = deck.getHand(mainPlayer).remove(card); //gets the card in the hand
         players.get(mainPlayer).addCard(temp);
     }
 
