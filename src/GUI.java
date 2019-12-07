@@ -142,17 +142,20 @@ public class GUI extends JFrame implements MouseListener
             	//[1745, 1795, 1845, 1895, ...]
             	//800 250
             	//180 275
+            	g.setFont(new Font("Verdana", Font.BOLD, 14));
+            	g.setColor(Color.BLACK);
             	g.drawImage(boards.get(board.getPlayerBoard(board.getMainPlayerNum())), 1520, 1500, 800, 250, null);
             	//50 50
-            	g.drawImage(other.get("onecoin"), 50, 700, 50, 50, null);
-            	g.drawString(""+(board.getPlayer(board.getMainPlayerNum()).getMoney()%3), 110, 720); //number of
+            	g.drawImage(other.get("onecoin"), 50, 1000, 50, 50, null);
+            	g.drawString(""+(board.getPlayer(board.getMainPlayerNum()).getMoney()%3), 110, 1120); //number of
             	//58 60
-            	g.drawImage(other.get("threecoin"), 50, 760, 58, 60, null);
-            	g.drawString(""+board.getPlayer(board.getMainPlayerNum()).getMoney()/3, 120, 780); //number of
-            	g.drawImage(other.get("military1"), 50, 830, 50, 58, null);
-            	g.drawImage(other.get("military3"), 110, 830, 50, 58, null);
-            	g.drawImage(other.get("military5"), 170, 830, 50, 58, null);
-            	g.drawString(""+board.getPlayer(board.getMainPlayerNum()).getPositiveWarPoints(), 180, 850);
+            	g.drawImage(other.get("threecoin"), 50, 1160, 58, 60, null);
+            	g.drawString(""+board.getPlayer(board.getMainPlayerNum()).getMoney()/3, 120, 1180); //number of
+            	g.drawImage(other.get("military1"), 50, 1230, 50, 58, null);
+            	g.drawImage(other.get("military3"), 110, 1230, 50, 58, null);
+            	g.drawImage(other.get("military5"), 170, 1230, 50, 58, null);
+            	g.drawString(""+board.getPlayer(board.getMainPlayerNum()).getPositiveWarPoints(), 180, 1250);
+            	g.drawString("Your resources: ", 50, 1280);
             	
             	int[] positions = positions();
             	ArrayList<Card> cards = board.getHand(mp);
@@ -163,6 +166,9 @@ public class GUI extends JFrame implements MouseListener
             	}
             	
             	//Player temp = board.getPlayer(board.getMainPlayerNum());
+            	
+            	
+            	
             	
             	
             	
