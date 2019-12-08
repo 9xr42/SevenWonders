@@ -162,10 +162,19 @@ public class GUI2 extends JFrame implements MouseListener
             	//180 275
             	g.setFont(new Font("Verdana", Font.BOLD, 14));
             	g.setColor(Color.WHITE);
+            	
             	if(!cardChosen&&playerClicked==-1)
             	{
-            		g.drawImage(boards.get(board.getPlayerBoard(board.getMainPlayerNum())), 600, 600, 800, 250, null);
+            		g.drawImage(boards.get(board.getPlayerBoard(board.getMainPlayerNum())), 300, 600, 800, 250, null);
                 	//50 50
+            		g.drawImage(other.get("mainlogo"), 784, 50, 480, 158, null);
+                	g.drawString("Brown Cards", 1150, 550);
+                	g.drawString("Blue Cards", 1150, 760);
+                	g.drawString("Green Cards", 1350, 550);
+                	g.drawString("Gray Cards", 1350, 760);
+                	g.drawString("Red Cards", 1550, 550);
+                	g.drawString("Yellow Cards", 1550, 760);
+                	g.drawString("Purple Cards", 1750, 550);
                 	g.drawImage(other.get("onecoin"), 50, 520, 50, 50, null);
                 	g.drawString(" - "+(board.getPlayer(board.getMainPlayerNum()).getMoney()%3), 130, 550); //number of
                 	//58 60
@@ -204,6 +213,19 @@ public class GUI2 extends JFrame implements MouseListener
                 		Card2 temp = cards.get(i);
                 		g.drawImage(images.get(temp.color).get(temp.name), positions[i], 300, 150, 229, null);
                 	}
+
+            	}
+            	else if(cardAction.equals("free")||cardAction.equals("trash")||cardAction.equals("buy")||cardAction.contentEquals("pyramid"))
+            	{
+            		cardStuff();
+            		turn++;
+            		cardAction = "";
+            		if(turn%3==0)
+            			board.incrRound();
+            		cardChosen = false;
+            		board.incrPlayer();
+            		setPlayerNum();
+            		repaint();
             	}
             	else if(cardChosen)
             	{
@@ -211,8 +233,9 @@ public class GUI2 extends JFrame implements MouseListener
             				824, 100, 300, 458, null);
             		g.drawImage(other.get("buy"), 750, 650, 50, 50, null);
             		g.drawImage(other.get("trash"), 1200, 650, 50, 50, null);
-            		if(board.getPlayerBoard(board.mainPlayer).equals("olympia"))
-            			g.drawImage(other.get("free"), 1000, 650, 75, 75, null);
+            		g.drawImage(other.get("pyramid"), 950, 650, 50, 50, null);
+            		if(board.getPlayerBoard(board.mainPlayer).equals("olympia")&&board.players.get(mp).mostRecentWonder()>=2)
+            			g.drawImage(other.get("free"), 950, 775, 75, 75, null);
             		
             		TreeMap<String, Integer> resources = board.players.get(board.mainPlayer).getResources();
             		g.drawString("Your resources: ", 50, 720);
@@ -231,29 +254,11 @@ public class GUI2 extends JFrame implements MouseListener
                 	g.drawString(" - " + resources.get("papyrus"), 210, 865);
                 	g.drawString(" - " + resources.get("cloth"), 110, 925);
                 	g.drawImage(other.get("goback"), 400, 850, 100, 100, null);
-            		cardChosen = false;
             	}
-            	else if(cardAction.equals("free")||cardAction.equals("trash")||cardAction.equals("buy"))
-            	{
-            		if(cardAction.equals("free"))
-            			board.players.get(mp).addCard(board.getHand(mp).remove(index));
-            		else if(cardAction.equals("trash"))
-            		{
-            			board.addDiscard(board.getHand(mp).get(index));
-            			board.players.get(mp).changeMoney(3);
-            		}
-            		else
-            		{
-            			board.players.get(mp).addCard(board.getHand(mp).remove(index));
-            		}
-            		turn++;
-            		cardAction = "";
-            		if(turn%3==0)
-            			board.incrRound();
-            	}
+            	
             	else if(playerClicked==lp)
             	{
-            		g.drawImage(boards.get(board.getPlayerBoard(lp)), 600, 600, 800, 250, null);
+            		g.drawImage(boards.get(board.getPlayerBoard(lp)), 600, 700, 800, 250, null);
                 	//50 50
                 	g.drawImage(other.get("onecoin"), 50, 520, 50, 50, null);
                 	g.drawString(" - "+(board.getPlayer(lp).getMoney()%3), 130, 550); //number of
@@ -286,52 +291,65 @@ public class GUI2 extends JFrame implements MouseListener
                 	Player2 temp = board.players.get(lp);
                 	ArrayList<Card2> card = temp.getColorCards("brown");
                 	int count = 0;
+                	g.drawString("Brown Cards", 500, 25);
                 	for(Card2 i: card)
                 	{
-                		g.drawImage(images.get("brown").get(i.getName()), 50, 50+count, 150, 229, null);
+                		g.drawImage(images.get("brown").get(i.getName()), 475, 50+count, 150, 229, null);
                 		count+=50;
                 	}
+                	count=0;
                 	card = temp.getColorCards("blue");
+                	g.drawString("Blue Cards", 660, 25);
                 	for(Card2 i: card)
                 	{
-                		g.drawImage(images.get("blue").get(i.getName()), 50, 50+count, 150, 229, null);
+                		g.drawImage(images.get("blue").get(i.getName()), 635, 50+count, 150, 229, null);
                 		count+=50;
                 	}
+                	count=0;
                 	card = temp.getColorCards("green");
+                	g.drawString("Green Cards", 820, 25);
                 	for(Card2 i: card)
                 	{
-                		g.drawImage(images.get("green").get(i.getName()), 50, 50+count, 150, 229, null);
+                		g.drawImage(images.get("green").get(i.getName()), 795, 50+count, 150, 229, null);
                 		count+=50;
                 	}
+                	count=0;
                 	card = temp.getColorCards("gray");
+                	g.drawString("Gray Cards", 980, 25);
                 	for(Card2 i: card)
                 	{
-                		g.drawImage(images.get("gray").get(i.getName()), 50, 50+count, 150, 229, null);
+                		g.drawImage(images.get("gray").get(i.getName()), 955, 50+count, 150, 229, null);
                 		count+=50;
                 	}
+                	count=0;
                 	card = temp.getColorCards("red");
+                	g.drawString("Red Cards", 1140, 25);
                 	for(Card2 i: card)
                 	{
-                		g.drawImage(images.get("red").get(i.getName()), 50, 50+count, 150, 229, null);
+                		g.drawImage(images.get("red").get(i.getName()), 1115, 50+count, 150, 229, null);
                 		count+=50;
                 	}
+                	count=0;
                 	card = temp.getColorCards("yellow");
+                	g.drawString("Yellow Cards", 1300, 25);
                 	for(Card2 i: card)
                 	{
-                		g.drawImage(images.get("yellow").get(i.getName()), 50, 50+count, 150, 229, null);
+                		g.drawImage(images.get("yellow").get(i.getName()), 1275, 50+count, 150, 229, null);
                 		count+=50;
                 	}
+                	count=0;
                 	card = temp.getColorCards("purple");
+                	g.drawString("Purple Cards", 1460, 25);
                 	for(Card2 i: card)
                 	{
-                		g.drawImage(images.get("purple").get(i.getName()), 50, 50+count, 150, 229, null);
+                		g.drawImage(images.get("purple").get(i.getName()), 1435, 50+count, 150, 229, null);
                 		count+=50;
                 	}
                 	
             	}
             	else if(playerClicked==rp)
             	{
-            		g.drawImage(boards.get(board.getPlayerBoard(rp)), 600, 600, 800, 250, null);
+            		g.drawImage(boards.get(board.getPlayerBoard(rp)), 600, 700, 800, 250, null);
                 	//50 50
                 	g.drawImage(other.get("onecoin"), 50, 520, 50, 50, null);
                 	g.drawString(" - "+(board.getPlayer(rp).getMoney()%3), 130, 550); //number of
@@ -364,45 +382,58 @@ public class GUI2 extends JFrame implements MouseListener
                 	Player2 temp = board.players.get(rp);
                 	ArrayList<Card2> card = temp.getColorCards("brown");
                 	int count = 0;
+                	g.drawString("Brown Cards", 500, 25);
                 	for(Card2 i: card)
                 	{
-                		g.drawImage(images.get("brown").get(i.getName()), 50, 50+count, 150, 229, null);
+                		g.drawImage(images.get("brown").get(i.getName()), 475, 50+count, 150, 229, null);
                 		count+=50;
                 	}
+                	count=0;
                 	card = temp.getColorCards("blue");
+                	g.drawString("Blue Cards", 660, 25);
                 	for(Card2 i: card)
                 	{
-                		g.drawImage(images.get("blue").get(i.getName()), 50, 50+count, 150, 229, null);
+                		g.drawImage(images.get("blue").get(i.getName()), 635, 50+count, 150, 229, null);
                 		count+=50;
                 	}
+                	count=0;
                 	card = temp.getColorCards("green");
+                	g.drawString("Green Cards", 820, 25);
                 	for(Card2 i: card)
                 	{
-                		g.drawImage(images.get("green").get(i.getName()), 50, 50+count, 150, 229, null);
+                		g.drawImage(images.get("green").get(i.getName()), 795, 50+count, 150, 229, null);
                 		count+=50;
                 	}
+                	count=0;
                 	card = temp.getColorCards("gray");
+                	g.drawString("Gray Cards", 980, 25);
                 	for(Card2 i: card)
                 	{
-                		g.drawImage(images.get("gray").get(i.getName()), 50, 50+count, 150, 229, null);
+                		g.drawImage(images.get("gray").get(i.getName()), 955, 50+count, 150, 229, null);
                 		count+=50;
                 	}
+                	count=0;
                 	card = temp.getColorCards("red");
+                	g.drawString("Red Cards", 1140, 25);
                 	for(Card2 i: card)
                 	{
-                		g.drawImage(images.get("red").get(i.getName()), 50, 50+count, 150, 229, null);
+                		g.drawImage(images.get("red").get(i.getName()), 1115, 50+count, 150, 229, null);
                 		count+=50;
                 	}
+                	count=0;
                 	card = temp.getColorCards("yellow");
+                	g.drawString("Yellow Cards", 1300, 25);
                 	for(Card2 i: card)
                 	{
-                		g.drawImage(images.get("yellow").get(i.getName()), 50, 50+count, 150, 229, null);
+                		g.drawImage(images.get("yellow").get(i.getName()), 1275, 50+count, 150, 229, null);
                 		count+=50;
                 	}
+                	count=0;
                 	card = temp.getColorCards("purple");
+                	g.drawString("Purple Cards", 1460, 25);
                 	for(Card2 i: card)
                 	{
-                		g.drawImage(images.get("purple").get(i.getName()), 50, 50+count, 150, 229, null);
+                		g.drawImage(images.get("purple").get(i.getName()), 1435, 50+count, 150, 229, null);
                 		count+=50;
                 	}
                 	
@@ -425,6 +456,21 @@ public class GUI2 extends JFrame implements MouseListener
 		
 		setLocationRelativeTo(null);
 	    setVisible(true); 
+    }
+    
+    public void cardStuff()
+    {
+    	if(cardAction.equals("free"))
+			board.players.get(mp).addCard(board.getHand(mp).remove(index));
+		else if(cardAction.equals("trash"))
+		{
+			board.addDiscard(board.getHand(mp).get(index));
+			board.players.get(mp).changeMoney(3);
+		}
+		else
+		{
+			board.players.get(mp).addCard(board.getHand(mp).remove(index));
+		}
     }
 
     public int[] positions()
@@ -490,7 +536,7 @@ public class GUI2 extends JFrame implements MouseListener
     	int[] positions = positions();
     	int x = e.getX();
 		int y = e.getY();
-    	if(x>=positions[0]&&x<=positions[positions.length-1]&&playerClicked==-1)
+    	if(x>=positions[0]&&x<=positions[positions.length-1]&&playerClicked==-1&&!cardChosen)
     	{
     		if(y>=300&&y<=529)
     		{
@@ -504,8 +550,6 @@ public class GUI2 extends JFrame implements MouseListener
     					this.index = index;
     					repaint();
     				}
-    				
-    				
     			}
     		}
     	}
@@ -519,9 +563,13 @@ public class GUI2 extends JFrame implements MouseListener
     		playerClicked = rp; 
     		repaint();
     	}
-    	else if((playerClicked==rp||playerClicked==lp||cardChosen)&&x>=400&&x<=500&&y>=850&&y<=950)
+    	else if((playerClicked==rp||playerClicked==lp)&&x>=400&&x<=500&&y>=850&&y<=950)
     	{
     		playerClicked = -1;
+    		repaint();
+    	}
+    	else if (cardChosen&&x>=400&&x<=500&&y>=850&&y<=950)
+    	{
     		cardChosen = false;
     		repaint();
     	}
@@ -535,9 +583,15 @@ public class GUI2 extends JFrame implements MouseListener
     		cardAction = "trash";
     		repaint();
     	}
-    	else if(cardChosen&&x>=1000&&x<=1050&&y>=650&&y<=700)
+    	else if(cardChosen&&x>=950&&x<=1025&&y>=775&&y<=850)
     	{
     		cardAction = "free";
+    		repaint();
+    	}
+    	else if(cardChosen&&x>=950&&x<=1000&&y>=650&&y<=700)
+    	{
+    		cardAction = "pyramid";
+    		board.players.get(mp).buildWonder();
     		repaint();
     	}
     }
