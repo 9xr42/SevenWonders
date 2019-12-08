@@ -9,22 +9,17 @@ public class Player {
     private int positiveWarPoints;
     private int negativeWarPoints;
 
-    public Player(PlayerBoard playerBoard, ArrayList<Card> hand, int money, int playerNumber) {
+    public Player(PlayerBoard playerBoard, int playerNumber) {
         this.playerBoard = playerBoard;
-        this.hand = hand;
-        this.money = money;
+        this.hand = new ArrayList<Card>();
+        this.money = 5;
         this.playerNumber = playerNumber;
-        positiveWarPoints = 0;
-        negativeWarPoints = 0;
+        this.positiveWarPoints = 0;
+        this.negativeWarPoints = 0;
     }
 
     public PlayerBoard getPlayerBoard() {
         return playerBoard;
-    }
-    
-    public String getBoardName()
-    {
-    	return playerBoard.getName();
     }
     public ArrayList<Card> getHand() {
         return hand;
@@ -38,52 +33,48 @@ public class Player {
     public int getPositiveWarPoints() {
         return positiveWarPoints;
     }
-
-    public int getNegativeWarPoints()
-    {
+    public int getNegativeWarPoints() {
         return negativeWarPoints;
     }
-    
+
     public ArrayList<Card> getColorCards(String color)
     {
-    	ArrayList<Card> temp = new ArrayList<Card>();
-    	for(Card card: hand)
-    	{
-    		if(card.getColor().equals(color))
-    			temp.add(card);
-    	}
-    	return temp;	
+        ArrayList<Card> colorCards = new ArrayList<Card>();
+        for(Card card: hand) {
+            if(card.getColor().equals(color))
+                colorCards.add(card);
+        }
+        return colorCards;
     }
-    
     public TreeMap<String, Integer> getResources()
     {
-    	TreeMap<String, Integer> resources = new TreeMap<String, Integer>();
-    	ArrayList<String> temp = new ArrayList<String>();
-    	for(Card card: getColorCards("brown"))
-    	{
-    		if(((BrownCard)card).getResources().size()==1)
-    			temp.add(((BrownCard)card).getResources().get(0));
-    		else
-    		{
-    			String str = "";
-    			for(String i: ((BrownCard)card).getResources())
-    				str+=i+ " ";
-    			temp.add(str);
-    		}
-    	}
-    		
-    	for(Card card: getColorCards("gray"))
-    		temp.add(((GrayCard)card).getResource());
-    	temp.add(playerBoard.getResource());
-    	
-    	for(String i: temp)
-    	{
-    		if(resources.get(i)==null)
-    			resources.put(i,1);
-    		else
-    		    resources.put(i, resources.get(i)+1);
-    	}
-    	return resources;
+        TreeMap<String, Integer> resources = new TreeMap<String, Integer>();
+        ArrayList<String> temp = new ArrayList<String>();
+        for(Card card: getColorCards("brown"))
+        {
+            if(card.getResources().size()==1)
+                temp.add(card.getResources().get(0));
+            else
+            {
+                String str = "";
+                for(String i: card.getResources())
+                    str+=i+ " ";
+                temp.add(str);
+            }
+        }
+
+        for(Card card: getColorCards("gray"))
+            temp.add(card.getResources().get(0));
+        temp.add(playerBoard.getResource());
+
+        for(String i: temp)
+        {
+            if(resources.get(i)==null)
+                resources.put(i,1);
+            else
+                resources.put(i, resources.get(i)+1);
+        }
+        return resources;
     }
 
     public void addCard(Card card) {
@@ -102,44 +93,49 @@ public class Player {
     public int getScore() {
         int score = 0;
         score += getPositiveWarPoints();
-        score-= getNegativeWarPoints();
+        score -= getNegativeWarPoints();
         score += getMoney()/3;
-        score += getPlayerBoard().getPoints();
-        ArrayList<BlueCard> blue = new ArrayList<BlueCard>();
-        ArrayList<GreenCard> green = new ArrayList<GreenCard>();
-        ArrayList<YellowCard> yellow = new ArrayList<YellowCard>();
-        ArrayList<PurpleCard> purple = new ArrayList<PurpleCard>();
+        score += getPlayerBoard().getVictoryPoints();
+        ArrayList<Card> blue = new ArrayList<Card>();
+        ArrayList<Card> green = new ArrayList<Card>();
+        ArrayList<Card> yellow = new ArrayList<Card>();
+        ArrayList<Card> purple = new ArrayList<Card>();
         for(Card card: hand)
         {
             if(card.getColor().equals("blue"))
-                blue.add((BlueCard)card);
+                blue.add(card);
             else if(card.getColor().equals("green"))
-                green.add((GreenCard)card);
-            else if(card.getColor().equals("yellow"))
-                yellow.add((YellowCard)card);
+                green.add(card);
+            else if(card.getColor().equals("yellow")) {
+                if(card.getAction().equals("guild"))
+                    yellow.add(card);
+            }
             else if(card.getColor().equals("purple"))
-                purple.add((PurpleCard)card);
+                purple.add(card);
         }
 
-        for(BlueCard card: blue)
+        for(Card card: blue)
             score += card.getVictoryPoints();
-        for(GreenCard card: green)
+
+        int gear = 0;
+        int compass = 0;
+        int tablet = 0;
+        for(Card card: green)
         {
-            int gear = 0;
-            int compass = 0;
-            int tablet = 0;
             if(card.getScience().equals("gear"))
                 gear++;
             else if(card.getScience().equals("compass"))
-                compass ++;
+                compass++;
             else
                 tablet++;
-            score += gear*gear + compass*compass + tablet*tablet;
         }
-        for(YellowCard card: yellow)
-            score += card.getVictoryPoints();
-        for(PurpleCard card: purple)
-            score += card.getVictoryPoints();
+        score += gear*gear + compass*compass + tablet*tablet;
+
+        for(Card card: yellow) {
+            score += getColorCards(card.getAwardColor()).size();
+        }
+        for(Card card: purple)
+            score += getColorCards(card.getAwardColor()).size();
 
         return score;
     }

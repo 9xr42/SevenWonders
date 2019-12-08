@@ -5,16 +5,27 @@ public class PlayerBoard {
     private Wonder wonder2;
     private Wonder wonder3;
 
-    public PlayerBoard(String name, Wonder wonder1, Wonder wonder2, Wonder wonder3, String resource) {
+    public PlayerBoard(String data) {
+        String array[] = data.split("--");
+        String name = array[0];
+        String resource = array[1];
+        wonder1 = new Wonder(array[2]);
+        wonder2 = new Wonder(array[3]);
+        wonder3 = new Wonder(array[4]);
+    }
+    public PlayerBoard(String name, String resource, Wonder wonder1, Wonder wonder2, Wonder wonder3) {
         this.name = name;
+        this.resource = resource;
         this.wonder1 = wonder1;
         this.wonder2 = wonder2;
         this.wonder3 = wonder3;
-        this.resource = resource;
     }
 
     public String getName() {
         return name;
+    }
+    public String getResource() {
+        return resource;
     }
     public Wonder getWonder1() {
         return wonder1;
@@ -25,23 +36,21 @@ public class PlayerBoard {
     public Wonder getWonder3() {
         return wonder3;
     }
-    
-    public String getResource()
-    {
-    	return resource;
-    }
 
-    public int getPoints()
+    public int getVictoryPoints()
     {
         int points = 0;
         if(wonder1.isHasBeenBuilt())
-            points += wonder1.getPoints();
+            points += wonder1.getVictoryPoints();
         if(wonder2.isHasBeenBuilt())
-            points += wonder2.getPoints();
-       if(wonder3.isHasBeenBuilt())
-           points +=wonder3.getPoints();
-       return points;
+            points += wonder2.getVictoryPoints();
+        if(wonder3.isHasBeenBuilt())
+            points +=wonder3.getVictoryPoints();
+        return points;
 
     }
 
+    public String toString() {
+        return getName();
+    }
 }
