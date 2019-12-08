@@ -48,7 +48,9 @@ public class GUI2 extends JFrame implements MouseListener
     }
 
     public GUI2() throws IOException {
+    	
         super("Seven Wonders: Welcome");
+        
         board = new Board2();
         
         cardChosen = false;
@@ -111,7 +113,8 @@ public class GUI2 extends JFrame implements MouseListener
         images.put("red", new TreeMap<String, BufferedImage>());
         images.put("purple", new TreeMap<String, BufferedImage>());
         images.put("yellow", new TreeMap<String, BufferedImage>());
-
+        
+        
         for(int i=1; i<=3; i++)
         {
             cards = board.getAgeDeck(i);
@@ -160,22 +163,47 @@ public class GUI2 extends JFrame implements MouseListener
             	//[1745, 1795, 1845, 1895, ...]
             	//800 250
             	//180 275
-            	g.setFont(new Font("Verdana", Font.BOLD, 14));
+            	g.setFont(new Font("Verdana", Font.BOLD, 40));
             	g.setColor(Color.WHITE);
             	
             	if(!cardChosen&&playerClicked==-1)
             	{
             		g.drawImage(boards.get(board.getPlayerBoard(board.getMainPlayerNum())), 300, 600, 800, 250, null);
-                	//50 50
+                	g.drawString("Age " + board.getAge(), 950, 250);
+                	
+                	g.setFont(new Font("Verdana", Font.BOLD, 14));
+            		g.drawString("Click on the card to enlarge and show other cards! ->", 700, 950);
+            		ArrayList<Card2> temp = board.players.get(mp).getColorCards("brown");
             		g.drawImage(other.get("mainlogo"), 784, 50, 480, 158, null);
                 	g.drawString("Brown Cards", 1150, 550);
+                	if(temp.size()>0)
+                		g.drawImage(images.get("brown").get(temp.get(0).getName()), 1140, 560, 118, 180, null);
                 	g.drawString("Blue Cards", 1150, 760);
+                	temp = board.players.get(mp).getColorCards("blue");
+                	if(temp.size()>0)
+                		g.drawImage(images.get("blue").get(temp.get(0).getName()), 1140, 780, 118, 180, null);
                 	g.drawString("Green Cards", 1350, 550);
+                	temp = board.players.get(mp).getColorCards("green");
+                	if(temp.size()>0)
+                		g.drawImage(images.get("green").get(temp.get(0).getName()), 1340, 560, 118, 180, null);
                 	g.drawString("Gray Cards", 1350, 760);
+                	temp = board.players.get(mp).getColorCards("gray");
+                	if(temp.size()>0)
+                		g.drawImage(images.get("gray").get(temp.get(0).getName()), 1340, 780, 118, 180, null);
                 	g.drawString("Red Cards", 1550, 550);
+                	temp = board.players.get(mp).getColorCards("red");
+                	if(temp.size()>0)
+                		g.drawImage(images.get("red").get(temp.get(0).getName()), 1540, 560, 118, 180, null);
                 	g.drawString("Yellow Cards", 1550, 760);
+                	temp = board.players.get(mp).getColorCards("yellow");
+                	if(temp.size()>0)
+                		g.drawImage(images.get("yellow").get(temp.get(0).getName()), 1540, 780, 118, 180, null);
                 	g.drawString("Purple Cards", 1750, 550);
+                	temp = board.players.get(mp).getColorCards("purple");
+                	if(temp.size()>0)
+                		g.drawImage(images.get("purple").get(temp.get(0).getName()), 1740, 560, 118, 180, null);
                 	g.drawImage(other.get("onecoin"), 50, 520, 50, 50, null);
+                	
                 	g.drawString(" - "+(board.getPlayer(board.getMainPlayerNum()).getMoney()%3), 130, 550); //number of
                 	//58 60
                 	g.drawImage(other.get("threecoin"), 50, 580, 58, 60, null);
@@ -210,8 +238,8 @@ public class GUI2 extends JFrame implements MouseListener
                 	ArrayList<Card2> cards = board.getHand(mp);
                 	for(int i=0; i<positions.length-1; i++)
                 	{
-                		Card2 temp = cards.get(i);
-                		g.drawImage(images.get(temp.color).get(temp.name), positions[i], 300, 150, 229, null);
+                		Card2 temp2 = cards.get(i);
+                		g.drawImage(images.get(temp2.color).get(temp2.name), positions[i], 300, 150, 229, null);
                 	}
 
             	}
@@ -469,7 +497,7 @@ public class GUI2 extends JFrame implements MouseListener
 		}
 		else
 		{
-			board.players.get(mp).addCard(board.getHand(mp).remove(index));
+			board.players.get(mp).buyCard(board.getHand(mp).remove(index));
 		}
     }
 
@@ -603,4 +631,53 @@ public class GUI2 extends JFrame implements MouseListener
     public void mouseExited(MouseEvent mouseEvent) {
 
     }
+    
+    public void setStart() throws IOException {
+   	 JFrame start = new JFrame("Seven Wonders: Welcome");
+        Dimension startSize = start.getMaximumSize();
+        start.setSize(startSize);
+        start.getContentPane().setBackground(Color.BLACK);
+        start.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        start.setVisible(true);
+
+        JPanel s2 = new JPanel();
+        s2.setBackground(Color.WHITE);
+        start.add(s2);
+        s2.setVisible(true);
+
+        JLabel bimg = new JLabel(new ImageIcon(other.get("back")));
+        Dimension b = bimg.getPreferredSize();
+        bimg.setSize(b);
+        s2.add(bimg);
+        bimg.setVisible(true);
+
+        JLabel tx = new JLabel("TEAM ALICE");
+        bimg.add(tx);
+        tx.setFont(new Font("Serif", Font.BOLD, 24));
+        Dimension size2 = tx.getMaximumSize();
+        tx.setBounds(100, 25, size2.width, size2.height);
+        tx.setVisible(true);
+
+        JLabel tx2 = new JLabel("CLICK PLAY BUTTON TO BEGIN");
+        bimg.add(tx2);
+        tx2.setFont(new Font("Serif", Font.BOLD, 24));
+        tx2.setForeground(Color.WHITE);
+        Dimension size3 = tx2.getMaximumSize();
+        tx2.setBounds(740, 800, size3.width, size3.height);
+        tx2.setVisible(true);
+
+
+        BufferedImage buttonIcon = other.get("start");
+        JButton button = new JButton(new ImageIcon(buttonIcon));
+        button.setBounds(840, 850, 200, 100);
+        button.setBorderPainted(false);
+        button.setFocusPainted(false);
+        button.setContentAreaFilled(false);
+        bimg.add(button);
+        button.setVisible(true);
+
+        button.addActionListener(actionEvent -> {
+                start.dispose();
+        });
+   }
 }
