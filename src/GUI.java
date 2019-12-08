@@ -676,7 +676,11 @@ public class GUI extends JFrame implements MouseListener
     			{ 
     				if((x-positions[i])<0 && (x-positions[i])>-180)
     					index = i-1;
-    				//call method, pass index
+    				try {
+						cardAction(index);
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					}
     			}
     			
     		}
