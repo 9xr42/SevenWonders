@@ -9,6 +9,7 @@ public class Board2 {
 	//private HashMap<Integer, ArrayList<Card>> cards;
     private ArrayList<Card2> discardPile;
     private int age;
+    private int round;
     public ArrayList<Player2> players;
     public int mainPlayer;
     private boolean direction;
@@ -24,8 +25,6 @@ public class Board2 {
         ArrayList<PlayerBoard2> wonders = new ArrayList<PlayerBoard2>();
         while(sc.hasNextLine()) {
             String[] str = sc.nextLine().split("-");
-            for(String i: str)
-            	System.out.println(i);
             wonders.add(new PlayerBoard2(str[0], new Wonder2(false, str[1], 3, null),
                     new Wonder2(false, str[2], 0, str[3]),
                     new Wonder2(false, str[4], 7, null), str[5]));
@@ -38,6 +37,8 @@ public class Board2 {
         {
             players.add(new Player2(wonders.remove(0), i));
         }
+        mainPlayer = 0;
+        
 
     }
 
@@ -62,8 +63,21 @@ public class Board2 {
     
     public String getPlayerBoard(int player)
     {
-    	System.out.println(players.get(player).getBoardName());
     	return players.get(player).getBoardName();
+    }
+    
+    public void incrRound()
+    {
+    	round++;
+    	if(round==8)
+    	{
+    		incrementAge();
+    	}
+    }
+    
+    public void addDiscard(Card2 card)
+    {
+    	deck.discard(card);
     }
 
     public void incrementAge()
