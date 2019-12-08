@@ -23,7 +23,9 @@ public class Board2 {
         Scanner sc = new Scanner(new File("wonderBoards.txt"));
         ArrayList<PlayerBoard2> wonders = new ArrayList<PlayerBoard2>();
         while(sc.hasNextLine()) {
-            String[] str = sc.nextLine().split("|");
+            String[] str = sc.nextLine().split("-");
+            for(String i: str)
+            	System.out.println(i);
             wonders.add(new PlayerBoard2(str[0], new Wonder2(false, str[1], 3, null),
                     new Wonder2(false, str[2], 0, str[3]),
                     new Wonder2(false, str[4], 7, null), str[5]));
