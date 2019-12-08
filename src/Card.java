@@ -42,4 +42,68 @@ public class Card {
     public String toString() {
         return color + " " + name;
     }
+
+    public String getColor() {
+        return color;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public ArrayList<String> getResources() {
+        return resources;
+    }
+
+    public int getCoinCost() {
+        return coinCost;
+    }
+
+    public ArrayList<String> getResourceCost() {
+        return resourceCost;
+    }
+
+    public int getVictoryPoints() {
+        return victoryPoints;
+    }
+
+    public int getMilitary() {
+        return military;
+    }
+
+    public String getScience() {
+        return science;
+    }
+
+    public String getAction() {
+        return action;
+    }
+
+    public boolean isLeft() {
+        return left;
+    }
+
+    public boolean isRight() {
+        return right;
+    }
+
+    public boolean isSelf() {
+        return self;
+    }
+
+    public int getCoins() {
+        return coins;
+    }
+
+    public String getAwardColor() {
+        return awardColor;
+    }
+
+    public String getChain1() {
+        return chain1;
+    }
+
+    public String getChain2() {
+        return chain2;
+    }
 }
