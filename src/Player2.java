@@ -12,7 +12,7 @@ public class Player2 {
     public Player2(PlayerBoard2 playerBoard, int playerNumber) {
         this.playerBoard = playerBoard;
         this.hand = new ArrayList<Card2>();
-        this.money = 5;
+        this.money = 3;
         this.playerNumber = playerNumber;
         this.positiveWarPoints = 0;
         this.negativeWarPoints = 0;
@@ -120,6 +120,7 @@ public class Player2 {
     }
 
     public void addCard(Card2 card) {
+    	
         hand.add(card);
     }
     public void changeMoney(int amount) {
@@ -154,6 +155,13 @@ public class Player2 {
     			{
     				if(temp.contains(i))
     					temp.remove(i);
+    			}
+    			if(temp.size()>=1)
+    			{
+    				addCard(card);
+    				if(card.color.equals("red"))
+    		    		positiveWarPoints+=card.getMilitary();
+    		    	else if()
     			}
     		}
     	}
