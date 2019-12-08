@@ -132,10 +132,10 @@ public class Player {
         score += gear*gear + compass*compass + tablet*tablet;
 
         for(Card card: yellow) {
-            score += getColorCards(card.getAwardColor()).size();
+            score += getColorCards(card.getAwardColor()).size() * card.getVictoryPoints();
         }
         for(Card card: purple)
-            score += getColorCards(card.getAwardColor()).size();
+            score += getColorCards(card.getAwardColor()).size() * card.getVictoryPoints();
 
         return score;
     }
