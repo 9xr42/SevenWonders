@@ -28,6 +28,8 @@ public class GUI2 extends JFrame implements MouseListener
     private int lp;
     private int rp;
     private int turn;
+    private boolean cardChosen;
+    private int index;
     /*
     boards: 7 wonder boards alpha order
     other: 1 coin, 5coin, military 1, military 3, military 5, military loss
@@ -47,9 +49,11 @@ public class GUI2 extends JFrame implements MouseListener
         super("Seven Wonders: Welcome");
         board = new Board2();
         
+        cardChosen = false;
         mp = 1;
         lp = 2; 
         rp = 3;
+        index = -1;
         
         images = new TreeMap<String, TreeMap<String, BufferedImage>>();
         boards = new TreeMap<String, BufferedImage>();
@@ -154,46 +158,61 @@ public class GUI2 extends JFrame implements MouseListener
             	//180 275
             	g.setFont(new Font("Verdana", Font.BOLD, 14));
             	g.setColor(Color.WHITE);
-            	g.drawImage(boards.get(board.getPlayerBoard(board.getMainPlayerNum())), 600, 600, 800, 250, null);
-            	//50 50
-            	g.drawImage(other.get("onecoin"), 50, 520, 50, 50, null);
-            	g.drawString(" - "+(board.getPlayer(board.getMainPlayerNum()).getMoney()%3), 130, 550); //number of
-            	//58 60
-            	g.drawImage(other.get("threecoin"), 50, 580, 58, 60, null);
-            	g.drawString(" - "+board.getPlayer(board.getMainPlayerNum()).getMoney()/3, 130, 615); //number of
-            	g.drawImage(other.get("military1"), 50, 650, 50, 58, null);
-            	g.drawImage(other.get("military3"), 110, 650, 50, 58, null);
-            	g.drawImage(other.get("military5"), 170, 650, 50, 58, null);
-            	g.drawString(" - "+board.getPlayer(board.getMainPlayerNum()).getPositiveWarPoints(), 180, 670);
-            	
-            	TreeMap<String, Integer> resources = board.players.get(board.mainPlayer).getResources();
-            	
-            	g.drawImage(other.get("show"), 100, 50, 200, 200, null);
-            	g.drawImage(other.get("show"), 1648, 50, 200, 200, null);
-            	
-            	g.drawString("Your resources: ", 50, 720);
-            	g.drawImage(other.get("wood"), 50, 725, 50, 50, null);
-            	g.drawImage(other.get("clay"), 160, 725, 50, 50, null);
-            	g.drawImage(other.get("stone"), 50, 785, 50, 50, null);
-            	g.drawImage(other.get("ore"), 160, 785, 50, 50, null);
-            	g.drawImage(other.get("glass"), 50, 845, 50, 50, null);
-            	g.drawImage(other.get("papyrus"), 160, 845, 50, 50, null);
-            	g.drawImage(other.get("cloth"), 50, 905, 50, 50, null);
-            	g.drawString(" - " + resources.get("wood"), 110, 745);
-            	g.drawString(" - " + resources.get("clay"), 210, 745);
-            	g.drawString(" - " + resources.get("stone"), 110, 805);
-            	g.drawString(" - " + resources.get("ore"), 210, 805);
-            	g.drawString(" - " + resources.get("glass"), 110, 865);
-            	g.drawString(" - " + resources.get("papyrus"), 210, 865);
-            	g.drawString(" - " + resources.get("cloth"), 110, 925);
-            	
-            	int[] positions = positions();
-            	ArrayList<Card2> cards = board.getHand(mp);
-            	for(int i=0; i<positions.length-1; i++)
+            	if(!cardChosen)
             	{
-            		Card2 temp = cards.get(i);
-            		g.drawImage(images.get(temp.color).get(temp.name), positions[i], 300, 150, 229, null);
+            		g.drawImage(boards.get(board.getPlayerBoard(board.getMainPlayerNum())), 600, 600, 800, 250, null);
+                	//50 50
+                	g.drawImage(other.get("onecoin"), 50, 520, 50, 50, null);
+                	g.drawString(" - "+(board.getPlayer(board.getMainPlayerNum()).getMoney()%3), 130, 550); //number of
+                	//58 60
+                	g.drawImage(other.get("threecoin"), 50, 580, 58, 60, null);
+                	g.drawString(" - "+board.getPlayer(board.getMainPlayerNum()).getMoney()/3, 130, 615); //number of
+                	g.drawImage(other.get("military1"), 50, 650, 50, 58, null);
+                	g.drawImage(other.get("military3"), 110, 650, 50, 58, null);
+                	g.drawImage(other.get("military5"), 170, 650, 50, 58, null);
+                	g.drawString(" - "+board.getPlayer(board.getMainPlayerNum()).getPositiveWarPoints(), 230, 680);
+                	
+                	TreeMap<String, Integer> resources = board.players.get(board.mainPlayer).getResources();
+                	
+                	g.drawImage(other.get("show"), 100, 50, 200, 200, null);
+                	g.drawImage(other.get("show"), 1648, 50, 200, 200, null);
+                	
+                	g.drawString("Your resources: ", 50, 720);
+                	g.drawImage(other.get("wood"), 50, 725, 50, 50, null);
+                	g.drawImage(other.get("clay"), 160, 725, 50, 50, null);
+                	g.drawImage(other.get("stone"), 50, 785, 50, 50, null);
+                	g.drawImage(other.get("ore"), 160, 785, 50, 50, null);
+                	g.drawImage(other.get("glass"), 50, 845, 50, 50, null);
+                	g.drawImage(other.get("papyrus"), 160, 845, 50, 50, null);
+                	g.drawImage(other.get("cloth"), 50, 905, 50, 50, null);
+                	g.drawString(" - " + resources.get("wood"), 110, 745);
+                	g.drawString(" - " + resources.get("clay"), 210, 745);
+                	g.drawString(" - " + resources.get("stone"), 110, 805);
+                	g.drawString(" - " + resources.get("ore"), 210, 805);
+                	g.drawString(" - " + resources.get("glass"), 110, 865);
+                	g.drawString(" - " + resources.get("papyrus"), 210, 865);
+                	g.drawString(" - " + resources.get("cloth"), 110, 925);
+                	
+                	int[] positions = positions();
+                	ArrayList<Card2> cards = board.getHand(mp);
+                	for(int i=0; i<positions.length-1; i++)
+                	{
+                		Card2 temp = cards.get(i);
+                		g.drawImage(images.get(temp.color).get(temp.name), positions[i], 300, 150, 229, null);
+                	}
             	}
+            	else
+            	{
+            		g.drawImage(images.get(board.getHand(mp).get(index).getColor()).get(board.getHand(mp).get(index).getName()), 
+            				824, 100, 300, 458, null);
+            		g.drawImage(other.get("buy"), 750, 650, 50, 50, null);
+            		g.drawImage(other.get("trash"), 1200, 650, 50, 50, null);
+            		if(board.getPlayerBoard(board.mainPlayer).equals("olympia"))
+            			g.drawImage(other.get("free"), 1000, 650, 75, 75, null);
+            		
+            		
+            	}
+            	
             	
             	//Player2 temp = board.getPlayer(board.getMainPlayerNum());
             	
@@ -278,13 +297,19 @@ public class GUI2 extends JFrame implements MouseListener
 		int y = e.getY();
     	if(x>=positions[0]&&x<=positions[positions.length-1])
     	{
-    		if(y>=1000&&y<=1275)
+    		if(y>=300&&y<=529)
     		{
     			int index = 0;
     			for(int i = 0; i<positions.length; i++)
     			{ 
     				if((x-positions[i])<0 && (x-positions[i])>-180)
+    				{
     					index = i-1;
+    					cardChosen = true;
+    					this.index = index;
+    					repaint();
+    				}
+    				
     				
     			}
     		}
