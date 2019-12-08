@@ -141,7 +141,10 @@ public class Player2 {
     	{
     		int cost = card.getCoinCost();
     		if(money>=cost)
+    		{
+    			money-=cost;
     			addCard(card);
+    		}
     	}
     	else 
     	{
@@ -161,7 +164,6 @@ public class Player2 {
     				addCard(card);
     				if(card.color.equals("red"))
     		    		positiveWarPoints+=card.getMilitary();
-    		    	else if()
     			}
     		}
     	}
@@ -171,7 +173,17 @@ public class Player2 {
     {
     	playerBoard.buildWonder();
     }
-
+    
+    public int mostRecentWonder()
+    {
+    	if(playerBoard.getWonder3().isHasBeenBuilt())
+    		return 3;
+    	else if(playerBoard.getWonder2().isHasBeenBuilt())
+    		return 2;
+    	else if(playerBoard.getWonder1().isHasBeenBuilt())
+    		return 1;
+    	return 0;
+    }
     public int getScore() {
         int score = 0;
         score += getPositiveWarPoints();
