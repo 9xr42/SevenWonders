@@ -1,8 +1,7 @@
-name|wonder1 cost|wonder2 effect|wonder2 cost|wonder3 cost|resource
-Alexandria|stone stone|resource wood or ore or clay or stone|ore ore|glass glass|glass
-Babylon|clay clay|science|wood wood wood|clay clay clay clay|clay
-Ephesos|stone stone|coin 9|wood wood|papyrus papyrus|papyrus
-Gizah|stone stone|victoryPoints 5|stone stone stone stone|stone
-Halikarnassos|clay clay|discard|ore ore ore|cloth cloth|cloth
-Olympia|wood wood|buildFree|stone stone|ore ore|wood
-Rhodos|wood wood|military 2|clay clay clay|ore ore ore ore|ore
+alexandria-stone stone-resource wood or ore or clay or stone-ore ore-glass glass-glass
+babylon-clay clay-science-wood wood wood-clay clay clay clay-clay
+ephesos-stone stone-coin 9-wood wood-papyrus papyrus-papyrus
+gizah-stone stone-victoryPoints 5-wood wood wood-stone stone stone stone-stone
+halikarnassos-clay clay-discard-ore ore ore-cloth cloth-cloth
+olympia-wood wood-buildFree-stone stone-ore ore-wood
+rhodos-wood wood-military 2-clay clay clay-ore ore ore ore-ore
