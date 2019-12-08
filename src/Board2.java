@@ -75,6 +75,15 @@ public class Board2 {
     	}
     }
     
+    public void incrPlayer()
+    {
+    	if(direction)
+    		mainPlayer++;
+    	else
+    		mainPlayer--;
+    	mainPlayer%=3;
+    }
+    
     public void addDiscard(Card2 card)
     {
     	deck.discard(card);
@@ -106,5 +115,9 @@ public class Board2 {
     {
         return this.players.get(player).getHand();
     }
+
+	public int getAge() {
+		return age;
+	}
 
 }
