@@ -7,8 +7,8 @@ public class PlayerBoard {
 
     public PlayerBoard(String data) {
         String array[] = data.split("--");
-        String name = array[0];
-        String resource = array[1];
+        name = array[0];
+        resource = array[1];
         wonder1 = new Wonder(array[2]);
         wonder2 = new Wonder(array[3]);
         wonder3 = new Wonder(array[4]);

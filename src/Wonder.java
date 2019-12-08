@@ -5,7 +5,7 @@ public class Wonder {
 
     private ArrayList<String> cost;
     private int victoryPoints;
-    private String resource;
+    private String resource; //or science
     private int coins;
     private String action;
     private int military;
@@ -52,5 +52,9 @@ public class Wonder {
 
     public void build() {
         hasBeenBuilt = true;
+    }
+
+    public String toString() {
+        return action;
     }
 }
