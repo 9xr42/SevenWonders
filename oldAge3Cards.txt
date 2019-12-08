@@ -1,0 +1,16 @@
+green-study.png-gear-wood,papyrus,cloth-NA-NA
+green-academy.png-compass-stone,stone,stone,glass-NA-NA
+green-observatory.png-gear-ore,ore,glass,cloth-NA-NA
+green-lodge.png-compass-clay,clay,papyrus,cloth-NA-NA
+green-university.png-tablet-wood,wood,papyrus,glass-NA-NA
+red-siegeworkshop.png-3-clay,clay,clay,wood-NA
+red-arsenal.png-3-wood,wood,ore,cloth-NA
+red-fortifications.png-3-ore,ore,ore,stone-NA
+blue-senate.png-6-wood,wood,stone,ore-NA
+blue-pantheon.png-7-clay,clay,ore,glass,papyrus,cloth-NA
+blue-gardens.png-5-clay,clay,wood-NA
+blue-townhall.png-6-stone,stone,ore,glass-NA
+blue-palace.png-8-stone,ore,wood,clay,glass,papyrus,cloth-NA
+yellow-arena.png-stone,stone,ore-NA-guild,false,false,true,3,1,wonder
+yellow-haven.png-wood,ore,cloth-NA-guild,false,false,true,1,1,brown
+yellow-lighthouse.png-stone,glass-NA-guild,false,false,true,1,1,yellow
