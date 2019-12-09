@@ -66,6 +66,16 @@ public class Board2 {
     	return players.get(player).getBoardName();
     }
     
+    public int getWinner()
+    {
+    	int highest = 0;
+    	if(players.get(1).getScore()>players.get(highest).getScore())
+    		highest = 1;
+    	if(players.get(2).getScore()>players.get(highest).getScore())
+    		highest = 2;
+    	return highest;
+    }
+    
     public boolean incrRound()
     {
     	round++;
