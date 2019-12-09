@@ -8,6 +8,7 @@ public class Player2 {
     private int playerNumber;
     private int positiveWarPoints;
     private int negativeWarPoints;
+    private int militaryPoints;
 
     public Player2(PlayerBoard2 playerBoard, int playerNumber) {
         this.playerBoard = playerBoard;
@@ -16,6 +17,7 @@ public class Player2 {
         this.playerNumber = playerNumber;
         this.positiveWarPoints = 0;
         this.negativeWarPoints = 0;
+        militaryPoints = 0;
     }
 
 	public PlayerBoard2 getPlayerBoard() {
@@ -42,6 +44,16 @@ public class Player2 {
     public int getNegativeWarPoints()
     {
         return negativeWarPoints;
+    }
+    
+    public int getMilitaryPoints()
+    {
+    	return militaryPoints;
+    }
+    
+    public void addMilitaryPoints(int num)
+    {
+    	militaryPoints+=num;
     }
     
     public ArrayList<Card2> getColorCards(String color)
@@ -133,10 +145,14 @@ public class Player2 {
         negativeWarPoints += amount;
     }
     
-    public void buyCard(Card2 card)
+    public boolean buyCard(Card2 card)
     {
     	if(card.color.equals("gray"))
+    	{
     		addCard(card);
+    		return true;
+    	}
+    		
     	else if(card.color.equals("brown"))
     	{
     		int cost = card.getCoinCost();
@@ -144,12 +160,16 @@ public class Player2 {
     		{
     			money-=cost;
     			addCard(card);
+    			return true;
     		}
     	}
     	else 
     	{
-    		if(card.getResourceCost()==null)
+    		if(card.getResourceCost()==null||chain(card))
+    		{
     			addCard(card);
+    			return true;
+    		}
     		else
     		{
     			ArrayList<String> cost = card.getResourceCost();
@@ -163,10 +183,22 @@ public class Player2 {
     			{
     				addCard(card);
     				if(card.color.equals("red"))
-    		    		positiveWarPoints+=card.getMilitary();
+    		    		militaryPoints+=card.getMilitary();
+    				return true;
     			}
     		}
     	}
+    	return false;
+    }
+    
+    public boolean chain(Card2 card)
+    {
+      for(int i=0;i<hand.size();i++)
+      {
+        if(hand.get(i).getChain1().equals(card.getName())||hand.get(i).getChain2().equals(card.getName()))
+          return true;
+      }
+      return false;
     }
     
     public void buildWonder()
@@ -187,7 +219,7 @@ public class Player2 {
     public int getScore() {
         int score = 0;
         score += getPositiveWarPoints();
-        score-= getNegativeWarPoints();
+        score += getNegativeWarPoints();
         score += getMoney()/3;
         score += getPlayerBoard().getPoints();
         ArrayList<Card2> blue = new ArrayList<Card2>();
