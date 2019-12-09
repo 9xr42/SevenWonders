@@ -52,6 +52,8 @@ public class GUI2 extends JFrame implements MouseListener
     public GUI2() throws IOException {
     	
         super("Seven Wonders: Welcome");
+	
+	setStart();
         
         board = new Board2();
         
@@ -787,7 +789,14 @@ public class GUI2 extends JFrame implements MouseListener
         button.setVisible(true);
 
         button.addActionListener(actionEvent -> {
-                start.dispose();
+                            {
+                try {
+                    Thread.sleep(20);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+		start.dispose();
         });
    }
 }
