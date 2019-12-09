@@ -1,0 +1,12 @@
+public boolean chain(Card2 card)
+{
+  for(int i=0;i<hand.size();i++)
+  {
+    if(hand.get(i).getChain1().equals(card.getName())||hand.get(i).getChain2().equals(card.getName()))
+      return true;
+  }
+  return false;
+}
+
+//change line 151 in player2 to
+if(card.getResourceCost()==null||chain(card))
