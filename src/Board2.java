@@ -38,7 +38,7 @@ public class Board2 {
             players.add(new Player2(wonders.remove(0), i));
         }
         mainPlayer = 0;
-        
+        round = 0;
 
     }
 
@@ -66,12 +66,53 @@ public class Board2 {
     	return players.get(player).getBoardName();
     }
     
-    public void incrRound()
+    public boolean incrRound()
     {
     	round++;
-    	if(round==8)
+    	if(round==6&&age<3)
     	{
     		incrementAge();
+    		return true;
+    	}
+    	else if(round==6)
+    	{
+    		age = 4;
+    		return true;
+    	}
+    	return false;
+    }
+    
+    public void militaryConflicts()
+    {
+    	if(players.get(0).getMilitaryPoints()>players.get(1).getMilitaryPoints())
+    	{
+    		players.get(0).increasePositiveWarPoints(1+2*(age-1));
+    		players.get(1).increaseNegativeWarPoints(-1);
+    	}
+    	else if(players.get(0).getMilitaryPoints()<players.get(1).getMilitaryPoints())
+    	{
+    		players.get(1).increasePositiveWarPoints(1+2*(age-1));
+    		players.get(0).increaseNegativeWarPoints(-1);
+    	}
+    	if(players.get(0).getMilitaryPoints()>players.get(2).getMilitaryPoints())
+    	{
+    		players.get(0).increasePositiveWarPoints(1+2*(age-1));
+    		players.get(2).increaseNegativeWarPoints(-1);
+    	}
+    	else if(players.get(0).getMilitaryPoints()<players.get(2).getMilitaryPoints())
+    	{
+    		players.get(2).increasePositiveWarPoints(1+2*(age-1));
+    		players.get(0).increaseNegativeWarPoints(-1);
+    	}
+    	if(players.get(1).getMilitaryPoints()>players.get(2).getMilitaryPoints())
+    	{
+    		players.get(1).increasePositiveWarPoints(1+2*(age-1));
+    		players.get(2).increaseNegativeWarPoints(-1);
+    	}
+    	else if(players.get(1).getMilitaryPoints()<players.get(2).getMilitaryPoints())
+    	{
+    		players.get(2).increasePositiveWarPoints(1+2*(age-1));
+    		players.get(1).increaseNegativeWarPoints(-1);
     	}
     }
     
@@ -81,7 +122,10 @@ public class Board2 {
     		mainPlayer++;
     	else
     		mainPlayer--;
-    	mainPlayer%=3;
+    	if(mainPlayer>2)
+    		mainPlayer-=3;
+    	else if(mainPlayer<0)
+    		mainPlayer+=3;
     }
     
     public void addDiscard(Card2 card)
@@ -94,6 +138,7 @@ public class Board2 {
         age++;
         deck.setAge(age);
         direction = !direction;
+        round = 0;
     }
     
     public ArrayList<Card2> getAgeDeck(int age)
