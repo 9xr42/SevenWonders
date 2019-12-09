@@ -151,49 +151,49 @@ public class Deck2 {
                 ArrayList<Card2> tempHand = new ArrayList<Card2>();
                 for (int x = 0; x < 7; x++)
                     tempHand.add(arrayList.remove(0));
-                cards1.put(1, tempHand);
+                cards1.put(0, tempHand);
 
                 tempHand = new ArrayList<Card2>();
                 for (int x = 7; x < 14; x++)
                     tempHand.add(arrayList.remove(0));
-                cards1.put(2, tempHand);
+                cards1.put(1, tempHand);
 
                 tempHand = new ArrayList<Card2>();
                 for (int x = 14; x < 21; x++)
                     tempHand.add(arrayList.remove(0));
-                cards1.put(3, tempHand);
+                cards1.put(2, tempHand);
             }
             else if(i == 2) {
                 ArrayList<Card2> tempHand = new ArrayList<Card2>();
                 for (int x = 0; x < 7; x++)
                     tempHand.add(arrayList.remove(0));
-                cards2.put(1, tempHand);
+                cards2.put(0, tempHand);
 
                 tempHand = new ArrayList<Card2>();
                 for (int x = 7; x < 14; x++)
                     tempHand.add(arrayList.remove(0));
-                cards2.put(2, tempHand);
+                cards2.put(1, tempHand);
 
                 tempHand = new ArrayList<Card2>();
                 for (int x = 14; x < 21; x++)
                     tempHand.add(arrayList.remove(0));
-                cards2.put(3, tempHand);
+                cards2.put(2, tempHand);
             }
             else {
                 ArrayList<Card2> tempHand = new ArrayList<Card2>();
                 for (int x = 0; x < 7; x++)
                     tempHand.add(arrayList.remove(0));
-                cards3.put(1, tempHand);
+                cards3.put(0, tempHand);
 
                 tempHand = new ArrayList<Card2>();
                 for (int x = 7; x < 14; x++)
                     tempHand.add(arrayList.remove(0));
-                cards3.put(2, tempHand);
+                cards3.put(1, tempHand);
 
                 tempHand = new ArrayList<Card2>();
                 for (int x = 14; x < 21; x++)
                     tempHand.add(arrayList.remove(0));
-                cards3.put(3, tempHand);
+                cards3.put(2, tempHand);
             }
         }
 
@@ -231,7 +231,7 @@ public class Deck2 {
 		ArrayList<Card2> temp = new ArrayList<Card2>();
 		if(age==1)
 		{
-			for(int i=1; i<=3; i++)
+			for(int i=0; i<=2; i++)
 			{
 				for(Card2 card: cards1.get(i))
 					temp.add(card);
@@ -239,7 +239,7 @@ public class Deck2 {
 		}
 		else if(age==2)
 		{
-			for(int i=1; i<=3; i++)
+			for(int i=0; i<=2; i++)
 			{
 				for(Card2 card: cards2.get(i))
 					temp.add(card);
@@ -247,7 +247,7 @@ public class Deck2 {
 		}
 		else if(age==3)
 		{
-			for(int i=1; i<=3; i++)
+			for(int i=0; i<=2; i++)
 			{
 				for(Card2 card: cards3.get(i))
 					temp.add(card);
