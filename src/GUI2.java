@@ -52,8 +52,6 @@ public class GUI2 extends JFrame implements MouseListener
     public GUI2() throws IOException {
     	
         super("Seven Wonders: Welcome");
-	
-	setStart();
         
         board = new Board2();
         
@@ -99,6 +97,8 @@ public class GUI2 extends JFrame implements MouseListener
         other.put("pyramid", ImageIO.read(new File("pyramid.png")));
         other.put("onecoin", ImageIO.read(new File("onecoin.png")));
         other.put("papyrus", ImageIO.read(new File("papyrus.png")));
+        other.put("clockwise", ImageIO.read(new File("clockwise.png")));
+        other.put("counterclockwise", ImageIO.read(new File("counterclockwise.png")));
         other.put("mainlogo", ImageIO.read(new File("mainlogo.png")));
         other.put("threecoin", ImageIO.read(new File("threecoin.png")));
         other.put("military1", ImageIO.read(new File("military1.png")));
@@ -178,6 +178,17 @@ public class GUI2 extends JFrame implements MouseListener
             	
             	if(board.getAge()==4&&!militaryConflict)
             	{
+            		g.setColor(Color.BLACK);
+            		g.drawImage(other.get("score"), 750, 300, 500, 380, null);
+            		//g.drawString(iterator, x, y);
+            		g.drawString("" + board.players.get(0).getScore(), 850, 675);
+            		g.drawString("" + board.players.get(1).getScore(), 920, 675);
+            		g.drawString("" + board.players.get(0).getScore(), 980, 675);
+            		g.setFont(new Font("Verdana", Font.BOLD, 40));
+            		g.drawString("PLAYER " + (board.getWinner()+1) + " WINS", 800, 800);
+            	}
+            	else if(board.getAge()==4&&!militaryConflict)
+            	{
             		g.drawImage(other.get("score"), 750, 300, 500, 380, null);
             	}
             	else if(!cardChosen&&playerClicked==-1&&viewColor.equals("")&&!militaryConflict)
@@ -190,9 +201,16 @@ public class GUI2 extends JFrame implements MouseListener
                 	g.drawString("Age " + board.getAge(), 950, 225);
                 	g.setFont(new Font("Verdana", Font.BOLD, 14));
                 	if(board.getAge()==2)
+                	{
                 		g.drawString("Direction: counterclockwise", 950, 250);
+                		g.drawImage(other.get("counterclockwise"), 1200, 200, 50, 50, null);
+                	}
                 	else
+                	{
                 		g.drawString("Direction: clockwise", 950, 250);
+                		g.drawImage(other.get("clockwise"), 1200, 200, 50, 50, null);
+                	}
+                		
                 	
             		g.drawString("Click on the card to enlarge and show other cards! ->", 700, 950);
             		
@@ -328,6 +346,11 @@ public class GUI2 extends JFrame implements MouseListener
             		g.drawImage(other.get("pyramid"), 950, 650, 50, 50, null);
             		if(board.getPlayerBoard(board.mainPlayer).equals("olympia")&&board.players.get(mp).mostRecentWonder()>=2)
             			g.drawImage(other.get("free"), 950, 775, 75, 75, null);
+            		
+            		if(board.chain(board.getHand(mp).get(index)))
+            		{
+            			g.drawString("****CAN BE BUILT FOR FREE THROUGH CHAINS****", 800, 800);
+            		}
             		
             		TreeMap<String, Integer> resources = board.players.get(board.mainPlayer).getResources();
             		g.drawString("Your resources: ", 50, 720);
@@ -568,7 +591,10 @@ public class GUI2 extends JFrame implements MouseListener
 		}
 		else
 		{
-			board.players.get(mp).buyCard(board.getHand(mp).remove(index));
+			boolean bought = board.players.get(mp).buyCard(board.getHand(mp).get(index));
+			if(bought)
+				board.getHand(mp).remove(index);
+			
 		}
     }
 
@@ -604,18 +630,18 @@ public class GUI2 extends JFrame implements MouseListener
         rp = 0;
         if(mp == 0)
         {
-            lp = 1;
-            rp = 2;
+            rp = 1;
+            lp = 2;
         }
         else if(mp == 1)
         {
-            lp = 2;
-            rp = 0;
+            rp = 2;
+            lp = 0;
         }
         else if(mp == 2)
         {
-            lp = 0;
-            rp = 1;
+            rp = 0;
+            lp = 1;
         }
     }
 
@@ -789,14 +815,7 @@ public class GUI2 extends JFrame implements MouseListener
         button.setVisible(true);
 
         button.addActionListener(actionEvent -> {
-                            {
-                try {
-                    Thread.sleep(20);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-		start.dispose();
+                start.dispose();
         });
    }
 }
