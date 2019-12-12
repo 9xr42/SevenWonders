@@ -1,0 +1,121 @@
+import static java.lang.System.*;
+
+public class DoubleList
+{
+	private DoubleNode front,back;
+	private int size;
+
+	public DoubleList( )
+	{
+		front = back = null;
+		size = 0;
+	}
+
+	//ADDS NEW NODE TO THE BACK OF THE LIST FOR WORD IF IT DOES NOT EXIST.
+	//IF IT EXISTS, IT BUMPS UP WORD'S COUNT BY ONE
+	public void add(String word) {
+		if(front == null) {
+			front = new DoubleNode(word, 1, null, null);
+			front.setNext(front);
+			front.setPrev(front);
+			back = front;
+			size++;
+		}
+		else {
+			DoubleNode iter = front;
+			boolean contained = false;
+
+			for(int i = 0; i < size; i++) {
+				if(iter.getWord().equals(word)) {
+					iter.setWordCount(iter.getWordCount() + 1);
+					contained = true;
+					break;
+				}
+				iter = iter.getNext();
+			}
+			if(!contained) {
+				back.setNext(new DoubleNode(word, 1, front, back));
+				back = back.getNext();
+				front.setPrev(back);
+				size++;
+			}
+		}
+	}
+	//REMOVE ONE COUNT OF THE WORD FROM THE LIST, IF THE COUNT RESULTS IN ZERO
+	//REMOVE THE WORD FROM LIST. RETURN THE NEW COUNT OF THE WORD OR ZERO
+	//IF THE WORD DOES NOT EXSIST IN LIST
+	public int remove(String word) {
+		DoubleNode iter = front;
+		for(int i = 0; i < size; i++) {
+			if(iter.getWord().equals(word))
+				break;
+			else
+				iter = iter.getNext();
+		}
+
+		if(iter.getWordCount() > 1) {
+			iter.setWordCount(iter.getWordCount()-1);
+			return iter.getWordCount();
+		}
+		else {
+			DoubleNode previous = iter.getPrev();
+			DoubleNode next = iter.getNext();
+			previous.setNext(next);
+			next.setPrev(previous);
+
+			iter.setNext(null);
+			iter.setPrev(null);
+			size--;
+			return 0;
+		}
+	}
+
+	// WILL RETURN THE WORD AT X. THE FRONT IS CONSIDERED 0.
+	// IF X IS NEGATIVE IT WILL COUNT USING PREVIOUS
+	// IF X IS POSITIVE IT WILL COUNT USING NEXT
+	public String getWord(int x) {
+		if(x >= 0) {
+			DoubleNode tempNode = front;
+			for(int i = 0; i < x; i++) {
+				tempNode = tempNode.getNext();
+			}
+			return tempNode.getWord();
+		}
+		else {
+			DoubleNode tempNode = front;
+			for(int i = 0; i > x; i--) {
+				tempNode = tempNode.getPrev();
+			}
+			return tempNode.getWord();
+		}
+	}
+
+	//OPTIONAL PRIVATE METHOD
+	private void removeNode(DoubleNode x, DoubleNode y, DoubleNode z)
+	{
+
+	}
+
+	//RETURNS THE SIZE OF THE LIST
+	public int size()
+	{
+		return size;
+	}
+
+	//RETURNS IF THE LIST CONTAINS THE WORD IN IT
+	public boolean contains(String word) {
+		return false;
+	}
+
+	//RETURNS THE LIST AS A BIG STRING
+	public String toString() {
+		String output = "";
+		DoubleNode iter = front;
+
+		for(int i = 0; i < size; i++) {
+			output += iter.getWord() + "-" + iter.getWordCount() + " ";
+			iter = iter.getNext();
+		}
+		return output;
+	}
+}
