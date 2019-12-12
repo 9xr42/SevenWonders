@@ -1,0 +1,112 @@
+public class ListFunHouse
+{
+    //this method will print the entire list on the screen
+    public static void print(ListNode list){
+        while(list != null) {
+            System.out.print(list.getValue() + " ");
+            list = list.getNext();
+        }
+        System.out.println();
+    }
+
+    //this method will return the number of nodes present in list
+    public static int nodeCount(ListNode list) {
+        ListNode first = list;
+        int counter = 0;
+        while(list != null) {
+            counter++;
+            list = list.getNext();
+        }
+        list = first;
+        return counter;
+    }
+
+    //this method will create a new node with the same value as the first node and add this
+    //new node to the list.  Once finished, the first node will occur twice.
+    public static void doubleFirst(ListNode list) {
+        ListNode next = list.getNext();
+        list.setNext(new ListNode(list.getValue(), next));
+    }
+
+    //this method will create a new node with the same value as the last node and add this
+    //new node at the end.  Once finished, the last node will occur twice.
+    public static void doubleLast(ListNode list) {
+        ListNode first = list;
+        while(list.getNext() != null) {
+            list = list.getNext();
+        }
+        ListNode duplicate = new ListNode(list.getValue(), null);
+        list.setNext(duplicate);
+        list = first;
+    }
+
+    //method skipEveryOther will remove every other node
+    public static void skipEveryOther(ListNode list) {
+        while(list.getNext() != null) {
+            ListNode remove = list.getNext();
+            list.setNext(remove.getNext());
+            remove.setNext(null);
+
+            list = list.getNext();
+        }
+    }
+
+    //this method will set the value of every xth node in the list
+    public static void setXthNode(ListNode list, int x, Comparable value) {
+        ListNode first  = list;
+        int count = 2;
+
+        while(list.getNext() != null) {
+            if(count == x) {
+                list.setNext(new ListNode(value, list.getNext().getNext()));
+                count = 1;
+                list = list.getNext();
+            }
+            else {
+                count++;
+                list = list.getNext();
+            }
+        }
+        list = first;
+    }
+
+    //this method will remove every xth node in the list
+    public static void removeXthNode(ListNode list, int x)  {
+        ListNode first  = list;
+        int count = 2;
+
+        while(list.getNext() != null) {
+            if(count == x) {
+                list.setNext(list.getNext().getNext());
+                count = 2;
+                list = list.getNext();
+                if(list == null)
+                    break;
+            }
+            else {
+                count++;
+                list = list.getNext();
+                if(list == null)
+                    break;
+            }
+        }
+        list = first;
+    }
+
+    //this method will add a node at the end of the list
+    public static ListNode add(ListNode list, Comparable val) {
+        if(list == null) {
+            list = new ListNode(val, null);
+            return list;
+        }
+        else {
+            ListNode first = list;
+            while(list.getNext() != null) {
+                list = list.getNext();
+            }
+            list.setNext(new ListNode(val, null));
+            return first;
+        }
+    }
+}
+
