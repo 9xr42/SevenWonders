@@ -227,6 +227,38 @@ public class Deck2 {
                 output += getHand(x).get(y) + "\n";
         return output;
     }
+    
+    public void rotate()
+    {
+    	if(age==1)
+    	{
+    		//private HashMap<Integer, ArrayList<Card2>> cards1;
+    		ArrayList<Card2> temp1 = getHand(0);
+    		ArrayList<Card2> temp2 = getHand(1);
+    		ArrayList<Card2> temp3 = getHand(2);
+    		cards1.put(0, temp3);
+    		cards1.put(1, temp1);
+    		cards1.put(2, temp2);
+    	}
+    	else if(age==2)
+    	{
+    		ArrayList<Card2> temp1 = getHand(0);
+    		ArrayList<Card2> temp2 = getHand(1);
+    		ArrayList<Card2> temp3 = getHand(2);
+    		cards2.put(0, temp2);
+    		cards2.put(1, temp3);
+    		cards2.put(2, temp1);
+    	}
+    	else if(age==3)
+    	{
+    		ArrayList<Card2> temp1 = getHand(0);
+    		ArrayList<Card2> temp2 = getHand(1);
+    		ArrayList<Card2> temp3 = getHand(2);
+    		cards3.put(0, temp3);
+    		cards3.put(1, temp1);
+    		cards3.put(2, temp2);
+    	}
+    }
     public ArrayList<Card2> getAgeDeck(int age) {
 		ArrayList<Card2> temp = new ArrayList<Card2>();
 		if(age==1)
