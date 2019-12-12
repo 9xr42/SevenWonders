@@ -178,14 +178,38 @@ public class GUI2 extends JFrame implements MouseListener
             	
             	if(board.getAge()==4&&!militaryConflict)
             	{
+//            		g.drawImage(other.get("mainlogo"), 150, 150, 600, 198, null);
+//            		g.setColor(Color.BLACK);
+//            		int[] places = board.getWinner();
+//            		g.setFont(new Font("Verdana", Font.BOLD, 40));
+//            		g.setColor(Color.WHITE);
+//            		g.drawString("PLAYER " + (places[0]+1) + " WINS: " + 
+//            				board.players.get(places[2]).getScore() + "  :DD",
+//            				700, 450);
+//            		g.setFont(new Font("Verdana", Font.BOLD, 14));
+//            		g.drawString("Player " + (places[1]+1) + " gets second place: " + 
+//            				board.players.get(places[2]).getScore() + "  ¯\\_(^_^)_/¯ ", 
+//            				700, 500);
+//            		g.drawString("Player " + (places[2]+1) + " gets third place: "
+//            				+ board.players.get(places[2]).getScore() + "  (T_T)", 
+//            				700, 550);
+//            		try {
+//						g.drawImage(ImageIO.read(new File("end.png")), 1000, 500, 900, 357, null);
+//					} catch (IOException e) {
+//						// TODO Auto-generated catch block
+//						e.printStackTrace();
+//					}
             		g.setColor(Color.BLACK);
+            		int[] places = board.getWinner();
             		g.drawImage(other.get("score"), 750, 300, 500, 380, null);
             		//g.drawString(iterator, x, y);
             		g.drawString("" + board.players.get(0).getScore(), 850, 675);
-            		g.drawString("" + board.players.get(1).getScore(), 920, 675);
+            		g.drawString("" + board.players.get(1).getScore(), 910, 675);
             		g.drawString("" + board.players.get(0).getScore(), 980, 675);
             		g.setFont(new Font("Verdana", Font.BOLD, 40));
-            		g.drawString("PLAYER " + (board.getWinner()+1) + " WINS", 800, 800);
+            		g.drawString("PLAYER " + (places[0]+1) + " WINS", 800, 800);
+            		g.drawString("2nd Place: Player " + (places[1]+1), 800, 840);
+            		g.drawString("3rd Place: Player " + (places[2] +1), 800, 875);
             	}
             	else if(board.getAge()==4&&!militaryConflict)
             	{
@@ -213,6 +237,8 @@ public class GUI2 extends JFrame implements MouseListener
                 		
                 	
             		g.drawString("Click on the card to enlarge and show other cards! ->", 700, 950);
+            		g.drawString("Bought resources: ", 400, 950);
+            		g.drawString("Player " + (mp+1), 1000, 275);
             		
             		g.drawImage(other.get("mainlogo"), 784, 50, 480, 158, null);
             		
@@ -292,15 +318,15 @@ public class GUI2 extends JFrame implements MouseListener
             	
             	else if(militaryConflict)
             	{
-            		board.militaryConflicts();
+            		//board.militaryConflicts();
             		g.setFont(new Font("Verdana", Font.BOLD, 40));
             		g.drawString("PLAYER 1         PLAYER2         PLAYER 3", 500, 400);
             		g.drawString(board.players.get(0).getPositiveWarPoints()+"                        "
             				+board.players.get(1).getPositiveWarPoints()+"                        "
-            				+board.players.get(2).getPositiveWarPoints(), 500, 475);
+            				+board.players.get(2).getPositiveWarPoints(), 500, 455);
             		g.drawString(board.players.get(0).getNegativeWarPoints()+"                        "
             				+board.players.get(1).getNegativeWarPoints()+"                        "
-            				+board.players.get(2).getNegativeWarPoints(), 500, 675);
+            				+board.players.get(2).getNegativeWarPoints(), 500, 655);
             		g.drawImage(other.get("military" + (1+(board.getAge()-2)*2)), 400, 475, 50, 50, null);
             		g.drawImage(other.get("militaryloss"), 400, 675, 50, 50, null);
             		g.drawImage(other.get("arrow2"), 1500, 700, 300, 298, null);
@@ -311,31 +337,31 @@ public class GUI2 extends JFrame implements MouseListener
             		for(Card2 card: board.players.get(mp).getColorCards(viewColor))
             		{
             			g.drawImage(images.get(viewColor).get(card.name), 
-            					1000-board.players.get(mp).getColorCards(viewColor).size()/2*200 + count*200, 400, 200, 306, null);
+            					1000-board.players.get(mp).getColorCards(viewColor).size()/2*200 + count*200-100, 300, 200, 306, null);
             			count++;
             		}
             			
             		g.drawImage(other.get("goback"), 400, 850, 100, 100, null);
             	}
-            	else if(cardAction.equals("free")||cardAction.equals("trash")||cardAction.equals("buy")||cardAction.contentEquals("pyramid"))
+            	else if(cardAction.equals("free")||cardAction.equals("trash")||cardAction.equals("buy")||cardAction.equals("pyramid"))
             	{
             		cardStuff();
-            		turn++;
-            		cardAction = "";
-            		boolean change = false;
-            		if(turn%3==0)
-            			change = board.incrRound();
-            		cardChosen = false;
-            		if(change)
-            		{
-            			militaryConflict = true;
-            			turn = 0;
-            			repaint();
-            		}
-            		board.incrPlayer();
-            		
-            		setPlayerNum();
-            		repaint();
+//            		turn++;
+//            		cardAction = "";
+//            		boolean change = false;
+//            		if(turn%3==0)
+//            			change = board.incrRound();
+//            		cardChosen = false;
+//            		if(change)
+//            		{
+//            			militaryConflict = true;
+//            			turn = 0;
+//            			repaint();
+//            		}
+//            		board.incrPlayer();
+//            		
+//            		setPlayerNum();
+//            		repaint();
             	}
             	else if(cardChosen)
             	{
@@ -344,7 +370,8 @@ public class GUI2 extends JFrame implements MouseListener
             		g.drawImage(other.get("buy"), 750, 650, 50, 50, null);
             		g.drawImage(other.get("trash"), 1200, 650, 50, 50, null);
             		g.drawImage(other.get("pyramid"), 950, 650, 50, 50, null);
-            		if(board.getPlayerBoard(board.mainPlayer).equals("olympia")&&board.players.get(mp).mostRecentWonder()>=2)
+            		if(board.getPlayerBoard(board.mainPlayer).equals("olympia")&&board.players.get(mp).mostRecentWonder()>=2
+            				&&!board.players.get(mp).olympiaEffect())
             			g.drawImage(other.get("free"), 950, 775, 75, 75, null);
             		
             		if(board.chain(board.getHand(mp).get(index)))
@@ -468,13 +495,38 @@ public class GUI2 extends JFrame implements MouseListener
                 		count+=50;
                 	}
                 	
+                	g.drawString("Resources: ", 50, 50);
+                	g.drawString("(click to buy)", 50, 70);
+                	TreeMap<String, String> lolz = board.players.get(mp).getDiscounts();
+                	if(lolz.get("left").contains("wood"))
+                		g.drawString("Discount: 1 coin for raw materials", 50, 90);
+                	if(lolz.get("left").contains("glass"))
+                		g.drawString("Discount: 1 coin for manufactured goods", 50, 110);
+                	
+                	int count1 = 0;
+                	for(String i: resources.keySet())
+                	{
+                		if(resources.get(i)>0)
+                		{
+                			g.drawImage(other.get(i), 50, 120 + count1, 50, 50, null);
+                			g.setColor(Color.LIGHT_GRAY);
+                			g.fillRoundRect(120, 120+count1, 100, 50, 10, 10);
+                			g.setColor(Color.WHITE);
+                			g.drawString("Buy", 150, 150+count1);
+                			count1+=50;
+                		}
+                		
+                	}	
+                	
             	}
             	else if(playerClicked==rp)
             	{
             		g.drawImage(boards.get(board.getPlayerBoard(rp)), 600, 700, 800, 250, null);
             		int wonderCount = board.players.get(lp).mostRecentWonder();
+            		
             		for(int i=0; i<wonderCount; i++)
             			g.drawImage(other.get("check"), 730+i*240, 950, 40, 30, null);
+            		
                 	g.drawImage(other.get("onecoin"), 50, 520, 50, 50, null);
                 	g.drawString(" - "+(board.getPlayer(rp).getMoney()%3), 130, 550); //number of
                 	//58 60
@@ -483,7 +535,7 @@ public class GUI2 extends JFrame implements MouseListener
                 	g.drawImage(other.get("militaryPoint"), 50, 650, 50, 50, null);
                 	g.drawString(" - "+board.getPlayer(rp).getMilitaryPoints(), 130, 680);
                 	
-                	TreeMap<String, Integer> resources = board.players.get(lp).getResources();
+                	TreeMap<String, Integer> resources = board.players.get(rp).getResources();
                 	g.drawString("Player " + (rp+1) + "'s resources: ", 50, 720);
                 	g.drawImage(other.get("wood"), 50, 725, 50, 50, null);
                 	g.drawImage(other.get("clay"), 160, 725, 50, 50, null);
@@ -559,6 +611,30 @@ public class GUI2 extends JFrame implements MouseListener
                 		count+=50;
                 	}
                 	
+                	g.drawString("Resources: ", 50, 50);
+                	g.drawString("(click to buy)", 50, 70);
+                	int count1 = 0;
+                	for(String i: resources.keySet())
+                	{
+                		if(resources.get(i)>0)
+                		{
+                			g.drawImage(other.get(i), 50, 120 + count1, 50, 50, null);
+                			g.setColor(Color.LIGHT_GRAY);
+                			g.fillRoundRect(120, 120+count1, 100, 50, 10, 10);
+                			g.setColor(Color.WHITE);
+                			g.drawString("Buy", 150, 150+count1);
+                			count1+=50;
+                		}
+                		
+                	}	
+                	
+                	TreeMap<String, String> lolz = board.players.get(mp).getDiscounts();
+
+                	if(lolz.get("right").contains("wood"))
+                		g.drawString("Discount: 1 coin for raw materials", 50, 90);
+                	if(lolz.get("right").contains("cloth"))
+                		g.drawString("Discount: 1 coin for manufactured goods", 50, 110);
+                	              	
             	}
             	
             	
@@ -583,19 +659,137 @@ public class GUI2 extends JFrame implements MouseListener
     public void cardStuff()
     {
     	if(cardAction.equals("free"))
-			board.players.get(mp).addCard(board.getHand(mp).remove(index));
+    	{
+    		board.players.get(mp).addCard(board.getHand(mp).remove(index));
+    		board.players.get(mp).useOlympia();
+    		turn++;
+    		cardAction = "";
+    		boolean change = false;
+    		if(turn%3==0)
+    			change = board.incrRound();
+    		cardChosen = false;
+    		if(change)
+    		{
+    			militaryConflict = true;
+    			turn = 0;
+    			repaint();
+    		}
+    		board.incrPlayer();
+    		
+    		setPlayerNum();
+    		repaint();
+    	}	
 		else if(cardAction.equals("trash"))
 		{
 			board.addDiscard(board.getHand(mp).remove(index));
 			board.players.get(mp).changeMoney(3);
+			turn++;
+    		cardAction = "";
+    		boolean change = false;
+    		if(turn%3==0)
+    			change = board.incrRound();
+    		cardChosen = false;
+    		if(change)
+    		{
+    			militaryConflict = true;
+    			turn = 0;
+    			repaint();
+    		}
+    		board.incrPlayer();
+    		
+    		setPlayerNum();
+    		repaint();
 		}
-		else
+		else if(cardAction.equals("pyramid"))
+		{
+			boolean bought = board.players.get(mp).buildWonder();
+			if(bought)
+			{
+				//if(cardAction.equals("pyramid"))
+				//{
+//		    		board.players.get(mp).buildWonder();
+//				}
+//				else
+//				{
+//					board.players.get(mp).addCard(board.getHand(mp).get(index));
+//				}
+				board.getHand(mp).remove(index);
+				turn++;
+        		cardAction = "";
+        		boolean change = false;
+        		if(turn%3==0)
+        			change = board.incrRound();
+        		cardChosen = false;
+        		if(change)
+        		{
+        			militaryConflict = true;
+        			turn = 0;
+        			repaint();
+        		}
+        		board.incrPlayer();
+        		
+        		setPlayerNum();
+        		repaint();
+			}
+			else
+			{
+				cardAction = "";
+				repaint();
+			}
+		}
+		else 
 		{
 			boolean bought = board.players.get(mp).buyCard(board.getHand(mp).get(index));
 			if(bought)
+			{
+//				if(cardAction.equals("pyramid"))
+//				{
+//		    		board.players.get(mp).buildWonder();
+//				}
+//				else
+//				{
+				board.players.get(mp).addCard(board.getHand(mp).get(index));
 				board.getHand(mp).remove(index);
+				turn++;
+        		cardAction = "";
+        		boolean change = false;
+        		if(turn%3==0)
+        			change = board.incrRound();
+        		cardChosen = false;
+        		if(change)
+        		{
+        			militaryConflict = true;
+        			turn = 0;
+        			repaint();
+        		}
+        		board.incrPlayer();
+        		
+        		setPlayerNum();
+        		repaint();
+			}
+			else
+			{
+				cardAction = "";
+				repaint();
+			}
+				
 			
 		}
+    }
+    
+    public int[] getBoxPos(int player)
+    {
+    	//starts 0
+    	TreeMap<String, Integer> resources = board.players.get(rp).getResources();
+    	int[] positions = new int[resources.size()+1];
+    	
+    	
+    	for(int i=0; i<resources.size(); i++)
+    	{
+    		positions[i] = 120 + i*50;
+    	}
+    	return positions;
+		
     }
 
     public int[] positions()
@@ -661,20 +855,17 @@ public class GUI2 extends JFrame implements MouseListener
     	int[] positions = positions();
     	int x = e.getX();
 		int y = e.getY();
-    	if(x>=positions[0]&&x<=positions[positions.length-1]&&playerClicked==-1&&!cardChosen)
+    	if(x>=positions[0]&&x<=positions[positions.length-1]&&playerClicked==-1&&!cardChosen&&y>=300&&y<=529)
     	{
-    		if(y>=300&&y<=529)
-    		{
-    			int index = 0;
-    			for(int i = 0; i<positions.length; i++)
-    			{ 
-    				if((x-positions[i])<0 && (x-positions[i])>-180)
-    				{
-    					index = i-1;
-    					cardChosen = true;
-    					this.index = index;
-    					repaint();
-    				}
+    		int index = 0;
+    		for(int i = 0; i<positions.length; i++)
+    		{ 
+    			if((x-positions[i])<0 && (x-positions[i])>-180)
+    			{
+    				index = i-1;
+    				cardChosen = true;
+    				this.index = index;
+    				repaint();
     			}
     		}
     	}
@@ -728,7 +919,7 @@ public class GUI2 extends JFrame implements MouseListener
     		playerClicked = rp; 
     		repaint();
     	}
-    	else if((playerClicked==rp||playerClicked==lp||!viewColor.equals(""))&&x>=400&&x<=500&&y>=850&&y<=950)
+    	else if((playerClicked>-1||(!viewColor.equals("")))&&x>=400&&x<=500&&y>=850&&y<=950)
     	{
     		playerClicked = -1;
     		viewColor = "";
@@ -749,7 +940,8 @@ public class GUI2 extends JFrame implements MouseListener
     		cardAction = "trash";
     		repaint();
     	}
-    	else if(cardChosen&&x>=950&&x<=1025&&y>=775&&y<=850)
+    	else if(cardChosen&&x>=950&&x<=1025&&y>=775&&y<=850&&
+    			board.players.get(mp).getPlayerBoard().getName().equals("olympia"))
     	{
     		cardAction = "free";
     		repaint();
@@ -757,9 +949,70 @@ public class GUI2 extends JFrame implements MouseListener
     	else if(cardChosen&&x>=950&&x<=1000&&y>=650&&y<=700)
     	{
     		cardAction = "pyramid";
-    		board.players.get(mp).buildWonder();
     		repaint();
     	}
+//    	Player2 temp = board.players.get(rp);
+//    	ArrayList<Card2> card = temp.getColorCards("brown");
+//    	int count = 0;
+//    	g.drawString("Brown Cards", 500, 25);
+//    	for(Card2 i: card)
+//    	{
+//    		g.drawImage(images.get("brown").get(i.getName()), 475, 50+count, 150, 229, null);
+//    		count+=50;
+//    	}
+//    	count=0;
+//    	card = temp.getColorCards("blue");
+//    	g.drawString("Blue Cards", 660, 25);
+//    	for(Card2 i: card)
+//    	{
+//    		g.drawImage(images.get("blue").get(i.getName()), 635, 50+count, 150, 229, null);
+//    		count+=50;
+//    	}
+    	/*else if(playerClicked==rp&&x>=50&&x<=100&&y>=getBoxPos(rp)[0]
+    			&&y<=getBoxPos(rp)[getBoxPos(rp).length-1])
+    	{
+    		int[] pos = getBoxPos(rp);
+    		int count = 0;
+    		TreeMap<String, Integer> temp= new TreeMap<String, Integer>(board.players.get(rp).getResources());
+    		for(String i: temp.keySet())
+        	{
+        		temp.put(i, getBoxPos(rp)[count]);
+        		count++;
+        	}	
+    		for(String i: temp.keySet())
+    		{ 
+    			if((temp.get(i)-y)<0 && (y-temp.get(i))>-50)
+    			{
+    				playerClicked = -1;
+    				board.trade(false, i);
+    				this.index = index;
+    				repaint();
+    			}
+    		}
+    	}
+    	else if(playerClicked==lp&&x>=50&&x<=100&&y>=getBoxPos(lp)[0]
+    			&&y<=getBoxPos(lp)[getBoxPos(lp).length-1])
+    	{
+    		int[] pos = getBoxPos(rp);
+    		int count = 0;
+    		TreeMap<String, Integer> temp= new TreeMap<String, Integer>(board.players.get(lp).getResources());
+    		for(String i: temp.keySet())
+        	{
+        		temp.put(i, getBoxPos(rp)[count]);
+        		count++;
+        	}	
+    		for(String i: temp.keySet())
+    		{ 
+    			if((temp.get(i)-y)<0 && (y-temp.get(i))>-50)
+    			{
+    				playerClicked = -1;
+    				board.trade(true, i);
+    				this.index = index;
+    				repaint();
+    			}
+    		}
+    	}*/
+    	//else if(playerClicked>0)
     }
     @Override
     public void mouseEntered(MouseEvent mouseEvent) {
