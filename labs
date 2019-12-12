@@ -1,0 +1,234 @@
+//Linked List Basics 
+import java.util.LinkedList;
+
+public class JavaLinkedList 
+{
+	private LinkedList<Integer>list;
+	private double sum=0;
+	private double avg=0;
+	private int smallest=Integer.MAX_VALUE;
+	private int largest=Integer.MIN_VALUE;
+	
+	public JavaLinkedList(String[]data)
+	{
+		list=new LinkedList<Integer>();
+		for(int i=0;i<data.length;i++)
+			list.add(Integer.parseInt(data[i]));
+		for(int i=0;i<list.size();i++)
+		{
+			sum+=list.get(i);
+			if(list.get(i)>largest)
+				largest=list.get(i);
+			if(list.get(i)<smallest)
+				smallest=list.get(i);
+		}
+		avg=sum/list.size();
+		
+		System.out.println("SUM:: "+sum);
+		System.out.println("AVERAGE:: "+avg);
+		System.out.println("SMALLEST:: "+smallest);
+		System.out.println("LARGEST:: "+largest);
+		System.out.println();
+	}
+}
+
+import java.io.*;
+import java.util.Scanner;
+
+public class JavaLinkedListRunner 
+{
+	public static void main(String[]args)throws IOException
+	{
+		Scanner scan=new Scanner(new File("JavaLinkedList.txt"));
+		while(scan.hasNextLine()) 
+		{
+			JavaLinkedList list=new JavaLinkedList(scan.nextLine().split(" "));
+		}
+	}
+}
+
+//Linked List Methods 
+import static java.lang.System.*;
+
+import java.util.ArrayList;
+
+public class ListFunHouse
+{
+	//this method will print the entire list on the screen
+   public static void print(ArrayList<String> list)
+   {
+   		for(int i=0;i<list.size();i++)
+   			System.out.print(list.get(i)+" ");
+   		System.out.println();
+   }		
+	
+	//this method will return the number of nodes present in list
+	public static int nodeCount(ArrayList<String> list)
+	{
+		return list.size();
+	}
+
+	//this method will create a new node with the same value as the first node and add this
+	//new node to the list.  Once finished, the first node will occur twice.
+	public static void doubleFirst(ArrayList<String> list)
+	{
+		list.add(0,list.get(0));		
+	}
+
+	//this method will create a new node with the same value as the last node and add this
+	//new node at the end.  Once finished, the last node will occur twice.
+	public static void doubleLast(ArrayList<String> list)
+	{
+   		list.add(list.get(list.size()-1));
+	}
+		
+	//method skipEveryOther will remove every other node
+	public static void skipEveryOther(ArrayList<String> list)
+	{
+		for(int i=1;i<list.size();i+=2)
+			list.remove(i);
+	}
+
+	//this method will set the value of every xth node in the list
+	public static void setXthNode(ArrayList<String> list, int x, Comparable value)
+	{	
+		for(int i=x-1;i<list.size();i+=x)
+			list.set(i,(String)value);
+	}	
+
+	//this method will remove every xth node in the list
+	public static void removeXthNode(ArrayList<String> list, int x)
+	{
+		for(int i=x-1;i<list.size();i+=(x-1))
+		{
+			list.remove(i);
+			//i--;
+		}
+	}
+	
+	//this method will add a node at the end of the list
+	public static void add(ArrayList<String> list, Comparable val)
+	{
+		list.add((String)val);
+	}
+}
+
+import java.util.*;
+import static java.lang.System.*;
+import java.io.*;
+
+public class ListFunHouseRunner
+{
+	public static void main ( String[] args ) throws IOException
+	{
+		
+		Scanner input = new Scanner(new File("ListFunHouse.txt"));
+		
+		String arr[] = input.nextLine().split(" ");
+		//ListNode z = null;
+		ArrayList<String>z=new ArrayList<String>();
+		for(int i=0; i<arr.length; i++)
+			//z = ListFunHouse.add(z, arr[i]);
+			z.add(arr[i]);
+		out.println("Original list values");	
+		ListFunHouse.print(z);
+		out.println("num nodes = " + ListFunHouse.nodeCount(z));
+		out.println("List values after calling nodeCount");	
+		ListFunHouse.print(z);
+		ListFunHouse.doubleFirst(z);		
+		out.println("List values after calling doubleFirst");							
+		ListFunHouse.print(z);
+		ListFunHouse.doubleLast(z);		
+		out.println("List values after calling doubleLast");							
+		ListFunHouse.print(z);
+		int x = input.nextInt();
+		ListFunHouse.removeXthNode(z,x);		
+		out.println("List values after calling removeXthNode("+x+")");					
+		ListFunHouse.print(z);
+		x = input.nextInt();
+		input.nextLine();
+		String str = input.next();		
+		ListFunHouse.setXthNode(z,x,str);		
+		out.println("List values after calling setXthNode("+x+","+str+")");										
+		ListFunHouse.print(z);
+					
+	}
+}
+
+//Hash Tables Numbers
+import java.util.LinkedList;
+public class HashTable
+{
+private LinkedList<Number>[] table;
+
+public HashTable(String[]arr, int size)
+{
+table = new LinkedList [10];
+for(int i = 0;i<table.length;i++)
+{
+table[i] = new LinkedList<Number>();
+}
+for(int x = 0;x<arr.length;x++)
+{
+Number num = new Number(Integer.parseInt(arr[x]));
+if(!table[num.hashCode()].contains(num))
+{
+table[num.hashCode()].add(num);
+}
+}
+
+
+
+}
+
+public void printTable()
+{
+
+System.out.println("HASHTABLE");
+for(int x = 0;x<table.length;x++)
+{
+System.out.println("bucket "+x+" "+printList(table[x]));
+}
+}
+
+private String printList(LinkedList<Number> list)
+{
+String s = "";
+for(Number element: list)
+{
+s = s+element+" ";
+}
+return s;
+}
+
+
+}
+
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.io.*;
+public class HashTableRunner1
+{
+
+public static void main(String[] args) throws IOException
+{
+Scanner input = new Scanner(new File("numbers.dat"));
+ArrayList<String> list = new ArrayList<String>();
+int size = Integer.parseInt(input.nextLine());
+while(input.hasNextLine())
+{
+list.add(input.nextLine());
+}
+String[] arr = new String[list.size()];
+for(int x = 0;x<list.size();x++)
+{
+arr[x] = list.get(x);
+}
+
+HashTable test = new HashTable(arr,size);
+test.printTable();
+
+
+}
+
+}
