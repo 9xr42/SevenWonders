@@ -13,6 +13,12 @@ public class Wonder2 {
         this.cost = new ArrayList<String>();
         for(String i: str)
             this.cost.add(i);
+        this.effect = effect;
+    }
+
+    public String getEffect()
+    {
+    	return effect;
     }
 
     public int getPoints()
