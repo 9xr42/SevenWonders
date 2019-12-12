@@ -9,8 +9,10 @@ public class Player2 {
     private int positiveWarPoints;
     private int negativeWarPoints;
     private int militaryPoints;
-    ArrayList<Card2> purpleCards;
-    int score;
+    private boolean olympiaEffect;
+    private boolean halikEffect;
+    private ArrayList<String> tempResources;
+    //private 
 
     public Player2(PlayerBoard2 playerBoard, int playerNumber) {
         this.playerBoard = playerBoard;
@@ -20,15 +22,33 @@ public class Player2 {
         this.positiveWarPoints = 0;
         this.negativeWarPoints = 0;
         militaryPoints = 0;
+        olympiaEffect = false;
+        halikEffect = false;
+        tempResources = new ArrayList<String>();
+    }
+    
+    public boolean olympiaEffect()
+    {
+    	return olympiaEffect;
+    }
+    
+    public void useOlympia()
+    {
+    	olympiaEffect = true;
+    }
+    
+    public void resetOlympia()
+    {
+    	olympiaEffect = false;
     }
 
-    public PlayerBoard2 getPlayerBoard() {
+	public PlayerBoard2 getPlayerBoard() {
         return playerBoard;
     }
-
+    
     public String getBoardName()
     {
-        return playerBoard.getName();
+    	return playerBoard.getName();
     }
     public ArrayList<Card2> getHand() {
         return hand;
@@ -47,94 +67,107 @@ public class Player2 {
     {
         return negativeWarPoints;
     }
-
+    
     public int getMilitaryPoints()
     {
-        return militaryPoints;
+    	return militaryPoints;
     }
-
+    
     public void addMilitaryPoints(int num)
     {
-        militaryPoints+=num;
+    	militaryPoints+=num;
     }
-
+    
     public ArrayList<Card2> getColorCards(String color)
     {
-        ArrayList<Card2> temp = new ArrayList<Card2>();
-        for(Card2 card: hand)
-        {
-            if(card.color.equals(color))
-                temp.add(card);
-        }
-        return temp;
+    	ArrayList<Card2> temp = new ArrayList<Card2>();
+    	for(Card2 card: hand)
+    	{
+    		if(card.color.equals(color))
+    			temp.add(card);
+    	}
+    	return temp;	
     }
-
+    
     public TreeMap<String, Integer> getResources()
     {
-        TreeMap<String, Integer> resources = new TreeMap<String, Integer>();
-        resources.put("wood", 0);
-        resources.put("stone", 0);
-        resources.put("clay", 0);
-        resources.put("ore", 0);
-        resources.put("papyrus", 0);
-        resources.put("glass", 0);
-        resources.put("cloth",0);
-        ArrayList<String> temp = new ArrayList<String>();
-        for(Card2 card: getColorCards("brown"))
-        {
-            if(card.getResources().size()==1)
-                temp.add(card.getResources().get(0));
-            else
-            {
-                String str = "";
-                for(String i: card.getResources())
-                    str+=i+ " ";
-                temp.add(str);
-            }
-        }
-
-        for(Card2 card: getColorCards("gray"))
-        {
-            temp.add(card.getResources().get(0));
-        }
-        temp.add(playerBoard.getResource());
-
-        for(String i: temp)
-        {
-            if(resources.containsKey(i))
-                resources.put(i, resources.get(i)+1);
-            else
-                resources.put(i, 1);
-        }
-        return resources;
+    	//System.out.println("hi");
+    	TreeMap<String, Integer> resources = new TreeMap<String, Integer>();
+    	resources.put("wood", 0);
+    	resources.put("stone", 0);
+    	resources.put("clay", 0);
+    	resources.put("ore", 0);
+    	resources.put("papyrus", 0);
+    	resources.put("glass", 0);
+    	resources.put("cloth",0);
+    	ArrayList<String> temp = new ArrayList<String>();
+    	for(Card2 card: getColorCards("brown"))
+    	{
+    		//System.out.println(card);
+    		if(card.getResources().get(0).contains(","))
+    		{
+    			String[] temp2 = card.getResources().get(0).split(",");
+    			for(String i: temp2)
+    				temp.add(i);
+    		}
+    		else if(card.getResources().size()==1)
+    			temp.add(card.getResources().get(0));
+    		else
+    		{
+    			//System.out.println("hi2");
+    			//String str = "";
+    			for(String i: card.getResources())
+    				temp.add(i);
+    		}
+    	}
+    		
+    	for(Card2 card: getColorCards("gray"))
+    	{
+    		temp.add(card.getResources().get(0));
+    	}
+    	temp.add(playerBoard.getResource());
+    	
+    	for(String i: temp)
+    	{
+    		if(resources.containsKey(i))
+    			resources.put(i, resources.get(i)+1);
+    		else
+    			resources.put(i, 1);
+    	}
+    	return resources;
     }
     public ArrayList<String> getResourceList()
     {
-        ArrayList<String> temp = new ArrayList<String>();
-        for(Card2 card: getColorCards("brown"))
-        {
-            if(card.getResources().size()==1)
-                temp.add(card.getResources().get(0));
-            else
-            {
-                String str = "";
-                for(String i: card.getResources())
-                    str+=i+ " ";
-                temp.add(str);
-            }
-        }
-
-        for(Card2 card: getColorCards("gray"))
-        {
-            temp.add(card.getResources().get(0));
-        }
-        temp.add(playerBoard.getResource());
-
-        return temp;
+    	ArrayList<String> temp = new ArrayList<String>();
+    	for(Card2 card: getColorCards("brown"))
+    	{
+    		if(card.getResources().get(0).contains(","))
+    		{
+    			String[] temp2 = card.getResources().get(0).split(",");
+    			for(String i: temp2)
+    				temp.add(i);
+    		}
+    		else if(card.getResources().size()==1)
+    			temp.add(card.getResources().get(0));
+    		else 
+    		{
+    			for(String i: card.getResources())
+    				temp.add(i);
+    		}
+    	}
+    		
+    	for(Card2 card: getColorCards("gray"))
+    	{
+    		temp.add(card.getResources().get(0));
+    	}
+    	temp.add(playerBoard.getResource());
+    	
+    	return temp;
     }
 
     public void addCard(Card2 card) {
-
+    	if(card.color.equals("red"))
+    		militaryPoints+=card.getMilitary();
         hand.add(card);
     }
     public void changeMoney(int amount) {
@@ -146,107 +179,135 @@ public class Player2 {
     public void increaseNegativeWarPoints(int amount) {
         negativeWarPoints += amount;
     }
-
+    
     public boolean buyCard(Card2 card)
     {
-        if(card.color.equals("gray"))
-        {
-            addCard(card);
-            return true;
-        }
-
-        else if(card.color.equals("brown"))
-        {
-            int cost = card.getCoinCost();
-            if(money>=cost)
-            {
-                money-=cost;
-                addCard(card);
-                return true;
-            }
-        }
-        else
-        {
-            if(card.getResourceCost()==null||chain(card))
-            {
-                addCard(card);
-                return true;
-            }
-            else
-            {
-                ArrayList<String> cost = card.getResourceCost();
-                ArrayList<String> temp = new ArrayList<String>(getResourceList());
-                for(String i: cost)
-                {
-                    if(temp.contains(i))
-                        temp.remove(i);
-                }
-                if(temp.size()>=1)
-                {
-                    addCard(card);
-                    if(card.color.equals("red"))
-                        militaryPoints+=card.getMilitary();
-                    return true;
-                }
-            }
-        }
-        return false;
+    	if(card.color.equals("gray"))
+    	{
+    		//addCard(card);
+    		return true;
+    	}
+    		
+    	else if(card.color.equals("brown"))
+    	{
+    		int cost = card.getCoinCost();
+    		if(money>=cost)
+    		{
+    			money-=cost;
+    			//addCard(card);
+    			return true;
+    		}
+    	}
+    	else 
+    	{
+    		if(card.getResourceCost()==null||chain(card))
+    		{
+    			//addCard(card);
+    			return true;
+    		}
+    		else
+    		{
+    			ArrayList<String> cost = card.getResourceCost();
+    			//ArrayList<String> temp = new ArrayList<String>(cost);
+    			for(String i: getResourceList())
+    			{
+    				if(cost.contains(i))
+    					cost.remove(i);
+    			}
+    			if(cost.size()==0)
+    			{
+    				//addCard(card);
+    				//if(card.color.equals("red"))
+    		    		//militaryPoints+=card.getMilitary();
+    				return true;
+    			}
+    		}
+    	}
+    	return false;
     }
-
+    
     public boolean chain(Card2 card)
     {
-        for(int i=0;i<hand.size();i++)
-        {
-            if(hand.get(i).getChain1().equals(card.getName())||hand.get(i).getChain2().equals(card.getName()))
-                return true;
-        }
-        return false;
+      for(int i=0;i<hand.size();i++)
+      {
+        if(hand.get(i).getChain1().equals(card.getName())||hand.get(i).getChain2().equals(card.getName()))
+          return true;
+      }
+      return false;
     }
-
+    
     public TreeMap<String, String> getDiscounts()
     {
-        TreeMap<String, String> map = new TreeMap<String, String>();
-        String left = "";
-        String right = "";
-        for(Card2 card: getHand())
-        {
-            if(card.getAction().equals("discount"))
-            {
-                if(card.isLeft())
-                {
-                    for(String i: card.getResources())
-                        left+=i + " ";
-                }
-                else if(card.isRight())
-                {
-                    for(String i: card.getResources())
-                        right+=i + " ";
-                }
-            }
-        }
-        map.put("left", left);
-        map.put("right", right);
-        return map;
-
+    	TreeMap<String, String> map = new TreeMap<String, String>();
+    	String left = "";
+    	String right = "";
+    	for(Card2 card: getHand())
+    	{
+    		if(card.getAction().equals("discount"))
+    		{
+    			if(card.isLeft())
+    			{
+    				for(String i: card.getResources())
+    					left+=i + " ";
+    			}
+    			else if(card.isRight())
+    			{
+    				for(String i: card.getResources())
+    					right+=i + " ";
+    			}
+    		}
+    	}
+    	map.put("left", left);
+    	map.put("right", right);
+    	return map;
+    	
     }
-
-    public void buildWonder()
+    
+    public boolean buildWonder()
     {
-        playerBoard.buildWonder();
+    	ArrayList<String> temp = playerBoard.wonderCost();
+    	for(String i: getResourceList())
+		{
+			if(temp.contains(i))
+				temp.remove(i);
+		}
+		if(temp.size()==0)
+		{
+			//addCard(card);
+			//if(card.color.equals("red"))
+	    		//militaryPoints+=card.getMilitary();
+			playerBoard.buildWonder();
+			if(mostRecentWonder()==2)
+			{
+				String[] effect = playerBoard.getWonder2().getEffect().split(" ");
+				if(effect[0].equals("military"))
+					militaryPoints += Integer.parseInt(effect[1]);
+				else if(effect[0].equals("coin"))
+					money+=Integer.parseInt(effect[1]);
+			}
+			return true;
+		}
+		return false;
+    	
     }
-
+    
+    public String getSpecialEffect()
+    {
+    	return playerBoard.getWonder2().getEffect();
+    }
+    
     public int mostRecentWonder()
     {
-        if(playerBoard.getWonder3().isHasBeenBuilt())
-            return 3;
-        else if(playerBoard.getWonder2().isHasBeenBuilt())
-            return 2;
-        else if(playerBoard.getWonder1().isHasBeenBuilt())
-            return 1;
-        return 0;
+    	if(playerBoard.getWonder3().isHasBeenBuilt())
+    		return 3;
+    	else if(playerBoard.getWonder2().isHasBeenBuilt())
+    		return 2;
+    	else if(playerBoard.getWonder1().isHasBeenBuilt())
+    		return 1;
+    	return 0;
     }
     public int getScore() {
-        score = 0;
+        int score = 0;
         score += getPositiveWarPoints();
         score += getNegativeWarPoints();
         score += getMoney()/3;
@@ -282,20 +343,21 @@ public class Player2 {
                 tablet++;
             score += gear*gear + compass*compass + tablet*tablet;
         }
-        for(Card2 card: yellow)
+        /*for(Card2 card: yellow)
             score += card.getVictoryPoints();
         for(Card2 card: purple)
             score += card.getVictoryPoints();
 
 
-        purpleCards = purple;
+        purpleCards = purple;*/
         return score;
     }
 
     public int getGuildScore()
     {
         int thisScore = 0;
-        for(Card2 card: purpleCards)
+        ArrayList<Card2> purple = new ArrayList<Card2>();
+        for(Card2 card: purple)
         {
             if(card.name.equals("philosophersguild"))
             {
@@ -326,11 +388,8 @@ public class Player2 {
         return thisScore;
     }
 
-    public void setScore(int add)
+    public int setScore(int add)
     {
-        score = score+add;
+        return getScore()+add;
     }
-
-
-
 }
