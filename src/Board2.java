@@ -1,5 +1,6 @@
 import java.io.*;
 import java.util.Scanner;
+import java.util.TreeMap;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -66,26 +67,43 @@ public class Board2 {
     	return players.get(player).getBoardName();
     }
     
-    public int getWinner()
+    public int[] getWinner()
     {
+    	int[] places = new int[3];
+    	
     	int highest = 0;
     	if(players.get(1).getScore()>players.get(highest).getScore())
     		highest = 1;
     	if(players.get(2).getScore()>players.get(highest).getScore())
     		highest = 2;
-    	return highest;
+    	
+    	places[0] = highest;
+    	
+    	int lowest = 0;
+    	if(players.get(1).getScore()<players.get(lowest).getScore())
+    		lowest = 1;
+    	if(players.get(2).getScore()<players.get(lowest).getScore())
+    		lowest = 2;
+    	
+    	places[2] = lowest;
+    	places[1] = 3-places[2]-places[0];
+    	return places;
     }
     
     public boolean incrRound()
     {
     	round++;
+    	deck.rotate();
     	if(round==6&&age<3)
     	{
     		incrementAge();
+    		for(Player2 i: players)
+    			i.resetOlympia();
     		return true;
     	}
     	else if(round==6)
     	{
+    		militaryConflicts();
     		age = 4;
     		return true;
     	}
@@ -96,46 +114,41 @@ public class Board2 {
     {
     	if(players.get(0).getMilitaryPoints()>players.get(1).getMilitaryPoints())
     	{
-    		players.get(0).increasePositiveWarPoints(1+2*(age-2));
+    		players.get(0).increasePositiveWarPoints(1+2*(age-1));
     		players.get(1).increaseNegativeWarPoints(-1);
     	}
     	else if(players.get(0).getMilitaryPoints()<players.get(1).getMilitaryPoints())
     	{
-    		players.get(1).increasePositiveWarPoints(1+2*(age-2));
+    		players.get(1).increasePositiveWarPoints(1+2*(age-1));
     		players.get(0).increaseNegativeWarPoints(-1);
     	}
     	if(players.get(0).getMilitaryPoints()>players.get(2).getMilitaryPoints())
     	{
-    		players.get(0).increasePositiveWarPoints(1+2*(age-2));
+    		players.get(0).increasePositiveWarPoints(1+2*(age-1));
     		players.get(2).increaseNegativeWarPoints(-1);
     	}
     	else if(players.get(0).getMilitaryPoints()<players.get(2).getMilitaryPoints())
     	{
-    		players.get(2).increasePositiveWarPoints(1+2*(age-2));
+    		players.get(2).increasePositiveWarPoints(1+2*(age-1));
     		players.get(0).increaseNegativeWarPoints(-1);
     	}
     	if(players.get(1).getMilitaryPoints()>players.get(2).getMilitaryPoints())
     	{
-    		players.get(1).increasePositiveWarPoints(1+2*(age-2));
+    		players.get(1).increasePositiveWarPoints(1+2*(age-1));
     		players.get(2).increaseNegativeWarPoints(-1);
     	}
     	else if(players.get(1).getMilitaryPoints()<players.get(2).getMilitaryPoints())
     	{
-    		players.get(2).increasePositiveWarPoints(1+2*(age-2));
+    		players.get(2).increasePositiveWarPoints(1+2*(age-1));
     		players.get(1).increaseNegativeWarPoints(-1);
     	}
     }
     
     public void incrPlayer()
     {
-    	if(direction)
-    		mainPlayer++;
-    	else
-    		mainPlayer--;
+    	mainPlayer++;
     	if(mainPlayer>2)
     		mainPlayer-=3;
-    	else if(mainPlayer<0)
-    		mainPlayer+=3;
     }
     
     public boolean chain(Card2 card)
@@ -150,6 +163,7 @@ public class Board2 {
 
     public void incrementAge()
     {
+    	militaryConflicts();
         age++;
         deck.setAge(age);
         direction = !direction;
@@ -179,5 +193,46 @@ public class Board2 {
 	public int getAge() {
 		return age;
 	}
+	
+	public boolean trade(boolean left, String resource)
+    {
+    	Player2 player;
+    	int temp=0;
+    	if(left)
+    	{
+	    	if(mainPlayer==1||mainPlayer==2)	
+    			temp=mainPlayer-1;
+	    	else
+	    		temp=2;
+    	}
+    	if(!left)
+    	{
+    		if(mainPlayer==0||mainPlayer==1)
+    			temp=mainPlayer+1;
+    		else
+    			temp=0;
+    	}
+    	player=players.get(temp);
+    	Player2 thisPlayer=players.get(mainPlayer);
+    	TreeMap<String, Integer>resources=player.getResources();
+    	if(resources.containsKey(resource))
+    	{
+    		if(resources.get(resource)<=0)
+    			return false;
+    		int cost=2;
+    		//if(thisPlayer.getColorCards(yellow).contains(trading post card))
+    			//cost=1;
+    		if(thisPlayer.getMoney()<cost)
+    			return false;
+    		resources.replace(resource, resources.get(resource)-1);
+    		if(!thisPlayer.getResources().containsKey(resource))
+    			thisPlayer.getResources().put(resource,0);
+    		thisPlayer.getResources().replace(resource, thisPlayer.getResources().get(resource)+1);
+    		player.changeMoney(cost);
+    		thisPlayer.changeMoney(-cost);
+    		return true;
+    	}
+    	return false;
+    }
 
 }
