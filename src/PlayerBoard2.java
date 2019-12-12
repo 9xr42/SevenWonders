@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class PlayerBoard2 {
     private String name;
     private String resource;
@@ -24,6 +26,16 @@ public class PlayerBoard2 {
     }
     public Wonder2 getWonder3() {
         return wonder3;
+    }
+    
+    public ArrayList<String> wonderCost()
+    {
+    	if(!wonder1.isHasBeenBuilt())
+    		return wonder1.getCost();
+    	else if(!wonder2.isHasBeenBuilt())
+    		return wonder2.getCost();
+    	else
+    		return wonder3.getCost();
     }
     
     public void buildWonder()
